@@ -1,8 +1,11 @@
 name: Deploy to GitHub Pages
 
+# Deliberately not pinned to a branch name: this repository's default branch is
+# the working branch, not "main", and a filter of [main] would mean the workflow
+# never fired at all. The job guard keeps deploys to the default branch only.
 on:
   push:
-    branches: [main]
+    branches: ['**']
   workflow_dispatch:
 
 permissions:
@@ -16,6 +19,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name == 'workflow_dispatch' || github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
