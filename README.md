@@ -106,8 +106,10 @@ on three sources in order of authority:
   └──────────────────────────────────────────────────────────┘
 ```
 
-Each row carries its provenance, and the app labels anything not hand-checked
-*via Wikipedia* or *via IMSLP* with a link back to the source.
+Provenance drives the merge and the build-time checks, but it is deliberately
+not shipped: `tools/build.mjs` drops the `src` and `url` fields when it writes
+`data/works.json`, and the interface names no upstream catalogue. Which source a
+row came from is answered here and in `data/`, not in the app.
 
 This sidesteps CORS entirely, makes search instant, keeps working when IMSLP is
 down, and sends no user query anywhere.

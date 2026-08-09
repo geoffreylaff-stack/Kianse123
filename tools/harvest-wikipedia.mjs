@@ -216,7 +216,11 @@ function instrumentationSection(wikitext) {
   const verbs = /\b(?:scored|orchestrated|written|composed|arranged)\s+for\b|\bcalls\s+for\b|\bconsisting\s+of\b/gi;
   let fallback = null;
   for (const m of wikitext.matchAll(verbs)) {
-    const window = wikitext.slice(m.index, m.index + 900);
+    // Stop at the next heading as well as at the window size: without this the
+    // capture runs on into ==References== and the external-link templates.
+    const raw = wikitext.slice(m.index, m.index + 900);
+    const heading = /\n\s*==/.exec(raw);
+    const window = heading ? raw.slice(0, heading.index) : raw;
     // Guard against ordinary prose ("written for Diaghilev"): a real scoring
     // list names several other orchestral instruments alongside the oboes.
     const corroborating = ['flute', 'clarinet', 'bassoon', 'horn', 'trumpet', 'timpani', 'strings', 'harp', 'viola']

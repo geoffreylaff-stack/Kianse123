@@ -112,6 +112,20 @@ button.primary {
 }
 button.primary:hover { filter: brightness(1.08); }
 
+.search .actions { display: flex; gap: .5rem; align-items: center; }
+
+button.secondary {
+  font: inherit;
+  font-weight: 500;
+  padding: .72rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+button.secondary:hover { background: var(--surface-2); color: var(--ink); }
+
 .help { font-size: .85rem; color: var(--ink-faint); margin: .4rem 0 0; }
 .linkish {
   font: inherit;

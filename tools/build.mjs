@@ -169,7 +169,26 @@ for (const w of wikipedia.works ?? []) {
   // Re-parse the stored source text when it is present, so a parser change
   // reaches the index through `npm run build` alone rather than requiring
   // another full sweep of 3,200 articles.
-  const reparsed = w.text ? parseInstrumentation(w.text) : null;
+  //
+  // Older snapshots captured text that ran past the scoring into the next
+  // section, dragging in headings and external-link markup; cut that here so
+  // the shipped index is clean without waiting on a re-harvest.
+  // Heading level tells the two cases apart. A level-2 heading ("==Structure==")
+  // means the article has left the scoring behind, so cut there. A deeper one
+  // ("=== Band version ===") is a label *inside* the scoring, so keep the words
+  // and drop only the markup.
+  const tidy = (s) => {
+    const moved = /(?<!=)==(?!=)/.exec(s);
+    const body = moved && moved.index > 0 ? s.slice(0, moved.index) : s;
+    return body
+      .replace(/=+\s*([^=]*?)\s*=+/g, '$1, ')
+      .replace(/\s+/g, ' ')
+      .replace(/(?:\s*,\s*)+/g, ', ')
+      .replace(/^[,\s]+|[,\s]+$/g, '')
+      .trim();
+  };
+  const sourceText = w.text ? tidy(w.text) : null;
+  const reparsed = sourceText ? parseInstrumentation(sourceText) : null;
   const usable = reparsed?.total > 0;
 
   works.push({
@@ -181,7 +200,7 @@ for (const w of wikipedia.works ?? []) {
     s: usable ? formatOboeScoring(reparsed) : w.scoring,
     counts: usable ? reparsed.counts : w.counts,
     req: usable ? requiredInstruments(reparsed) : w.req,
-    full: w.full || null,
+    full: sourceText ? sourceText.slice(0, 400) : (w.full || null),
     note: null,
     arr: false,
     est: usable ? reparsed.uncertain.length > 0 : !!w.estimated,
@@ -213,7 +232,7 @@ for (const w of imslp.works ?? []) {
     t: w.title,
     cat: w.catalogue || null,
     y: null,
-    g: w.arrangement ? 'Arrangement' : 'IMSLP catalogue',
+    g: w.arrangement ? 'Arrangement' : 'Other',
     s: usable ? formatOboeScoring(parsed) : w.scoring,
     counts: usable ? parsed.counts : w.counts,
     req: usable ? requiredInstruments(parsed) : Object.keys(w.counts || {}).filter((k) => w.counts[k] > 0),
@@ -230,18 +249,16 @@ for (const w of imslp.works ?? []) {
 // Drop composers whose every entry is an arrangement or otherwise unshowable.
 for (const [id, c] of composers) if (!c.n && !c.nArr) composers.delete(id);
 
+// `src` and `url` drive the merge and the build-time checks below, but they
+// name the upstream catalogues, so they are dropped from the shipped index
+// rather than left for anyone reading the JSON or the network tab.
+const shipped = works.map(({ src, url, ...rest }) => rest);
+
 const payload = {
   generated: new Date().toISOString(),
-  sources: {
-    curated: `${curated.works?.length ?? 0} hand-checked works`,
-    wikipedia: wikipedia.generated
-      ? `Wikipedia snapshot ${wikipedia.generated.slice(0, 10)}`
-      : 'Wikipedia not yet harvested',
-    imslp: imslp.generated ? `IMSLP snapshot ${imslp.generated.slice(0, 10)}` : 'IMSLP not yet harvested',
-  },
   stats: { works: works.length, composers: composers.size },
   composers: [...composers.values()].sort((a, b) => String(a.sort).localeCompare(String(b.sort))),
-  works,
+  works: shipped,
 };
 
 await fs.mkdir(p('data'), { recursive: true });

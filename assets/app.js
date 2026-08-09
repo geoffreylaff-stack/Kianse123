@@ -132,13 +132,11 @@ function worksFor(composerId) {
 // ── Rendering ─────────────────────────────────────────────────────────────────
 function renderWork(w) {
   const titleText = w.cat ? `${w.t}, ${w.cat}` : w.t;
-  const title = w.url
-    ? el('a', { href: w.url, rel: 'noopener', target: '_blank', textContent: titleText })
-    : document.createTextNode(titleText);
+  const title = document.createTextNode(titleText);
 
   const metaBits = [];
   if (w.y) metaBits.push(String(w.y));
-  if (w.g && w.g !== 'IMSLP catalogue') metaBits.push(w.g);
+  if (w.g && w.g !== 'Other') metaBits.push(w.g);
 
   const left = el('div', {},
     el('h3', { className: 'work-title' }, title,
@@ -150,8 +148,6 @@ function renderWork(w) {
 
   const flags = [];
   if (w.est) flags.push('count inferred from a plural');
-  const SOURCE_LABEL = { imslp: 'via IMSLP', wikipedia: 'via Wikipedia' };
-  if (SOURCE_LABEL[w.src]) flags.push(SOURCE_LABEL[w.src]);
 
   const right = el('div', { className: 'scoring' },
     w.s || '—',
@@ -224,8 +220,8 @@ const csvCell = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
 
 function downloadCsv(composer, list) {
   const rows = [
-    ['Composer', 'Work', 'Catalogue', 'Year', 'Genre', 'Oboe-family scoring', 'Full instrumentation', 'Arrangement', 'Source', 'URL'],
-    ...list.map((w) => [composer.name, w.t, w.cat, w.y, w.g, w.s, w.full, w.arr ? 'yes' : 'no', w.src, w.url]),
+    ['Composer', 'Work', 'Catalogue', 'Year', 'Genre', 'Oboe-family scoring', 'Full instrumentation', 'Arrangement'],
+    ...list.map((w) => [composer.name, w.t, w.cat, w.y, w.g, w.s, w.full, w.arr ? 'yes' : 'no']),
   ];
   const blob = new Blob(['﻿' + rows.map((r) => r.map(csvCell).join(',')).join('\r\n')],
     { type: 'text/csv;charset=utf-8' });
@@ -355,6 +351,38 @@ $('#search-form').addEventListener('submit', (e) => {
   ));
 });
 
+/** Put the page back exactly as it loads, filters included. */
+function resetApp() {
+  state.composer = null;
+  state.required.clear();
+  state.arrangements = false;
+  state.estimated = true;
+  state.group = true;
+  state.sort = 'default';
+
+  input.value = '';
+  closeSuggestions();
+
+  for (const chip of document.querySelectorAll('#instrument-filters .chip')) {
+    chip.setAttribute('aria-pressed', 'false');
+  }
+  $('#opt-arrangements').checked = false;
+  $('#opt-estimated').checked = true;
+  $('#opt-group').checked = true;
+  $('#sort').value = 'default';
+
+  $('#results').replaceChildren();
+  $('#summary').hidden = true;
+  $('#filters').hidden = true;
+  $('#intro').hidden = false;
+
+  // Drop the composer from the URL so a reload also starts clean.
+  history.replaceState(null, '', location.pathname + location.search);
+  input.focus();
+}
+
+$('#clear').addEventListener('click', resetApp);
+
 $('#browse-all').addEventListener('click', () => {
   input.value = '';
   showSuggestions([...state.data.composers].sort((a, b) => b.n - a.n).slice(0, 40));
@@ -394,8 +422,7 @@ try {
 
   $('#provenance').textContent =
     `Index built ${new Date(data.generated).toLocaleDateString()} — ` +
-    `${data.stats.works.toLocaleString()} works by ${data.stats.composers.toLocaleString()} composers. ` +
-    `${[data.sources.curated, data.sources.wikipedia, data.sources.imslp].filter(Boolean).join('; ')}.`;
+    `${data.stats.works.toLocaleString()} works by ${data.stats.composers.toLocaleString()} composers.`;
 
   // A few well-stocked composers as one-click starting points.
   const popular = [...data.composers].sort((a, b) => b.n - a.n).slice(0, 10);
