@@ -9,8 +9,10 @@ Nothing is installed. The end user opens a URL in Chrome or Edge and searches.
 
 | | |
 |---|---|
-| **Works indexed** | 5,767 |
-| **Composers** | 1,651 |
+| **Works indexed** | 6,592 |
+| **Composers** | 1,671 |
+| **Works needing an English horn** | 799 |
+| **Sources** | 133 hand-checked · 852 from Wikipedia · 5,607 from IMSLP |
 | **Family members covered** | oboe · english horn (cor anglais) · oboe d'amore · oboe da caccia · bass oboe · heckelphone · musette |
 
 ---

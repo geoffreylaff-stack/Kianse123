@@ -1,14 +1,14 @@
 {
- "generated": "2026-08-09T20:11:14.605Z",
+ "generated": "2026-08-09T20:13:25.256Z",
  "source": "English Wikipedia (en.wikipedia.org)",
  "license": "Text from Wikipedia, CC BY-SA 4.0.",
  "counts": {
-  "articles": 2746,
-  "withSection": 858,
-  "withOboe": 806,
-  "skipped": 1888,
-  "works": 806,
-  "apiCalls": 3095
+  "articles": 3200,
+  "withSection": 969,
+  "withOboe": 899,
+  "skipped": 2231,
+  "works": 899,
+  "apiCalls": 3609
  },
  "works": [
   {
@@ -14275,6 +14275,1686 @@
    "how": "section",
    "url": "https://en.wikipedia.org/wiki/Die_tote_Stadt",
    "composer": "Erich Wolfgang Korngold",
+   "genre": "Opera"
+  },
+  {
+   "page": "La Transfiguration de Notre Seigneur Jésus-Christ",
+   "subcat": "Category:Choral compositions by Olivier Messiaen",
+   "scoring": "three oboes, english horn",
+   "counts": {
+    "oboe": 3,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The oratorio is scored for a mixed choir (ten voices per part), seven instrumental soloists, and a massive orchestra, Woodwinds: two piccoli, three flutes, three oboes, cor anglais, piccolo clarinet in E-flat, three clarinets in B-flat, bass clarinet in B-flat, three bassoons, contrabassoon, Brass: six horns in F, piccolo trumpet in D, three trumpets in C, three trombones, bass trombone, tuba, …",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/La_Transfiguration_de_Notre_Seigneur_J%C3%A9sus-Christ",
+   "composer": "Olivier Messiaen",
+   "genre": "Choral"
+  },
+  {
+   "page": "Des canyons aux étoiles...",
+   "subcat": "Category:Concertante works by Olivier Messiaen",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The work is scored for four soloists (piano solo, horn solo, xylorimba solo and glockenspiel solo) and orchestra, The string section consists of only 6 violins, 3 violas, 3 cellos, and 1 double bass with fifth-string lower extension, The woodwind requires 1 piccolo, 2 flutes, 1 alto flute, 2 oboes, 1 cor anglais, 1 E-flat clarinet, 2 B-flat clarinets, 1 bass clarinet, 2 bassoons, and 1 contraba…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Des_canyons_aux_%C3%A9toiles...",
+   "composer": "Olivier Messiaen",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Sept haïkaï",
+   "subcat": "Category:Concertante works by Olivier Messiaen",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The piece is scored for solo piano and an orchestra with the following instruments, Woodwinds, piccolo, flute, 2 oboes, cor anglais, 2 clarinets, E clarinet, bass clarinet, 2 bassoons, Brass, trumpet, trombone, Percussion, triangle, Chinese cymbals, Turkish cymbals, gongs, bells, crotales, cencerros, xylophone, marimba, Strings, 8 violins",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Sept_ha%C3%AFka%C3%AF",
+   "composer": "Olivier Messiaen",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Et exspecto resurrectionem mortuorum",
+   "subcat": "Category:Orchestral compositions by Olivier Messiaen",
+   "scoring": "three oboes, english horn",
+   "counts": {
+    "oboe": 3,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The piece is scored for woodwind, brass and percussion, Woodwinds, 2 piccolos, 3 flutes, 3 oboes, cor anglais, clarinet in E, 3 clarinets, bass clarinet, 3 bassoons, contrabassoon, Brass, 6 horns, trumpet in D, 3 trumpets in C, 3 trombones, bass trombone, tuba, bass saxhorn in B, Percussion, tubular bells, 6 gongs, 3 tam-tams",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Et_exspecto_resurrectionem_mortuorum",
+   "composer": "Olivier Messiaen",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Turangalîla-Symphonie",
+   "subcat": "Category:Orchestral compositions by Olivier Messiaen",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The piece is scored for a large orchestra, consisting of the following instruments:, Woodwinds, 1 piccolo, 2 flutes, 2 oboes, 1 cor anglais, 2 clarinets, 1 bass clarinet, 3 bassoons, Brass, 4 horns, 3 trumpets, 1 trumpet in D, 1 cornet, 3 trombones, 1 tuba, Percussion (12 percussionists), vibraphone, keyed or mallet glockenspiels, triangle, temple blocks, wood block, crash cymbals, tam-tam, tam…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Turangal%C3%AEla-Symphonie",
+   "composer": "Olivier Messiaen",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Poèmes pour Mi",
+   "subcat": "Category:Song cycles by Olivier Messiaen",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for soprano solo, three flutes (third doubling piccolo), two oboes, cor anglais, two clarinets, bass clarinet, three bassoons (third doubling contrabassoon), four horns, three trumpets, three trombones, tuba, percussion (three players) and strings. The duration is given as 32 minutes, == Recordings ==, Both versions of the song cycle have been recorded, Piano version: Lise Arseguet, with…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Po%C3%A8mes_pour_Mi",
+   "composer": "Olivier Messiaen",
+   "genre": "Vocal"
+  },
+  {
+   "page": "La Belle Excentrique",
+   "subcat": null,
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for 1 piccolo, 1 oboe, 1 clarinet, 1 horn, 1 trumpet, 1 trombone, percussion for 2 musicians (snare drum, cymbals, bass drum), and strings. Without reprises of the Ritournelle the music lasts about 8 minutes, ==History==, thumb|left|Caryathis, poster by Léon Bakst, La Belle Excentrique was commissioned by the avant-garde dancer and choreographer Élisabeth (Élise) Toulemont (1889–1971), w…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/La_Belle_Excentrique",
+   "composer": "Erik Satie",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Le Bœuf Angora",
+   "subcat": null,
+   "scoring": "oboe, english horn",
+   "counts": {
+    "oboe": 1,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for piccolo, 2 flutes, 1 oboe, 1 cor anglais, 2 clarinets in A, 2 bassoons, 2 horns in F, 2 trumpets in C, 3 trombones, 1 tuba, percussion for 2 players (including timpani), and strings. Satie was still unschooled in orchestration and he struggled with this ambitious score. At one point he sought advice from another composer, his friend Charles Koechlin, whose handwritten corrections and…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Le_B%C5%93uf_Angora",
+   "composer": "Erik Satie",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "En habit de cheval",
+   "subcat": null,
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for 2 flutes, 1 oboe, 1 cor anglais, 2 clarinets in B♭, 2 bassoons, 1 sarrusophone, 2 horns in F, 2 trumpets in C, 3 trombones, 1 tuba, 1 contrabass tuba, and strings, Satie experimented with different instrumental textures to give each piece a particular sound and carefully balance the dynamics of the whole. The sarrusophone helps add an amusingly plodding heft to the opening Choral, wh…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/En_habit_de_cheval",
+   "composer": "Erik Satie",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Geneviève de Brabant (Satie)",
+   "subcat": null,
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "calls for soprano and baritone soloists, mixed chorus, and an orchestra consisting of 1 flute, 1 oboe, 2 clarinets in B , 1 bassoon, 2 horns, 1 cornet, 1 trombone, percussion for 2 players (snare drum, cymbals, bass drum), and strings. A narrator was added for the first public performance and has become standard, ==Discovery, premiere, interpolations==, The subsequent history of Geneviève de Br…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Genevi%C3%A8ve_de_Brabant_(Satie)",
+   "composer": "Erik Satie",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Mercure (ballet)",
+   "subcat": null,
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for an orchestra of modest proportions: 1 piccolo, 1 flute, 1 oboe, 2 clarinets in B , 1 bassoon, 2 horns in F, 2 trumpets in C, 1 trombone, 1 tuba, percussion for 2 players (snare drum, cymbals, bass drum), and strings, ==Choreography==, One of Beaumont's objectives for the Soirées de Paris was to provide a comeback vehicle for Massine, who had been experiencing career difficulties sinc…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Mercure_(ballet)",
+   "composer": "Erik Satie",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Central Park in the Dark",
+   "subcat": null,
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for piccolo, flute, oboe, E (B ) clarinet, bassoon, trumpet, trombone, percussion, two pianos and strings. Ives specifically suggests the two pianos be a player-piano and a grand piano. The orchestral groups are to be separated spatially from each other. Ives described the role of the instruments in a programmatic description of the piece:, {{quote|The strings represent the night sounds …",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Central_Park_in_the_Dark",
+   "composer": "Charles Ives",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Overture in G minor (Ives)",
+   "subcat": null,
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The piece is scored for Symphony Orchestra, Woodwinds, 2 Flutes, 2 Oboes, 2 Clarinets, 2 Bassoons, Brass, 6 Horns (2 being tenor horns, which are ad libitum in Porter's completion), 2 Trumpets, 3 Trombones, Tuba, Percussion, Timpani, Strings, Violins I, Violins II, Violas, Violoncellos, Double basses",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Overture_in_G_minor_(Ives)",
+   "composer": "Charles Ives",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Symphony No. 1 (Ives)",
+   "subcat": "Category:Symphonies by Charles Ives",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for 2 flutes, 2 oboes, cor anglais, 2 clarinets, 2 bassoons, 4 horns, 2 trumpets, 3 trombones, tuba, timpani and strings. There is also an optional part for a third flute, There are four movements:, {{ordered list|list_style_type=upper-roman, |Allegro, |Adagio molto (Sostenuto), |Scherzo: Vivace, |Allegro molto {{Cite web|url=https://www.historiadelasinfonia.es/naciones/la-sinfonia-en-lo…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._1_(Ives)",
+   "composer": "Charles Ives",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 2 (Ives)",
+   "subcat": "Category:Symphonies by Charles Ives",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for piccolo, 2 flutes, 2 oboes, 2 clarinets, 2 bassoons, contrabassoon, 4 horns, 2 trumpets, 3 trombones, tuba, timpani, triangle, snare drum, bass drum and strings, The five movements are:, The piece departs from the conventional four-movement symphonic structure by the insertion of a slow Lento maestoso movement as an introduction to the Allegr",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._2_(Ives)",
+   "composer": "Charles Ives",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 3 (Ives)",
+   "subcat": "Category:Symphonies by Charles Ives",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The symphony is scored for a chamber orchestra of a flute, oboe, clarinet, bassoon, two horns, trombone, bells, and strings (violins, violas, cellos, and double basses)",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._3_(Ives)",
+   "composer": "Charles Ives",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 4 (Ives)",
+   "subcat": "Category:Symphonies by Charles Ives",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The symphony is scored for a very large orchestra:, Distant choir ensemble, offstage, harp, 5 violins, Woodwinds, piccolo, 3 flutes, 2 oboes, 2 bassoons, Brass, 4 horns in F, 6 trumpets in C (5th doubling cornet in C), 4 trombones, tuba, Percussion (8 to 10 players), xylophone (optional), 2 bells, high and low, timpani, triangle, Indian drum, piccolo timpano, snare drum, bass drum, cymbals, 2 t…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._4_(Ives)",
+   "composer": "Charles Ives",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Universe Symphony (Ives)",
+   "subcat": "Category:Symphonies by Charles Ives",
+   "scoring": "four oboes, english horn",
+   "counts": {
+    "oboe": 4,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The score calls for unorthodox instrumentation, as follows:, Woodwinds: 9 flutes (2 doubling piccolo, 1 doubling wooden flute), 2 oboes, 3 clarinets, 5 bassoons (2 doubling contrabassoon), Brass: 5 trumpets, 4 horns, 4 trombones, 2 tubas, Keyboards: piano or celeste, organ, Strings: harp, 8 violins, 5 violas, 4 cellos, 3 double basses, Percussion: 12 percussionists (low bell, bass drum and cymb…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Universe_Symphony_(Ives)",
+   "composer": "Charles Ives",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 2 (Hanson)",
+   "subcat": "Category:Symphonies by Howard Hanson",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The symphony was written for a standard orchestra consisting of piccolo, 2 flutes, 2 oboes, English horn, 2 clarinets in B-flat, 2 bassoons, contrabassoon, 4 horns in F, 3 trumpets in C, 3 trombones, tuba, timpani, snare drum, bass drum, cymbals, harp and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._2_(Hanson)",
+   "composer": "Howard Hanson",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 3 (Hanson)",
+   "subcat": "Category:Symphonies by Howard Hanson",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "Symphony No. 3 is scored for two flutes, one piccolo, two oboes, one English horn, two clarinets in B , one bass clarinet, two bassoons, one contrabassoon, four horns in F, three trumpets in C, three trombones, one tuba, timpani, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._3_(Hanson)",
+   "composer": "Howard Hanson",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 1 (Khachaturian)",
+   "subcat": "Category:American compositions and recordings",
+   "scoring": "english horn",
+   "counts": {
+    "englishHorn": 1
+   },
+   "req": [
+    "englishHorn"
+   ],
+   "full": "The piece is orchestrated for 2 flutes, piccolo, english horn, 2 clarinets, bass clarinet, 2 bassoons, 4 french horns, 3 trumpets, 3 trombones, tuba, timpani, harp, piano, string orchestra, and a percussion section (triangle, woodblock, tambourine, snare drum, bass drum, cymbals, tam-tam, tubular bells, glockenspiel, and xylophone)",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._1_(Khachaturian)",
+   "composer": "Howard Hanson",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Viola Concerto (Piston)",
+   "subcat": "Category:Concertos by Walter Piston",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for a solo viola and an orchestra consisting of a piccolo, two flutes, two oboes, cor anglais, two clarinets, bass clarinet, two bassoons, contrabassoon, four horns, two trumpets, three trombones, tuba, timpani, percussion, harp, and strings, ==Reception==, The music critic Andrew Farach-Colton of Gramophone wrote, \"Piston's Concerto (1957) opens pensively, quickly builds to an aching cl…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Viola_Concerto_(Piston)",
+   "composer": "Walter Piston",
+   "genre": "Concerto"
+  },
+  {
+   "page": "Symphony No. 4 (Piston)",
+   "subcat": "Category:Symphonies by Walter Piston",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The symphony is scored for an orchestra with the following instrumentation:, Woodwinds, 1 piccolo, 2 flutes, 2 oboes, 1 English horn, 2 clarinets in B, 1 bass clarinet, 2 bassoons, 1 contrabassoon, Brass, 4 horns in F, 3 trumpets in C, 3 trombones, 1 tuba, Percussion, timpani, triangle, wood block, snare drum, cymbals, bass drum, Strings, 2 harps, violins I, violins II, violas, cellos, double b…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._4_(Piston)",
+   "composer": "Walter Piston",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Itaipu (Glass)",
+   "subcat": null,
+   "scoring": "three oboes",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "Woodwinds, piccolo, 2 flutes, 3 oboes, 3 clarinets in B, 2 bassoons, contrabassoon, Brass, 6 horns in F, 4 trumpets in B, 2 trombones, bass trombone, tuba, Percussion, tambourine, tubular bells, cowbell, maracas, triangle, wood block, cymbal, snare drum, tenor drum, bass drum, Mixed chorus, Keyboards, piano, Strings, 2 harps, violins I, violins II, violas, cellos, double basses",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Itaipu_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Concerto Fantasy for Two Timpanists and Orchestra",
+   "subcat": "Category:Concertos by Philip Glass",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The concerto is scored for a large orchestra with particular emphasis on percussion:, Woodwinds: piccolo, 2 flutes, 2 oboes, E clarinet, 2 B clarinets, bass clarinet in B , 2 bassoons, Brass: 4 horns in F, 3 trumpets in B , 2 trombones, bass trombone, tuba, Percussion (4 players): snare drum, glockenspiel, xylophone, tenor drum, bass drum, piano, triangle, tambourine, tom-tom, tam-tam, chime, w…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Concerto_Fantasy_for_Two_Timpanists_and_Orchestra",
+   "composer": "Philip Glass",
+   "genre": "Concerto"
+  },
+  {
+   "page": "Harpsichord Concerto (Glass)",
+   "subcat": "Category:Concertos by Philip Glass",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "This concerto calls for a relatively small chamber orchestra:, one flute, two oboes, one bassoon, two horns in F, violin I, violin II, viola, cello, double bass, solo harpsichord",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Harpsichord_Concerto_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Concerto"
+  },
+  {
+   "page": "Piano Concerto No. 2 (Glass)",
+   "subcat": "Category:Concertos by Philip Glass",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The work is scored for the following Classical-size orchestra:, One Native American flute, one clarinet, one oboe, one bassoon, One trumpet, two horns in F, Bass drum, snare drum, cymbals, tambourine, Strings and solo piano, Note that this orchestration is relatively small-scale in comparison to much of Glass' other symphonic work",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Piano_Concerto_No._2_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Concerto"
+  },
+  {
+   "page": "Symphony No. 1 (Glass)",
+   "subcat": "Category:Symphonies by Philip Glass",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for full orchestra with 2 flutes, piccolo, 2 oboes, 2 clarinets, E clarinet, bass clarinet, 2 bassoons, 4 horns, 3 trumpets, 3 trombones, tuba, percussion, harp, piano, and strings (including 8 first violins, 6 second violins, 4 violas, 4 cellos and 2 double basses), The symphony has three movements:, \"Some Are\", the David Bowie song on which the second movement was based, was not includ…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._1_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 2 (Glass)",
+   "subcat": "Category:Symphonies by Philip Glass",
+   "scoring": "english horn",
+   "counts": {
+    "englishHorn": 1
+   },
+   "req": [
+    "englishHorn"
+   ],
+   "full": "The work is scored for piccolo, two flutes, two oboes doubling cor anglais, E clarinet, two B clarinets, bass/contrabass clarinet, two bassoons, four horns, three trumpets, three trombones, tuba, four percussionists, timpani, two harps, piano, celesta, and strings. It has three continuous movements with contrasting themes and lasts approximately 40 minutes, According to James M Keller, \"Structu…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._2_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 4 (Glass)",
+   "subcat": "Category:Symphonies by Philip Glass",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for 2 flutes, piccolo, 2 oboes, 2 clarinets, bass clarinet, 2 bassoons, 3 horns, 3 trumpets, 2 trombones, bass trombone, tuba, percussion, harp, piano, celesta, and strings, The symphony is in six movements:, \"Abdulmajid\", the David Bowie song on which the second movement was based, was not included on the original release of Heroes, but was recorded around the Heroes recording sessions.…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._4_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 5 (Glass)",
+   "subcat": "Category:Symphonies by Philip Glass",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The symphony is scored for solo soprano, mezzo-soprano, tenor, baritone, and bass-baritone, a children's chorus, SATB choir, and a large orchestra consisting of piccolo, two flutes, two oboes, two clarinets, E clarinet, bass clarinet, two bassoons, four horns, three trumpets, two trombones, bass trombone, tuba, timpani, percussion, harp, piano, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._5_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 7 (Glass)",
+   "subcat": "Category:Symphonies by Philip Glass",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for piccolo, 2 flutes, 2 oboes, English horn, 2 B clarinets, E clarinet, 2 bassoons, 4 horns 3 trumpets, 3 trombones, tuba, timpani, rattle, tom-tom, wood block, glockenspiel, piano, celesta, harp, violins, violas, cellos, basses, organ, and chorus, At 30 minutes long, it has three movements:, ==Inspiration==, Glass said that he wrote the symphony about Mesoamerica and the life of Native…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._7_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 10 (Glass)",
+   "subcat": "Category:Symphonies by Philip Glass",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The work is scored for piccolo, two flutes, two oboes, three clarinets (second doubling on E clarinet, third doubling on bass clarinet), two bassoons, four French horns, three trumpets, two trombones, bass trombone, tuba, timpani, six percussionists (chimes, glockenspiel, xylophone, marimbas, triangle, anvil, tamtam, clash cymbals, castanets, wood block, snare drum, tenor drum, bass drum), cele…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._10_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 13 (Glass)",
+   "subcat": "Category:Symphonies by Philip Glass",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The piece was orchestrated for: two flutes (the second player doubling the piccolo) two oboes, two clarinets in B (the second doubling the bass clarinet) two bassoons, four horns in F, three trumpets in C, two trombones, bass trombone, tuba, timpani, two percussion players (using the triangle, tambourine, suspended cymbal, tam-tam, woodblock, three bongos, snare drum, tenor drum, and bass drum)…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._13_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 15 (Glass)",
+   "subcat": "Category:Symphonies by Philip Glass",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The symphony was orchestrated for solo baritone, two flutes (one flute doubling on piccolo), two oboes, two clarinets and one bass clarinet, two bassoons, four horns, three trumpets, two trombones and one bass trombone, one tuba, four percussionists, two harps, one pianist doubling on piano and celesta, and string orchestra, The piece is approximately 35 minutes long and consists of 8 movements…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._15_(Glass)",
+   "composer": "Philip Glass",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Chantefleurs et Chantefables",
+   "subcat": null,
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The work is scored for solo soprano and a small orchestra consisting of flute, oboe, clarinet (doubling bass clarinet and E-flat clarinet), bassoon (doubling contrabassoon), trumpet, horn, trombone, percussion, timpani, harp, piano (doubling celesta), and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Chantefleurs_et_Chantefables",
+   "composer": "Witold Lutosławski",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Les Espaces du sommeil",
+   "subcat": null,
+   "scoring": "three oboes",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The work is scored for solo baritone and an orchestra consisting of 3 flutes (2 & 3 doubling piccolo), 3 oboes, 3 clarinets in B (3 doubling bass clarinet in B ), 3 bassoons, 3 trumpets in C, 4 horns in F, 3 trombones, tuba, percussion, timpani, harp, piano (doubling celesta), and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Les_Espaces_du_sommeil",
+   "composer": "Witold Lutosławski",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Mi-parti",
+   "subcat": null,
+   "scoring": "three oboes",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The work calls for a large orchestra:, woodwind: 3 flutes (all doubling piccolo), 3 oboes, 3 clarinets (3rd doubling bass clarinet), 3 bassoons, brass: 3 trumpets in C, 4 horns, 3 trombones, 1 tuba, percussion: timpani, 3 percussionists (bells, marimba, xylophone, glockenspiel, tam-tams, cymbals, vibraphone without motor), celesta, harp, piano, and strings (8 first violins, 7 second violins, 6 …",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Mi-parti",
+   "composer": "Witold Lutosławski",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Twenty Polish Christmas Carols",
+   "subcat": null,
+   "scoring": "oboe, english horn",
+   "counts": {
+    "oboe": 1,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "Soprano, SSAA (sopranos and altos ), 1 flute, 1 oboe / cor anglais, 2 clarinets (II also bass clarinet), 1 bassoon, Two horns, one trumpet, one trombone, Percussion, 1 harp, piano, Violins, violas, cellos, double basses",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Twenty_Polish_Christmas_Carols",
+   "composer": "Witold Lutosławski",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Variations on a Theme by Paganini (Lutosławski)",
+   "subcat": null,
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for piano solo and an orchestra made up of two flutes (second doubling piccolo), two oboes, two clarinets in B-flat, two bassoons (second doubling contrabassoon), four horns in F, three trumpets in C, three trombones, a tuba, timpani, a percussion section made up of a xylophone, a glockenspiel, a marimba, bells, and a vibraphone without motor, a harp, and a standard string section, == Ot…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Variations_on_a_Theme_by_Paganini_(Lutos%C5%82awski)",
+   "composer": "Witold Lutosławski",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Cello Concerto (Lutosławski)",
+   "subcat": "Category:Concertos by Witold Lutosławski",
+   "scoring": "three oboes",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The work is scored for solo cello and a large orchestra comprising three flutes (all doubling piccolo), three oboes, three clarinets (3rd doubling bass clarinet), three bassoons (3rd doubling contrabassoon), four horns, three trumpets, three trombones, tuba, timpani, percussion, piano, celesta, harp, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Cello_Concerto_(Lutos%C5%82awski)",
+   "composer": "Witold Lutosławski",
+   "genre": "Concerto"
+  },
+  {
+   "page": "Piano Concerto (Lutosławski)",
+   "subcat": "Category:Concertos by Witold Lutosławski",
+   "scoring": "three oboes",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The work is scored for a solo piano and a large orchestra consisting of three flutes (doubling piccolo), three oboes, three clarinets (doubling E clarinet and bass clarinet), three bassoons (doubling contrabassoon), four horns, two trumpets, three trombones, tuba, timpani, three percussionists, harp, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Piano_Concerto_(Lutos%C5%82awski)",
+   "composer": "Witold Lutosławski",
+   "genre": "Concerto"
+  },
+  {
+   "page": "Symphony No. 1 (Lutosławski)",
+   "subcat": "Category:Symphonies by Witold Lutosławski",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for an orchestra with the following instrumentation, Woodwinds, 2 piccolos, flute, 2 oboes, English horn, 3 clarinets, 2nd doubling on piccolo clarinet in E, 2 bassoons, contrabassoon, Brass, 4 horns in F, 3 trumpets in C, 3 trombones, tuba, Percussion, timpani, drum, cymbals, xylophone, Keyboards, piano, Strings, harp, violins I and II, violas, cellos, double basses, ==Analysis==, \"Wito…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._1_(Lutos%C5%82awski)",
+   "composer": "Witold Lutosławski",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 2 (Lutosławski)",
+   "subcat": "Category:Symphonies by Witold Lutosławski",
+   "scoring": "eight oboes, six english horns",
+   "counts": {
+    "oboe": 8,
+    "englishHorn": 6
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The orchestra, as specified in the score:, Woodwinds, Brass, 4 horns in F, 3 trumpets in C, 3 trombones, 1 tuba, Percussion, 3 timpani, 5 tom-toms, glockenspiel, bass drum, tambourine, side drum, tenor drum, bells, bamboo tubes, gong, 2 suspended cymbals, xylophone, vibraphone without motor, Keyboards, Strings, harp, 16 violins I, 14 violins II, 12 violas, 9 celli, 6 double basses, Instrumentat…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._2_(Lutos%C5%82awski)",
+   "composer": "Witold Lutosławski",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 4 (Lutosławski)",
+   "subcat": "Category:Symphonies by Witold Lutosławski",
+   "scoring": "three oboes (3rd doubling english horn)",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "3 flutes (3rd flute also taking piccolo), 3 oboes (3rd oboe also taking English horn), 3 clarinets (2nd also taking E clarinet; 3rd clarinet also taking bass clarinet), 3 bassoons (3rd also on contrabassoon), 4 horns, 3 trumpets, 3 trombones, tuba, timpani, percussion (bass drum, bongos, chimes, glockenspiel, marimba, snare drum, suspended cymbals, tam-tam, tenor drum, tom-toms, vibraphone, xyl…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._4_(Lutos%C5%82awski)",
+   "composer": "Witold Lutosławski",
+   "genre": "Symphony"
+  },
+  {
+   "page": "The Dream of Jacob",
+   "subcat": null,
+   "scoring": "three oboes",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for three flutes, three oboes, three B clarinets, three bassoons (all 12 woodwind players also double on ocarinas), five F horns, three B trumpets, three trombones, one tuba, percussion and a large string section. The composition is loosely based on the Bible passage mentioned above, therefore trying to resemble being in the desert on a ladder to heaven, while the angels are ascending an…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/The_Dream_of_Jacob",
+   "composer": "Krzysztof Penderecki",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Kosmogonia",
+   "subcat": "Category:Choral compositions by Krzysztof Penderecki",
+   "scoring": "four oboes",
+   "counts": {
+    "oboe": 4
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "written for an extensive line-up, both in choir and in orchestra:, soloists: soprano, tenor and bass, mixed choir: sopranos, altos, tenors, baritones, 4 flutes, of which 2 also piccolo, 4 oboes, 3 clarinets, 1 bass clarinets, 3 bassoons, 1 contra bassoon, 2 alto saxophones, 1 baritone saxophone, 6 horns, 4 trumpets, 4 trombones, 2 tubas, 4 male / female percussion, bass guitar, harp, celesta, h…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Kosmogonia",
+   "composer": "Krzysztof Penderecki",
+   "genre": "Choral"
+  },
+  {
+   "page": "Polish Requiem",
+   "subcat": "Category:Choral compositions by Krzysztof Penderecki",
+   "scoring": "three oboes",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The Polish Requiem is scored for soprano, mezzo-soprano, tenor and bass soloists, SATB mixed choirs, and an orchestra consisting of three flutes (third doubling piccolo), three oboes, three clarinets in B , one bass clarinet, three bassoons, one contrabassoon; six horns in F, four trumpets in C, four trombones, one tuba; a percussion section consisting of 2 timpanists, three suspended cymbals, …",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Polish_Requiem",
+   "composer": "Krzysztof Penderecki",
+   "genre": "Choral"
+  },
+  {
+   "page": "The Devils of Loudun (opera)",
+   "subcat": "Category:Operas by Krzysztof Penderecki",
+   "scoring": "two english horns",
+   "counts": {
+    "englishHorn": 2
+   },
+   "req": [
+    "englishHorn"
+   ],
+   "full": "The Devils of Loudun is scored for enormous musical forces, including nineteen soloists, five choruses (nuns, soldiers, guards, children, and monks), orchestra, and tape. The orchestra itself is of a great size too, making use of a very particular blending of instruments. The orchestra is composed of the following instrumentation, Woodwinds, 2 English horns, 1 E clarinet, 1 contrabass clarinet,…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/The_Devils_of_Loudun_(opera)",
+   "composer": "Krzysztof Penderecki",
+   "genre": "Opera"
+  },
+  {
+   "page": "Symphony No. 2 (Penderecki)",
+   "subcat": "Category:Symphonies by Krzysztof Penderecki",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for piccolo, 2 flutes, 2 oboes, cor anglais, 3 clarinets (3rd doubling E clarinet and bass clarinet), 2 bassoons, contrabassoon, 5 horns, 3 trumpets, 3 trombones, tuba, timpani, percussion (4 performers: triangle, gong, cymbals, tamtam, snare drum, bass drum, tubular bells, glockenspiel, xylophone), celesta, and strings, ==Recordings==, {|class=\"wikitable\" width=\"700px\", !align=\"center\"|…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._2_(Penderecki)",
+   "composer": "Krzysztof Penderecki",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 3 (Penderecki)",
+   "subcat": "Category:Symphonies by Krzysztof Penderecki",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "In addition to the traditional orchestral bodies of the 19th-century symphony, the Third Symphony makes use of a greatly expanded percussion section (which is prominently featured in the second movement), Woodwinds, 1 piccolo, 2 flute, 2 oboes, 1 English horn, 1 bass clarinet in B, 3 bassoons, 1 contrabassoon, Brass, 5 horns, 3 trumpets, 1 bass trumpet, 4 trombones, 1 tuba, Percussion (9 player…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._3_(Penderecki)",
+   "composer": "Krzysztof Penderecki",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 7 (Penderecki)",
+   "subcat": "Category:Symphonies by Krzysztof Penderecki",
+   "scoring": "three oboes, english horn",
+   "counts": {
+    "oboe": 3,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The symphony is scored for 4 flutes (3rd & 4th doubling piccolos), 3 oboes, cor anglais (English horn), 3 clarinets (3rd doubling E clarinet), bass clarinet, 3 bassoons, contrabassoon, 4 horns, 3 trumpets, 4 trombones, bass tuba, 2 sets of timpani, 2 bass drums, 2 snare drums, 2 pairs of crash cymbals, 4 suspended cymbals, 2 triangles, tambourine, large gong, 2 tam-tams, 1 pair of timbales, 1 s…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._7_(Penderecki)",
+   "composer": "Krzysztof Penderecki",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 8 (Penderecki)",
+   "subcat": "Category:Symphonies by Krzysztof Penderecki",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The score calls for 3 flutes (1st doubling bamboo flute, 2nd doubling alto flute, 3rd doubling piccolo), 2 oboes, cor anglais, 3 clarinets (3rd doubling E-flat clarinet and bass clarinet), 2 bassoons, contrabassoon, 4 horns, 3 trumpets, bass trumpet (in the hall), 3 trombones, tuba, timpani, mark tree, Turkish crescent, crash cymbals, 4 suspended cymbals, 2 tam-tams, tambourine, snare drum, bas…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._8_(Penderecki)",
+   "composer": "Krzysztof Penderecki",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Atmosphères",
+   "subcat": null,
+   "scoring": "four oboes",
+   "counts": {
+    "oboe": 4
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "Atmosphères is scored for an orchestra with the following instrumentation, Woodwinds, 4 flutes (all double piccolo), 4 oboes, 4 clarinets (4th also E clarinet), 3 bassoons, 1 contrabassoon, Brass, 6 horns, 4 trumpets, 4 trombones, 1 tuba, Keyboard instrument, 1 piano (played by 2 percussionists), Strings, 14 first violins, 14 second violins, 10 violas, 10 cellos, 8 double basses",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Atmosph%C3%A8res",
+   "composer": "György Ligeti",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Chamber Concerto (Ligeti)",
+   "subcat": "Category:Chamber music by György Ligeti",
+   "scoring": "oboe (doubling oboe d'amore)",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe",
+    "oboeDamore"
+   ],
+   "full": "scored for flute (doubling piccolo), oboe (doubling English horn and oboe d'amore), clarinet, bass clarinet, horn, tenor trombone, harpsichord (doubling harmonium), piano (doubling celesta), and string quintet, The Chamber Concerto uses micropolyphonic textures, which Ligeti describes as, \"One clearly discernible interval combination is gradually blurred, and from this cloudiness it is possible…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Chamber_Concerto_(Ligeti)",
+   "composer": "György Ligeti",
+   "genre": "Chamber"
+  },
+  {
+   "page": "Cello Concerto (Ligeti)",
+   "subcat": "Category:Concertos by György Ligeti",
+   "scoring": "oboe (doubling english horn)",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "written for solo cello with a small orchestra of flute (doubling piccolo), oboe (doubling cor anglais), 2 clarinets (second doubling bass clarinet), bassoon, horn, trumpet, trombone, harp and strings, The movements are as follows:, A performance typically lasts approximately 16 minutes, The work has been described as an \"anti-concerto\" due to the nature of the relationship between the soloist a…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Cello_Concerto_(Ligeti)",
+   "composer": "György Ligeti",
+   "genre": "Concerto"
+  },
+  {
+   "page": "Piano Concerto (Ligeti)",
+   "subcat": "Category:Concertos by György Ligeti",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The concerto is scored for solo piano and an orchestra consisting of flute (doubling piccolo), oboe, clarinet (doubling alto ocarina), bassoon, horn, trumpet, tenor trombone, percussion, and strings. For balance, Ligeti recommends the strings to be 6–8 violin I's, 6–8 violin II's, 4–6 violas, 4–6 cellos, and 3–4 double basses, The percussion consists of triangle, crotales (in pairs), 2 suspende…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Piano_Concerto_(Ligeti)",
+   "composer": "György Ligeti",
+   "genre": "Concerto"
+  },
+  {
+   "page": "Lamentate",
+   "subcat": null,
+   "scoring": "two oboes (2nd doubling english horn)",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "Besides the solo piano, the piece is scored for 2 flutes (2nd doubling alto flute and piccolo), 2 oboes (2nd doubling English horn), 2 clarinets, 2 bassoons, 4 horns, 2 trumpets (2nd doubling piccolo trumpet), 2 trombones, timpani, percussion, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Lamentate",
+   "composer": "Arvo Pärt",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Cecilia, vergine romana",
+   "subcat": "Category:Choral compositions by Arvo Pärt",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for a four-part choir (SATB), two flutes, two oboes, two clarinets, two bassoons, four horns, two trumpets, two trombones, tuba, percussion (two players), harp, and strings, == Recording ==, The composition was recorded, together with other works by Pärt, titled In principio, by the Estonian Philharmonic Chamber Choir conducted by Tõnu Kaljuste at ECM Records in 2009. The collection also…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Cecilia%2C_vergine_romana",
+   "composer": "Arvo Pärt",
+   "genre": "Choral"
+  },
+  {
+   "page": "Symphony No. 3 (Pärt)",
+   "subcat": "Category:Symphonies by Arvo Pärt",
+   "scoring": "five oboes",
+   "counts": {
+    "oboe": 5
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for a symphony orchestra consisting of two flutes, one piccolo, three oboes, three clarinets in B-flat, one bass clarinet in B-flat, two bassoons, one contrabassoon, four horns in F, four trumpets in B-flat, four trombones, one tuba, timpani, one celesta, bells, one marimba, tam-tam and a full string section. This symphony clearly displays the composer's preoccupation with monody and ear…",
+   "estimated": true,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._3_(P%C3%A4rt)",
+   "composer": "Arvo Pärt",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Schelomo",
+   "subcat": "Category:Concertante works by Ernest Bloch",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for three flutes, two oboes, English horn, two clarinets in Bb, bass clarinet, two bassoons, contrabassoon, four horns in F, three trumpets in C, three trombones, tuba, timpani, tambourine, snare-drum, bass-drum, cymbals, tam-tam, celesta, two harps, violins (at least twelve players), violas (at least ten), cellos (at least six), basses (at least four), ===First section===, In the first …",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Schelomo",
+   "composer": "Ernest Bloch",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Decet (Enescu)",
+   "subcat": "Category:Chamber music by George Enescu",
+   "scoring": "oboe, two english horns",
+   "counts": {
+    "oboe": 1,
+    "englishHorn": 2
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for two flutes, oboe, cor anglais, two clarinets, two bassoons, and two horns—in other words, a double wind quintet, with cor anglais in place of the second oboe. It is both a \"sensationally orchestrated chamber work\" and a \"superb symphony in D\", Although it is easy to associate Enescu's Octet for Strings and the Decet because of their similar instrumental scheme (a double string quarte…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Decet_(Enescu)",
+   "composer": "George Enescu",
+   "genre": "Chamber"
+  },
+  {
+   "page": "Nights in the Gardens of Spain",
+   "subcat": null,
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The work is flavoured with Spanish rhythms, but the score does not call for a guitar, It requires a piano, three flutes (one doubling piccolo), two oboes and English horn, two clarinets, two bassoons, four horns, two trumpets, three trombones and tuba, timpani, cymbals, triangle, celesta, harp, and strings, The piano has an important solo part, but Falla did not describe the work as a concerto.…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Nights_in_the_Gardens_of_Spain",
+   "composer": "Manuel de Falla",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Ritual Fire Dance",
+   "subcat": null,
+   "scoring": "four oboes",
+   "counts": {
+    "oboe": 4
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The \"Ritual Fire Dance\", and the ballet as a whole, has been transcribed many times since its original composition in 1915, often by Manuel de Falla himself, {| class=\"wikitable\", ! Form of transcription, ! Instrumentation, ! Date of transcription, |-, | Original composition, | Singing voice (the role of Candélas), flute (piccolo), oboe, horn, cornet, bells, piano, 2 first violins, 2 second vio…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Ritual_Fire_Dance",
+   "composer": "Manuel de Falla",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "El retablo de maese Pedro",
+   "subcat": "Category:Operas by Manuel de Falla",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "Ensemble: flute (doubling piccolo), 2 oboes, English horn, clarinet, bassoon, 2 horns, trumpet, percussion (bell, tenor drum, rattles, tambourine, tam-tam, xylophone), timpani, harpsichord, harp-lute (or harp), strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/El_retablo_de_maese_Pedro",
+   "composer": "Manuel de Falla",
+   "genre": "Opera"
+  },
+  {
+   "page": "Fantasía para un gentilhombre",
+   "subcat": null,
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for an orchestra consisting of a piccolo, a flute, an oboe, a bassoon, a trumpet in C, and strings, ==See also==, Spanish guitar, ==Footnotes==, ==References==, Discussion of the concerto is in of this thesis, {{cite book, | last = Kamhi de Rodrigo, | first =",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Fantas%C3%ADa_para_un_gentilhombre",
+   "composer": "Joaquín Rodrigo",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Concierto de Aranjuez",
+   "subcat": "Category:Concertos by Joaquín Rodrigo",
+   "scoring": "two oboes (doubling english horn)",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for an orchestra consisting of two flutes (one doubling on piccolo), two oboes (one doubling on cor anglais), two clarinets in B , two bassoons, two horns in F, two trumpets in C, and strings, ===First movement===, The first movement's 40-measure introduction begins with the solo guitar strumming a three-measure theme in . The theme is made of tonic, supertonic, and dominant chords and f…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Concierto_de_Aranjuez",
+   "composer": "Joaquín Rodrigo",
+   "genre": "Concerto"
+  },
+  {
+   "page": "Bachianas Brasileiras",
+   "subcat": null,
+   "scoring": "three oboes, english horn",
+   "counts": {
+    "oboe": 3,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for chamber orchestra, This work is scored for flute, oboe, clarinet, tenor and baritone saxophones, bassoon, contrabassoon, 2 horns, trombone, timpani, ganzá, chocalho, pandeira, reco, matraca, caixa, triangle, cymbals, tam-tam, bass drum, celesta, piano, and strings, === No. 3 ===, Scored for piano and orchestra, Bachianas Brasileiras No. 3 (1938) consists of four movements:, The orche…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Bachianas_Brasileiras",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Miniaturas (Villa-Lobos)",
+   "subcat": null,
+   "scoring": "three oboes, english horn",
+   "counts": {
+    "oboe": 3,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "arranged for voice, flute, and piano, but this version was never published either, == Structure ==, The set consists of six short songs for piano and voice, specifically a baritone. The movement list is as follows:, The version for voice and orchestra was scored for a solo voice (baritone) and an orchestra consisting in two flutes, two oboes, English horn, two clarinets in A, two clarinets in B…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Miniaturas_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Momoprecoce",
+   "subcat": null,
+   "scoring": "oboe, english horn",
+   "counts": {
+    "oboe": 1,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "Momoprecoce is a fantasy for piano solo and an orchestra consisting of a piccolo, a flute, an oboe, an English horn, a B clarinet, an alto saxophone, a bassoon, a contrabassoon, three French horns, a C trumpet, a trombone, percussion (timpani, a bass drum, a side drum, a Basque drum, a field drum, a snare drum, a children's drum, wooden and metal shakers, sleigh bells, and a reco-reco), a celes…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Momoprecoce",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Uirapuru (Villa-Lobos)",
+   "subcat": null,
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "Uirapuru is scored for an orchestra consisting of piccolo, 2 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, 2 bassoons, contrabassoon, soprano saxophone, 4 horns, 3 trumpets, 3 trombones, tuba, percussion (timpani, tam-tam, tubular bells, reco-reco, coco, floor tom, tamborim, cymbals, bass drum, xylophone, celesta, and glockenspiel), 2 harps, piano, violinophone, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Uirapuru_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Chôros No. 7",
+   "subcat": "Category:Chamber music by Heitor Villa-Lobos",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "Chôros No. 7 is scored for an instrumental septet consisting of flute, oboe, clarinet, alto saxophone, bassoon, violin, and cello, with the optional addition of an offstage tam-tam near the end",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Ch%C3%B4ros_No._7",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Chamber"
+  },
+  {
+   "page": "Nonet (Villa-Lobos)",
+   "subcat": "Category:Chamber music by Heitor Villa-Lobos",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "The nonet is scored for flute (doubling piccolo), oboe, clarinet, alto saxophone (doubling baritone saxophone), bassoon, harp, celesta, piano, and a large percussion battery (requiring at least two players): timpani, tam-tam, bass drum, large bass drum, field drum, side drum, cymbal, bronze and crockery plates, chocalhos (wood and metal), triangle, reco-reco (small and large), puíta, tambourine…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Nonet_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Chamber"
+  },
+  {
+   "page": "Quinteto (em forma de chôros)",
+   "subcat": "Category:Chamber music by Heitor Villa-Lobos",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "req": [
+    "oboe"
+   ],
+   "full": "scored for five woodwind instruments (flute, oboe, cor anglais, clarinet, and bassoon), it is most often performed in an arrangement for the conventional wind quintet of flute, oboe, clarinet, horn, and bassoon. A performance lasts about eleven minutes, ==History==, Villa-Lobos composed the work in Paris in 1928, during the same period in which he was working on the series of fourteen Chôros. T…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Quinteto_(em_forma_de_ch%C3%B4ros)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Chamber"
+  },
+  {
+   "page": "Chôros No. 6",
+   "subcat": "Category:Chôros by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "Chôros No. 6 is scored for an orchestra consisting of 2 piccolos, 2 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, soprano saxophone, 2 bassoons, contrabassoon, 4 horns, 4 trumpets, 4 trombones, tuba, timpani, percussion (bass drum, tam-tam, surdo, camisão (small and large), snare drum, coco, roncador, tamborim de samba, tambu-tambi, suspended cymbal with metal beater, cuíca, reco-re…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Ch%C3%B4ros_No._6",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Chôros No. 8",
+   "subcat": "Category:Chôros by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "Chôros No. 8 is scored for two pianos and an orchestra consisting of piccolo, 2 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, alto saxophone, 2 bassoons, contrabassoon, 4 horns, 3 trumpets, 4 trombones, tuba, timpani, percussion (bass drum, tam-tam, tambourine, tamborim, snare drum, triangle, cymbals, 2 metal chocalhos (small and large), reco-reco, caracaxá, caraxá, puíta, ratchet, …",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Ch%C3%B4ros_No._8",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Chôros No. 9",
+   "subcat": "Category:Chôros by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "Chôros No. 9 is scored for a large orchestra consisting of piccolo, 2 flutes, 2 oboes, cor anglais, 3 clarinets, bass clarinet, 2 bassoons, contrabassoon, 4 horns, 4 trumpets, 4 trombones, tuba, timpani, tam-tam, bass drum, tambor, tambor surdo, camisão (large and small), pio, triangle, reco-reco, tartaruga, chocalho (metal and wood), xylophone, vibraphone, celesta, 2 harps, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Ch%C3%B4ros_No._9",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Chôros No. 11",
+   "subcat": "Category:Chôros by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The work is scored for solo piano and a large orchestra consisting of 2 piccolos, 2 flutes, 2 oboes, cor anglais, E clarinet, 2 clarinets in B , bass clarinet, soprano saxophone in B , alto saxophone in E , 2 bassoons, 2 contrabassoons, 4 horns, 4 trumpets, 4 trombones, tuba, timpani, bass drum, tam-tam, cymbals, reco-reco, chocalho, side drum, tambourine, tambor, coco, cabacinhas, caxambu, cuí…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Ch%C3%B4ros_No._11",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Introdução aos Chôros",
+   "subcat": "Category:Chôros by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The work is scored for solo guitar (amplified) and an orchestra consisting of 2 piccolos, 2 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, alto saxophone, 2 bassoons, contrabassoon, 4 horns, 4 trumpets, 4 trombones, tuba, timpani, tam-tam, cymbals, xylophone, celesta, 2 harps, piano, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Introdu%C3%A7%C3%A3o_aos_Ch%C3%B4ros",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Orchestral"
+  },
+  {
+   "page": "Symphony No. 1 (Villa-Lobos)",
+   "subcat": "Category:Symphonies by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for a large orchestra consisting of 2 piccolos, 2 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, 2 bassoons, contrabassoon, 4 horns, 4 trumpets, 3 trombones, tuba, percussion (timpani, tam-tam, bass drum, cymbals, triangle, side drum, and glockenspiel), celesta, 2 harps, and strings, It has four movements:, ==References==, ===Cited sources===, {{wikicite|ref= |reference=Enyart…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._1_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 2 (Villa-Lobos)",
+   "subcat": "Category:Symphonies by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The symphony is scored for an orchestra consisting of 2 piccolos, 2 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, 2 bassoons, contrabassoon, 4 horns, 4 trumpets, 4 trombones, tuba, percussion (timpani, tam-tam, bass drum, cymbals, side drum, and tambour de basque), celesta, 2 harps, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._2_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 3 (Villa-Lobos)",
+   "subcat": "Category:Symphonies by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "There are two manuscript scores of the symphony, one lacking the third movement and with a somewhat larger instrumentation than the later manuscript (and published) version. It is scored for the following groups:, An orchestra consisting of piccolo, 2 (or 4) flutes, 2 oboes, cor anglais, 2 (or 4) clarinets, bass clarinet, 3 bassoons, contrabassoon, 4 (or 8) horns, 4 trumpets (or cornets), 4 tro…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._3_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 4 (Villa-Lobos)",
+   "subcat": "Category:Symphonies by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The symphony is scored for a large orchestra and brass band, The orchestra consists of 2 piccolos, 3 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, soprano saxophone, alto saxophone, tenor saxophone, baritone saxophone, 3 bassoons, contrabassoon, 4 horns, 4 trumpets, 4 trombones, tuba, percussion (timpani, cymbals, bass drum, drum, side drum, tam-tam, bells, sistrum, small frame drum…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._4_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 6 (Villa-Lobos)",
+   "subcat": "Category:Symphonies by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The symphony is scored for an orchestra consisting of 2 piccolos, 3 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, 2 bassoons, contrabassoon, 4 horns, 4 trumpets, 4 trombones, tuba, percussion (timpani, tam-tam, bass drum, large side drum, Indian drum, side drum, cymbals, and vibraphone), celesta, 2 harps, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._6_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 7 (Villa-Lobos)",
+   "subcat": "Category:Symphonies by Heitor Villa-Lobos",
+   "scoring": "three oboes, english horn",
+   "counts": {
+    "oboe": 3,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The symphony is written for an orchestra consisting of 2 piccolos, 3 flutes, 3 oboes, cor anglais, 3 clarinets, 2 bass clarinets, 3 bassoons, 2 contrabassoons, 6 horns, 4 trumpets, 4 trombones, tuba, percussion (timpani, tam-tam, cymbals, triangle, pandeira, chocalho, glockenspiel, reco reco, side drum, large snare drum, bass drum, Novachord, xylophone, and vibraphone), celesta, 2 harps, piano,…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._7_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 8 (Villa-Lobos)",
+   "subcat": "Category:Symphonies by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The symphony is scored for an orchestra consisting of 2 piccolos, 2 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, 2 bassoons, contrabassoon, 4 horns, 4 trumpets, 4 trombones, tuba, percussion (timpani, tam-tam, cymbals, and xylophone), celesta, 2 harps, piano, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._8_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 9 (Villa-Lobos)",
+   "subcat": "Category:Symphonies by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The symphony is scored for an orchestra consisting of piccolo, 2 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, 2 bassoons, contrabassoon, 4 horns, 4 trumpets, 4 trombones, tuba, percussion (timpani, tam-tam, cymbals, coconut hulls, bass drum, xylophone, and vibraphone), celesta, harp, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._9_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 10 (Villa-Lobos)",
+   "subcat": "Category:Symphonies by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "The symphony/oratorio is scored for tenor, baritone, and bass soloists, mixed choir, and an orchestra consisting of 2 piccolos, 2 flutes, 2 oboes, cor anglais, 3 clarinets, bass clarinet, 2 bassoons, contrabassoon, 4 horns, 4 trumpets, 4 trombones, tuba, percussion (timpani, tam-tam, cymbals, chocalho, coconut hulls, lion's roar, bells, gong, sleigh bells, small frame drum, bass drum, xylophone…",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._10_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Symphony No. 11 (Villa-Lobos)",
+   "subcat": "Category:Symphonies by Heitor Villa-Lobos",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for an orchestra consisting of 2 piccolos, 2 flutes, 2 oboes, cor anglais, 2 clarinets, bass clarinet, 2 bassoons, contrabassoon, 4 horns, 4 trumpets, 4 trombones, tuba, percussion (timpani, tam-tam, cymbals, triangle, matraca [a wooden rattle], bass drum, marimba, xylophone, celesta, and vibraphone), 2 harps, piano, and strings, The symphony is in four movements:, ==References==, ===Cit…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Symphony_No._11_(Villa-Lobos)",
+   "composer": "Heitor Villa-Lobos",
+   "genre": "Symphony"
+  },
+  {
+   "page": "Trionfo di Afrodite",
+   "subcat": "Category:Cantatas by Carl Orff",
+   "scoring": "three oboes (2nd doubling english horn)",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "calls for a large orchestra with an enhanced percussion section, consisting of the following:, {| width=100%, |- valign =\"top\", |width=33%|, Woodwind, 3 Flutes (all 3 doubling Piccolos), 3 Oboes (2nd and 3rd doubling English horns), 3 Clarinets in B-flat (3rd doubling Clarinet in E-flat), 3 Bassoons (3rd doubling Contrabassoon), Brass, 6 Horns in F, 3 Trumpets, 3 Trombones, 2 Tubas, |width=33%|…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Trionfo_di_Afrodite",
+   "composer": "Carl Orff",
+   "genre": "Choral"
+  },
+  {
+   "page": "Antigonae",
+   "subcat": "Category:Operas by Carl Orff",
+   "scoring": "two english horns",
+   "counts": {
+    "englishHorn": 2
+   },
+   "req": [
+    "englishHorn"
+   ],
+   "full": "According to the score, which is published by Schott Music, Antigonae is scored for an unusual orchestra with a strong percussion section. This orchestra is to be well screened from the audience when the opera is performed, 6 flutes all doubling piccolos, 6 oboes with which 3 double cor anglais, 6 trumpets with mutes, 4 harps, 6 grand pianos with 2 players each*, 9 contrabasses, (*) At several …",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Antigonae",
+   "composer": "Carl Orff",
+   "genre": "Opera"
+  },
+  {
+   "page": "Die Kluge",
+   "subcat": "Category:Operas by Carl Orff",
+   "scoring": "three oboes (3rd doubling english horn)",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "scored for the following orchestra:, Woodwind: 3 flutes (all 3 doubling piccolos), 3 oboes (3rd doubling English horn), 3 clarinets in B-flat, A, C and E-flat (1 doubling bass clarinet), 2 bassoons, contrabassoon, Brass: 4 horns in F, 3 trumpets, 3 trombones, tuba, Percussion (4 players): timpani, bass drum, 2 snare drums, tenor drum, tambourine, triangle, lithophone, sand rattle, antique cymba…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Die_Kluge",
+   "composer": "Carl Orff",
+   "genre": "Opera"
+  },
+  {
+   "page": "Prometheus (Orff)",
+   "subcat": "Category:Operas by Carl Orff",
+   "scoring": "six oboes, english horn",
+   "counts": {
+    "oboe": 6,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "full": "calls for an instrumentation that is unique in music history:, 6 flutes, all also piccolos, 1 also alto flute, 6 oboes, oboes 5–6 also cor anglais, 6 trumpets, 6 trombones, 4 harps, 4 tenor banjos, 1 organ, 1 regal, 1 electric organ, 4 grand pianos with 8 players, 9 double basses, The large percussion section requires 15 to 18 players:, 5 timpani, 2 small timpani with wooden cover, 1 snare drum…",
+   "estimated": false,
+   "how": "prose",
+   "url": "https://en.wikipedia.org/wiki/Prometheus_(Orff)",
+   "composer": "Carl Orff",
    "genre": "Opera"
   }
  ]
