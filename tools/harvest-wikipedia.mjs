@@ -148,8 +148,30 @@ export function cleanWikitext(input) {
   t = t.replace(/<!--[\s\S]*?-->/g, '');
   t = t.replace(/<ref[^>]*\/>/gi, '');
   t = t.replace(/<ref[^>]*>[\s\S]*?<\/ref>/gi, '');
-  // Templates, innermost first. {{music|flat}} and friends carry nothing we need.
-  for (let i = 0; i < 8 && /\{\{/.test(t); i++) t = t.replace(/\{\{[^{}]*\}\}/g, ' ');
+  // Templates, innermost first. Most are decoration ({{music|flat}}, {{cite}})
+  // and simply go, but some carry the instrument itself — Lutosławski's Second
+  // lists "{{Hanging indent |text=3 [[oboes]] ...}}" — so those are unwrapped
+  // rather than deleted.
+  const UNWRAP = /^(nowrap|nobr|small|plainlist|hanging indent|lang|nolink)$/i;
+  for (let i = 0; i < 10 && /\{\{/.test(t); i++) {
+    t = t.replace(/\{\{([^{}]*)\}\}/g, (_, body) => {
+      const named = /(?:^|\|)\s*text\s*=\s*([\s\S]*)$/i.exec(body);
+      if (named) return ` ${named[1]} `;
+      const [name, ...rest] = body.split('|');
+      if (UNWRAP.test(name.trim())) return ` ${rest.join(' ')} `;
+      return ' ';
+    });
+  }
+  // Wikitables: strip the scaffolding but keep the cells. Deleting whole tables
+  // loses the scoring outright for articles that lay it out as a grid
+  // (Copland's Billy the Kid), while leaving the markup lets it crowd out the
+  // instrument list further down (Tchaikovsky's Sixth).
+  t = t.replace(/^\s*\{\|[^\n]*$/gm, ' ')     // opening, with its attributes
+    .replace(/^\s*\|\}[^\n]*$/gm, ' ')        // closing
+    .replace(/^\s*\|-[^\n]*$/gm, ' ')         // row separator
+    .replace(/^\s*\|\+[^\n]*$/gm, ' ')        // caption
+    .replace(/\|\||!!/g, '\n')                // inline cell separators
+    .replace(/^\s*[|!]\s*(?:[a-zA-Z-]+\s*=\s*"[^"]*"\s*\|)?\s*/gm, '');  // cell prefix
   t = t.replace(/\[\[[^\]|]*\|([^\]]*)\]\]/g, '$1');   // [[target|shown]] -> shown
   t = t.replace(/\[\[([^\]]*)\]\]/g, '$1');            // [[oboe]]         -> oboe
   t = t.replace(/\[https?:\/\/\S+\s([^\]]*)\]/g, '$1');
@@ -192,15 +214,25 @@ function instrumentationSection(wikitext) {
   // Fallback: many articles state the scoring in a sentence instead of a
   // section — Boléro is "written for a large orchestra consisting of:".
   const verbs = /\b(?:scored|orchestrated|written|composed|arranged)\s+for\b|\bcalls\s+for\b|\bconsisting\s+of\b/gi;
+  let fallback = null;
   for (const m of wikitext.matchAll(verbs)) {
     const window = wikitext.slice(m.index, m.index + 900);
     // Guard against ordinary prose ("written for Diaghilev"): a real scoring
     // list names several other orchestral instruments alongside the oboes.
     const corroborating = ['flute', 'clarinet', 'bassoon', 'horn', 'trumpet', 'timpani', 'strings', 'harp', 'viola']
       .filter((w) => new RegExp(`\\b${w}`, 'i').test(window)).length;
-    if (corroborating >= 3 && mentionsOboeFamily(window)) return { text: window, how: 'prose' };
+    if (corroborating < 3 || !mentionsOboeFamily(window)) continue;
+    // Prefer a window that still names an oboe once trimmed to its opening
+    // sentence: that is a real scoring sentence rather than narrative which
+    // happens to mention oboes further down ("...composed for Paris").
+    if (mentionsOboeFamily(boundToSentence(flattenSection(window)))) {
+      return { text: window, how: 'prose' };
+    }
+    // Otherwise remember it. Some articles genuinely spread the scoring over
+    // more than one sentence, and half an answer beats dropping the work.
+    fallback ??= window;
   }
-  return null;
+  return fallback ? { text: fallback, how: 'prose-unbounded' } : null;
 }
 
 /**
@@ -266,8 +298,10 @@ async function readArticle(title, subcat) {
   let flat = flattenSection(section.text);
   // Sections are lists and legitimately span many lines; only the prose
   // fallback runs on into commentary, so only it gets cut at the sentence.
-  if (section.how === 'prose') flat = boundToSentence(flat);
-  flat = flat.slice(0, 1200);
+  if (section.how === 'prose') flat = boundToSentence(flat);  // 'prose-unbounded' keeps its full window
+  // Generous cap: sections can carry a paragraph of preamble before the list,
+  // and truncating mid-section silently loses the instruments entirely.
+  flat = flat.slice(0, 4000);
   if (!mentionsOboeFamily(flat)) return;
 
   const parsed = parseInstrumentation(flat);

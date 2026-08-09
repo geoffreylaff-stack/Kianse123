@@ -111,3 +111,13 @@ test('parses IMSLP category names', () => {
   assert.deepEqual(fromCategoryName('For oboe, violin, viola, cello'),
     { text: 'oboe, violin, viola, cello', arrangement: false });
 });
+
+test('a singular name is not an inferred count', () => {
+  // "oboe" states one oboe outright; only a bare plural is a genuine guess.
+  const solo = parseInstrumentation('oboe, violin, viola, cello');
+  assert.equal(solo.counts.oboe, 1);
+  assert.deepEqual(solo.uncertain, []);
+
+  const plural = parseInstrumentation('oboes, bassoons, strings');
+  assert.deepEqual(plural.uncertain, ['oboe']);
+});
