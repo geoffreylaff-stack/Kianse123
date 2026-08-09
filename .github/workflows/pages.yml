@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Test the instrumentation parser
+        run: npm test
+
+      - name: Rebuild the index from committed data
+        run: npm run build
+
+      - name: Assemble the site
+        run: |
+          mkdir -p _site/assets _site/lib _site/data _site/dist
+          cp index.html _site/
+          cp assets/* _site/assets/
+          cp lib/* _site/lib/
+          cp data/works.json _site/data/
+          # Same path as the repo layout, so the footer link resolves whether
+          # the site is served by this workflow or straight from the branch.
+          cp dist/oboe-finder.html _site/dist/oboe-finder.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

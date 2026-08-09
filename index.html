@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oboe &amp; English Horn Repertoire Finder</title>
+  <meta name="description" content="Type a classical composer's name and get every published work scored for oboe, English horn, oboe d'amore, oboe da caccia, bass oboe or heckelphone — with the exact instrumentation for each." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%8E%B5%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap">
+      <h1>Oboe &amp; English Horn Repertoire Finder</h1>
+      <p class="tagline">
+        Enter a composer. Get every catalogued work whose scoring includes an
+        instrument of the oboe family — with the exact instrumentation for each.
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <form class="search" id="search-form" autocomplete="off" role="search">
+      <div class="field">
+        <label for="composer">Composer</label>
+        <div class="combo">
+          <input id="composer" name="composer" type="text" placeholder="e.g. Dvořák, Bach, Ravel, Britten…"
+                 aria-describedby="composer-help" aria-autocomplete="list"
+                 aria-expanded="false" aria-controls="suggestions" role="combobox" />
+          <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
+        </div>
+        <p class="help" id="composer-help">
+          Accents optional — “dvorak” finds Dvořák. <button type="button" class="linkish" id="browse-all">Browse all composers</button>
+        </p>
+      </div>
+      <button type="submit" class="primary">Find works</button>
+    </form>
+
+    <section class="filters" id="filters" hidden aria-label="Filters">
+      <fieldset>
+        <legend>Must include</legend>
+        <div class="chips" id="instrument-filters"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Options</legend>
+        <label class="check"><input type="checkbox" id="opt-arrangements" /> Include arrangements by other hands</label>
+        <label class="check"><input type="checkbox" id="opt-estimated" checked /> Include entries with an inferred count</label>
+        <label class="check"><input type="checkbox" id="opt-group" checked /> Group by genre</label>
+      </fieldset>
+      <fieldset>
+        <legend>Sort</legend>
+        <select id="sort">
+          <option value="default">Genre, then title</option>
+          <option value="title">Title A–Z</option>
+          <option value="year">Date composed</option>
+          <option value="size">Largest oboe section first</option>
+        </select>
+      </fieldset>
+    </section>
+
+    <section id="summary" class="summary" hidden aria-live="polite"></section>
+    <section id="results" class="results"></section>
+
+    <section id="intro" class="intro">
+      <h2>What this does</h2>
+      <p>
+        This page holds an offline index of works scored for the oboe family:
+        <strong>oboe</strong>, <strong>English horn</strong> (cor anglais),
+        <strong>oboe d’amore</strong>, <strong>oboe da caccia</strong>,
+        <strong>bass oboe</strong> and <strong>heckelphone</strong>. Search a
+        composer and every matching work is listed with its exact scoring —
+        “two oboes, english horn”, “three oboes”, and so on.
+      </p>
+      <p class="muted">
+        Nothing is installed and nothing is sent anywhere: the index ships with
+        the page and all searching happens inside your browser.
+      </p>
+      <div id="popular" class="popular"></div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p id="provenance"></p>
+    <p class="muted">
+      Working somewhere without wifi?
+      <a href="dist/oboe-finder.html" download>Download a single-file offline copy</a>
+      — the whole index in one HTML file that runs straight from your desktop.
+    </p>
+    <p class="muted">
+      Catalogue data derived from <a href="https://imslp.org" rel="noopener">IMSLP / Petrucci Music Library</a>,
+      combined with a hand-checked layer for orchestral works. Instrumentation should be
+      confirmed against a published score before hire or performance.
+    </p>
+  </footer>
+
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>

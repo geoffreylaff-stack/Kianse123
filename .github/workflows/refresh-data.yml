@@ -1,0 +1,58 @@
+name: Refresh IMSLP data
+
+# The shipped index is a snapshot. Re-harvest monthly so it does not rot, and
+# raise a pull request rather than committing straight to main — a bad upstream
+# edit should be reviewable, not silently published.
+on:
+  schedule:
+    - cron: '0 4 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Harvest IMSLP
+        run: npm run harvest
+
+      - name: Rebuild index
+        run: npm run build
+
+      - name: Verify the parser still agrees with the data
+        run: npm test
+
+      - name: Summarise the change
+        id: diff
+        run: |
+          node -e "
+            const d = require('./data/works.json');
+            console.log('works=' + d.stats.works, 'composers=' + d.stats.composers);
+          " >> "$GITHUB_STEP_SUMMARY"
+          echo "changed=$(git diff --quiet -- data/ dist/ && echo no || echo yes)" >> "$GITHUB_OUTPUT"
+
+      - name: Open a pull request
+        if: steps.diff.outputs.changed == 'yes'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/refresh-imslp-data
+          title: 'Refresh IMSLP repertoire data'
+          commit-message: 'Refresh IMSLP repertoire snapshot'
+          body: |
+            Automated monthly re-harvest of IMSLP instrumentation data.
+
+            Review the diff in `data/works.json` for unexpected losses — a large
+            drop in work count usually means an upstream category was renamed
+            rather than that the repertoire shrank.
+          add-paths: |
+            data/
+            dist/
