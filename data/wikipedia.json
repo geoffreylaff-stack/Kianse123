@@ -1,14 +1,14 @@
 {
- "generated": "2026-08-09T21:35:57.664Z",
+ "generated": "2026-08-09T22:50:34.344Z",
  "source": "English Wikipedia (en.wikipedia.org)",
  "license": "Text from Wikipedia, CC BY-SA 4.0.",
  "counts": {
-  "articles": 3200,
-  "withSection": 969,
-  "withOboe": 912,
-  "skipped": 2231,
-  "works": 912,
-  "apiCalls": 3609
+  "articles": 5,
+  "withSection": 2,
+  "withOboe": 2,
+  "skipped": 3,
+  "works": 914,
+  "apiCalls": 7
  },
  "works": [
   {
@@ -17104,6 +17104,45 @@
    "url": "https://en.wikipedia.org/wiki/Prometheus_(Orff)",
    "composer": "Carl Orff",
    "genre": "Opera"
+  },
+  {
+   "page": "Grand Canyon Suite",
+   "subcat": "Category:Suites by Ferde Grofé",
+   "scoring": "two oboes, english horn",
+   "counts": {
+    "oboe": 2,
+    "englishHorn": 1
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "text": "The work is scored for three flutes (third doubling piccolo), two oboes, English horn, two clarinets, bass clarinet, two bassoons, contrabassoon, four horns, three trumpets, two tenor trombones, bass trombone, tuba, timpani, triangle, small cymbal, bass drum, cymbals, snare drum, vibraphone, gong, coconut shells, bells, chime, wind machine, piano, celesta, harp, and strings",
+   "full": "The work is scored for three flutes (third doubling piccolo), two oboes, English horn, two clarinets, bass clarinet, two bassoons, contrabassoon, four horns, three trumpets, two tenor trombones, bass trombone, tuba, timpani, triangle, small cymbal, bass drum, cymbals, snare drum, vibraphone, gong, coconut shells, bells, chime, wind machine, piano, celesta, harp, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Grand_Canyon_Suite",
+   "composer": "Ferde Grofé",
+   "genre": "Suite"
+  },
+  {
+   "page": "Mississippi Suite",
+   "subcat": "Category:Suites by Ferde Grofé",
+   "scoring": "three oboes (3rd doubling english horn)",
+   "counts": {
+    "oboe": 3
+   },
+   "req": [
+    "oboe",
+    "englishHorn"
+   ],
+   "text": "The piece is scored for piccolo, two flutes, three oboes (third doubling on English horn), two clarinets, bass clarinet, two bassoons, contrabassoon, four horns, three trumpets, two tenor trombones, bass trombone, tuba, timpani, cymbals, bass drum, snare drum, triangle, wood block, Indian toms, sand paper, celesta, bells, wind whistle, harp, and strings",
+   "full": "The piece is scored for piccolo, two flutes, three oboes (third doubling on English horn), two clarinets, bass clarinet, two bassoons, contrabassoon, four horns, three trumpets, two tenor trombones, bass trombone, tuba, timpani, cymbals, bass drum, snare drum, triangle, wood block, Indian toms, sand paper, celesta, bells, wind whistle, harp, and strings",
+   "estimated": false,
+   "how": "section",
+   "url": "https://en.wikipedia.org/wiki/Mississippi_Suite",
+   "composer": "Ferde Grofé",
+   "genre": "Suite"
   }
  ]
 }

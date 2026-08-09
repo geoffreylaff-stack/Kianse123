@@ -37,6 +37,7 @@
     "hindemith-paul": { "name": "Paul Hindemith", "dates": "1895–1963", "aliases": ["hindemith"] },
     "poulenc-francis": { "name": "Francis Poulenc", "dates": "1899–1963", "aliases": ["poulenc"] },
     "copland-aaron": { "name": "Aaron Copland", "dates": "1900–1990", "aliases": ["copland"] },
+    "grofe-ferde": { "name": "Ferde Grofé", "dates": "1892–1972", "aliases": ["grofe", "ferde grofe", "grofé"] },
     "shostakovich-dmitri": { "name": "Dmitri Shostakovich", "dates": "1906–1975", "aliases": ["shostakovich", "schostakowitsch"] },
     "barber-samuel": { "name": "Samuel Barber", "dates": "1910–1981", "aliases": ["barber"] },
     "britten-benjamin": { "name": "Benjamin Britten", "dates": "1913–1976", "aliases": ["britten"] },
