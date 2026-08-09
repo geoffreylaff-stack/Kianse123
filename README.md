@@ -19,9 +19,18 @@ Nothing is installed. The end user opens a URL in Chrome or Edge and searches.
 
 ## Running it
 
-**Hosted (what end users get).** Any static host works; the repository is laid
-out for GitHub Pages. Enable Pages on the repo and the included workflow
-publishes `index.html`, `assets/`, and `data/works.json`.
+**Hosted (what end users get):** <https://geoffreylaff-stack.github.io/Kianse123/>
+
+Any static host works; the repository is laid out for GitHub Pages, and
+`.github/workflows/pages.yml` publishes `index.html`, `assets/`, `lib/`,
+`data/works.json` and the standalone build on every push to the default branch.
+
+Two settings have to be switched on by hand once, because they are repository
+settings rather than code: the repository must be **public** (Pages on a private
+repository needs a paid plan), and **Settings → Pages → Source** must be set to
+**GitHub Actions**. Until Pages is enabled the build job still succeeds and only
+the `deploy-pages` step fails, which is the signature of that missing setting
+rather than of a broken workflow.
 
 **Locally**, because ES modules and `fetch` need a real origin:
 
