@@ -146,6 +146,28 @@ other orchestral instruments, so "written for Diaghilev" cannot be mistaken for 
 scoring. Markup is stripped, the result is flattened to one comma-separated
 string, and the same parser the rest of the app uses reads it.
 
+### Counting: first explicit number wins
+
+An instrument gets named more than once all the time — a reduced orchestration
+listed after the main one, or plain narrative:
+
+> …two flutes, piccolo, **two oboes**, two clarinets … and strings. *The **oboes**
+> are silent for the second movement.*
+
+Adding those up gave Shostakovich's Second Piano Concerto four oboes when the
+score has two. So counts are never accumulated. Each instrument takes the
+**first explicit number** it is given; a bare plural is recorded separately and
+only used when no number appears anywhere, in which case the row is marked
+*count inferred from a plural*. The prose fallback is also cut at the end of the
+scoring sentence, so commentary never reaches the parser at all.
+
+That single change corrected 73 entries, only 14 of which had ever carried the
+inferred-count flag — the flag was not a reliable signal of a wrong count,
+because two explicit numbers summing to a wrong total looks perfectly confident.
+`tools/build.mjs` therefore prints any non-curated work with more than five
+oboe-family players at build time, since that is what the failure looks like
+from the outside.
+
 One transport note worth recording: `api.php` rate-limits this network path
 hard — 429 within a handful of requests even at one per 1.2 seconds, because the
 address is shared rather than because of our pace. The CDN-cached paths are not

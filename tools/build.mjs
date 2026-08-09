@@ -166,19 +166,25 @@ for (const w of wikipedia.works ?? []) {
   seen.add(key);
   if (fk) seen.add(fk);
 
+  // Re-parse the stored source text when it is present, so a parser change
+  // reaches the index through `npm run build` alone rather than requiring
+  // another full sweep of 3,200 articles.
+  const reparsed = w.text ? parseInstrumentation(w.text) : null;
+  const usable = reparsed?.total > 0;
+
   works.push({
     c: c.id,
     t: title,
     cat: null,
     y: null,
     g: w.subcat ? (w.genre || 'Orchestral') : genreFromTitle(title, w.genre || 'Orchestral'),
-    s: w.scoring,
-    counts: w.counts,
-    req: w.req,
+    s: usable ? formatOboeScoring(reparsed) : w.scoring,
+    counts: usable ? reparsed.counts : w.counts,
+    req: usable ? requiredInstruments(reparsed) : w.req,
     full: w.full || null,
     note: null,
     arr: false,
-    est: !!w.estimated,
+    est: usable ? reparsed.uncertain.length > 0 : !!w.estimated,
     src: 'wikipedia',
     url: w.url,
   });
@@ -240,6 +246,27 @@ const payload = {
 
 await fs.mkdir(p('data'), { recursive: true });
 await fs.writeFile(p('data/works.json'), JSON.stringify(payload));
+
+/**
+ * Plausibility report. An over-count from mis-read source text looks exactly
+ * like a legitimate large section, so it never announced itself — "eight oboes"
+ * for Die ägyptische Helena sat in the index unflagged. Very large sections are
+ * rare and real ones are famous (Handel's Fireworks, The Rite of Spring), so
+ * listing them at build time makes a regression visible instead of silent.
+ * Curated rows are hand-checked and exempt.
+ */
+const OBOE_SECTION_LIMIT = 5;
+const implausible = works.filter((w) => {
+  if (w.src === 'curated' || w.arr) return false;
+  const total = Object.values(w.counts ?? {}).reduce((s, n) => s + (n || 0), 0);
+  return total > OBOE_SECTION_LIMIT;
+});
+if (implausible.length) {
+  process.stderr.write(`\n  ${implausible.length} work(s) with more than ${OBOE_SECTION_LIMIT} oboe-family players — worth an eyeball:\n`);
+  for (const w of implausible.slice(0, 20)) {
+    process.stderr.write(`    ${w.s}  —  ${w.t} (${w.src})\n`);
+  }
+}
 
 // ── Self-contained single-file build ──────────────────────────────────────────
 const html = await fs.readFile(p('index.html'), 'utf8');

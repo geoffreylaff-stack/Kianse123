@@ -72,6 +72,33 @@ test('does not mistake d\'amore or da caccia for a plain oboe', () => {
   assert.equal(p.counts.oboeDamore, 1);
 });
 
+test('does not add up repeated mentions of the same instrument', () => {
+  // Shostakovich Piano Concerto No. 2: the scoring says two oboes, and the
+  // article later discusses the oboes again. That is still two oboes.
+  assert.equal(
+    scoring('scored for solo piano, two flutes, two oboes, two clarinets, four horns, '
+      + 'and strings. The oboes are silent for the second movement.'),
+    'two oboes');
+
+  // Saint-Saëns Requiem lists a second, reduced orchestration further down.
+  assert.equal(
+    scoring('four flutes, two oboes, two English horns, four bassoons. '
+      + 'A version with a reduced orchestra uses two oboes, two English horns.'),
+    'two oboes, two english horns');
+
+  // A narrative singular must not top up an explicit count either.
+  assert.equal(
+    scoring('The work is scored for 2 oboes, 2 horns and strings. '
+      + 'The central movements feature both oboe and horn.'),
+    'two oboes');
+});
+
+test('an explicit count outranks a plural guess and clears the estimate flag', () => {
+  const p = parseInstrumentation('two oboes, strings. The oboes carry the theme.');
+  assert.equal(p.counts.oboe, 2);
+  assert.deepEqual(p.uncertain, [], 'an explicit number was given, so nothing is inferred');
+});
+
 test('flags a bare plural as an inferred count', () => {
   const p = parseInstrumentation('oboes, bassoons, strings');
   assert.ok(p.uncertain.includes('oboe'));

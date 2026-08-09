@@ -203,6 +203,17 @@ function instrumentationSection(wikitext) {
   return null;
 }
 
+/**
+ * A scoring sentence ends where the article resumes talking about the music
+ * ("...and strings. The oboes are silent for the second movement."). Without
+ * this cut the narrative gets parsed as if it were part of the instrumentation.
+ * Digits are excluded from the look-ahead so "Op. 35" and "No. 2" survive.
+ */
+function boundToSentence(flat) {
+  const m = /\.\s+(?=[A-Z])/.exec(flat);
+  return m ? flat.slice(0, m.index) : flat;
+}
+
 /** "Symphonies by Jean Sibelius" -> "Symphony" */
 function genreFrom(subcat) {
   if (!subcat) return 'Orchestral';
@@ -252,7 +263,11 @@ async function readArticle(title, subcat) {
   if (!section) { stats.skipped++; return; }
   stats.withSection++;
 
-  const flat = flattenSection(section.text);
+  let flat = flattenSection(section.text);
+  // Sections are lists and legitimately span many lines; only the prose
+  // fallback runs on into commentary, so only it gets cut at the sentence.
+  if (section.how === 'prose') flat = boundToSentence(flat);
+  flat = flat.slice(0, 1200);
   if (!mentionsOboeFamily(flat)) return;
 
   const parsed = parseInstrumentation(flat);
@@ -265,6 +280,9 @@ async function readArticle(title, subcat) {
     scoring: formatOboeScoring(parsed),
     counts: parsed.counts,
     req: requiredInstruments(parsed),
+    // `text` is what the parser saw, kept whole so a future parser change can
+    // be replayed without re-fetching 3,200 articles; `full` is for display.
+    text: flat,
     full: flat.length > 400 ? `${flat.slice(0, 397)}…` : flat,
     estimated: parsed.uncertain.length > 0,
     how: section.how,
