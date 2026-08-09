@@ -42,19 +42,58 @@ const catKey = (composerId, catalogue) => {
   return c ? `${composerId}::cat::${c}` : null;
 };
 
+/**
+ * Third key, on numbered forms. Wikipedia titles a work "Symphony No. 9" where
+ * the curated entry is "Symphony No. 9 in E minor, 'From the New World'" — no
+ * amount of title normalisation makes those equal, but (symphony, 9) does.
+ * The qualifier keeps "Piano Concerto No. 2" apart from "Violin Concerto No. 2".
+ */
+const formKey = (composerId, title) => {
+  const m = /^(.*?)\b(symphony|symphonies|concerto|quartet|quintet|sonata|trio|octet|sextet|septet|serenade|suite|rhapsody|overture|mass)\b[\s,]*(?:no\.?\s*)?(\d+)/i
+    .exec(fold(title));
+  if (!m) return null;
+  const qualifier = (m[1].trim().split(/\s+/).pop() || '').replace(/[^a-z]/g, '');
+  return `${composerId}::form::${qualifier}-${m[2]}-${m[3]}`;
+};
+
 const curated = await readJson(p('data/curated.json'), { composers: {}, works: [] });
+const wikipedia = await readJson(p('data/wikipedia.json'), { works: [] });
 const imslp = await readJson(p('data/imslp.json'), { composers: [], works: [] });
 
 const composers = new Map();
+const byName = new Map(); // fold(display name) -> id
 const works = [];
 const seen = new Set();
 
-function addComposer(id, name, extra = {}) {
+/** "Sergei Rachmaninoff" -> "Rachmaninoff, Sergei" */
+function toSortForm(name) {
+  const parts = String(name).trim().split(/\s+/);
+  if (parts.length < 2) return name;
+  return `${parts.at(-1)}, ${parts.slice(0, -1).join(' ')}`;
+}
+
+const idFromSort = (sort) => fold(sort).replace(/\s+/g, '-');
+
+/**
+ * Resolve a composer across the three sources. Identity is matched on the
+ * display name, not on a derived id: Wikipedia says "Pyotr Ilyich Tchaikovsky"
+ * and IMSLP says "Tchaikovsky, Pyotr", which would otherwise become two people.
+ */
+function resolveComposer(name, extra = {}) {
+  const key = fold(name);
+  let id = byName.get(key) ?? extra.id;
+  if (!id) id = idFromSort(extra.sort ?? toSortForm(name));
+
   if (!composers.has(id)) {
     // n counts original works only; arrangements are hidden by default, so
     // advertising them in the typeahead would promise more than the app shows.
-    composers.set(id, { id, name, sort: extra.sort ?? name, dates: extra.dates ?? null, aliases: extra.aliases ?? [], n: 0, nArr: 0 });
+    composers.set(id, {
+      id, name, sort: extra.sort ?? toSortForm(name),
+      dates: extra.dates ?? null, aliases: extra.aliases ?? [], n: 0, nArr: 0,
+    });
   }
+  byName.set(key, id);
+
   const c = composers.get(id);
   if (extra.dates && !c.dates) c.dates = extra.dates;
   if (extra.aliases) c.aliases = [...new Set([...c.aliases, ...extra.aliases])];
@@ -63,7 +102,7 @@ function addComposer(id, name, extra = {}) {
 
 // ── Curated ───────────────────────────────────────────────────────────────────
 for (const [id, meta] of Object.entries(curated.composers ?? {})) {
-  addComposer(id, meta.name, { dates: meta.dates, aliases: meta.aliases, sort: meta.sort ?? meta.name });
+  resolveComposer(meta.name, { id, dates: meta.dates, aliases: meta.aliases, sort: meta.sort });
 }
 
 for (const w of curated.works ?? []) {
@@ -73,8 +112,7 @@ for (const w of curated.works ?? []) {
     continue;
   }
   seen.add(workKey(w.c, w.title));
-  const ck = catKey(w.c, w.cat);
-  if (ck) seen.add(ck);
+  for (const k of [catKey(w.c, w.cat), formKey(w.c, w.title)]) if (k) seen.add(k);
   works.push({
     c: w.c,
     t: w.title,
@@ -94,23 +132,78 @@ for (const w of curated.works ?? []) {
   composers.get(w.c).n++;
 }
 
+// ── Wikipedia ─────────────────────────────────────────────────────────────────
+// Ranked above IMSLP: for orchestral works IMSLP records only "orchestra",
+// while the Wikipedia article gives the full wind complement.
+/**
+ * Works filed directly under "Compositions by X" have no subcategory to name
+ * their genre, so the harvester defaults them to "Orchestral". The title is a
+ * better witness than that default.
+ */
+function genreFromTitle(title, fallback) {
+  const t = title.toLowerCase();
+  if (/\bsymphon(y|ie|ia)\b/.test(t) && !/symphonic poem/.test(t)) return 'Symphony';
+  if (/\bconcert(o|ino)\b/.test(t)) return 'Concerto';
+  if (/\boverture\b/.test(t)) return 'Overture';
+  if (/\b(sonata|quartet|quintet|trio|octet|sextet|septet|duo)\b/.test(t)) return 'Chamber';
+  if (/\b(mass|requiem|te deum|oratorio|cantata|psalm)\b/.test(t)) return 'Sacred vocal';
+  if (/\b(suite|serenade|divertimento)\b/.test(t)) return 'Suite';
+  if (/\b(ballet|pas de deux)\b/.test(t)) return 'Ballet';
+  if (/\b(opera|opéra)\b/.test(t)) return 'Opera';
+  if (/\b(symphonic poem|tone poem)\b/.test(t)) return 'Tone poem';
+  return fallback;
+}
+
+for (const w of wikipedia.works ?? []) {
+  if (!w.composer || !w.scoring) continue;
+  const c = resolveComposer(w.composer);
+
+  // Article titles carry a disambiguator: "Symphony No. 2 (Rachmaninoff)".
+  const title = w.page.replace(/\s*\([^()]*\)\s*$/, '').trim() || w.page;
+  const key = workKey(c.id, title);
+  const fk = formKey(c.id, title);
+  if (seen.has(key) || (fk && seen.has(fk))) continue; // curated already covers it
+  seen.add(key);
+  if (fk) seen.add(fk);
+
+  works.push({
+    c: c.id,
+    t: title,
+    cat: null,
+    y: null,
+    g: w.subcat ? (w.genre || 'Orchestral') : genreFromTitle(title, w.genre || 'Orchestral'),
+    s: w.scoring,
+    counts: w.counts,
+    req: w.req,
+    full: w.full || null,
+    note: null,
+    arr: false,
+    est: !!w.estimated,
+    src: 'wikipedia',
+    url: w.url,
+  });
+  c.n++;
+}
+
 // ── IMSLP ─────────────────────────────────────────────────────────────────────
 for (const w of imslp.works ?? []) {
   if (!w.composerId || !w.composer) continue;
-  const key = workKey(w.composerId, w.title);
-  const ck = catKey(w.composerId, w.catalogue);
-  if (seen.has(key) || (ck && seen.has(ck))) continue; // curated version already covers this work
+  const c = resolveComposer(w.composer, { id: w.composerId, sort: w.composerSort });
+
+  const key = workKey(c.id, w.title);
+  const ck = catKey(c.id, w.catalogue);
+  const fk = formKey(c.id, w.title);
+  if (seen.has(key) || (ck && seen.has(ck)) || (fk && seen.has(fk))) continue; // a better source already covers it
   seen.add(key);
-  if (ck) seen.add(ck);
+  for (const k of [ck, fk]) if (k) seen.add(k);
 
   // Re-parse the source string so harvested rows share the app's current
   // formatting and doubling rules without needing a fresh harvest.
   const parsed = parseInstrumentation(w.full || '');
   const usable = parsed.total > 0;
 
-  addComposer(w.composerId, w.composer, { sort: w.composerSort });
   works.push({
-    c: w.composerId,
+    c: c.id,
     t: w.title,
     cat: w.catalogue || null,
     y: null,
@@ -125,7 +218,6 @@ for (const w of imslp.works ?? []) {
     src: 'imslp',
     url: w.url,
   });
-  const c = composers.get(w.composerId);
   if (w.arrangement) c.nArr++; else c.n++;
 }
 
@@ -136,6 +228,9 @@ const payload = {
   generated: new Date().toISOString(),
   sources: {
     curated: `${curated.works?.length ?? 0} hand-checked works`,
+    wikipedia: wikipedia.generated
+      ? `Wikipedia snapshot ${wikipedia.generated.slice(0, 10)}`
+      : 'Wikipedia not yet harvested',
     imslp: imslp.generated ? `IMSLP snapshot ${imslp.generated.slice(0, 10)}` : 'IMSLP not yet harvested',
   },
   stats: { works: works.length, composers: composers.size },

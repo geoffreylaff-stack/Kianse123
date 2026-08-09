@@ -23,7 +23,12 @@ jobs:
           node-version: '20'
 
       - name: Harvest IMSLP
-        run: npm run harvest
+        run: npm run harvest:imslp
+
+      - name: Harvest Wikipedia
+        # Wikipedia throttles; the harvester waits out 429s and can resume, so a
+        # partial run still contributes rather than failing the whole refresh.
+        run: npm run harvest:wikipedia || node tools/harvest-wikipedia.mjs --resume
 
       - name: Rebuild index
         run: npm run build

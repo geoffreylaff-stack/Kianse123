@@ -69,6 +69,39 @@ function matchComposers(query, limit = 8) {
   return scored.slice(0, limit).map((s) => s.c);
 }
 
+/** Levenshtein distance, iterative with a single rolling row. */
+function editDistance(a, b) {
+  if (a === b) return 0;
+  if (!a.length) return b.length;
+  if (!b.length) return a.length;
+  let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    const cur = [i];
+    for (let j = 1; j <= b.length; j++) {
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    }
+    prev = cur;
+  }
+  return prev[b.length];
+}
+
+/**
+ * Near-misses for a query that matched nothing. "Rachmaninov" and "Rachmaninoff"
+ * are both in common use, and a dead end reads as "not in the index" when the
+ * composer is right there under another spelling.
+ */
+function nearestComposers(query, limit = 5) {
+  const q = fold(query);
+  if (q.length < 3) return [];
+  const tolerance = Math.max(2, Math.floor(q.length / 3));
+  return state.data.composers
+    .map((c) => ({ c, d: Math.min(editDistance(q, c._surname), editDistance(q, c._folded)) }))
+    .filter((x) => x.d <= tolerance)
+    .sort((a, b) => a.d - b.d || (b.c.n + b.c.nArr) - (a.c.n + a.c.nArr))
+    .slice(0, limit)
+    .map((x) => x.c);
+}
+
 // ── Filtering ─────────────────────────────────────────────────────────────────
 /** Does the work call for this instrument, whether as its own part or a doubling? */
 const needs = (w, key) => (w.req?.includes(key) ?? false) || (w.counts?.[key] ?? 0) > 0;
@@ -117,7 +150,8 @@ function renderWork(w) {
 
   const flags = [];
   if (w.est) flags.push('count inferred from a plural');
-  if (w.src === 'imslp') flags.push('via IMSLP');
+  const SOURCE_LABEL = { imslp: 'via IMSLP', wikipedia: 'via Wikipedia' };
+  if (SOURCE_LABEL[w.src]) flags.push(SOURCE_LABEL[w.src]);
 
   const right = el('div', { className: 'scoring' },
     w.s || '—',
@@ -307,9 +341,17 @@ $('#search-form').addEventListener('submit', (e) => {
   closeSuggestions();
   $('#summary').hidden = true;
   $('#intro').hidden = true;
+
+  const near = nearestComposers(input.value);
   $('#results').replaceChildren(el('div', { className: 'empty' },
     el('p', {}, el('strong', { textContent: `No composer found for “${input.value}”.` })),
-    el('p', { className: 'muted', textContent: 'Check the spelling, or use the surname on its own. The index covers composers with at least one catalogued oboe-family work.' }),
+    near.length
+      ? el('div', {},
+        el('p', { className: 'muted', textContent: 'Did you mean:' }),
+        el('div', { className: 'popular' }, near.map((c) => el('button', {
+          type: 'button', className: 'chip', textContent: c.name, onclick: () => select(c),
+        }))))
+      : el('p', { className: 'muted', textContent: 'Check the spelling, or try the surname on its own. The index covers composers with at least one catalogued oboe-family work.' }),
   ));
 });
 
@@ -353,7 +395,7 @@ try {
   $('#provenance').textContent =
     `Index built ${new Date(data.generated).toLocaleDateString()} — ` +
     `${data.stats.works.toLocaleString()} works by ${data.stats.composers.toLocaleString()} composers. ` +
-    `${data.sources.curated}; ${data.sources.imslp}.`;
+    `${[data.sources.curated, data.sources.wikipedia, data.sources.imslp].filter(Boolean).join('; ')}.`;
 
   // A few well-stocked composers as one-click starting points.
   const popular = [...data.composers].sort((a, b) => b.n - a.n).slice(0, 10);

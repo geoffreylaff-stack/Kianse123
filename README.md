@@ -64,28 +64,39 @@ Berlioz, Symphonie fantastique  →  Instrumentation = "orchestra"
 That is precisely the case where an oboist needs the detail — orchestral scoring
 is where "2 oboes + English horn" is a fact worth looking up. Wikidata is worse:
 it is CORS-enabled but its `instrumentation` property records Beethoven 9 as
-"symphony orchestra" and "choir". No public API answers this question well.
+"symphony orchestra" and "choir".
 
-So the app is built as **a pre-computed index, shipped with the page**:
+IMSLP is also public-domain-weighted, so composers who died recently are thin or
+missing outright: Rachmaninoff had **no** entry at all, and Stravinsky had four
+originals. **Wikipedia** fills both gaps — its article on an individual work
+usually carries an `Instrumentation` section giving the full wind complement, for
+20th-century repertoire as readily as for Mozart.
+
+So the app is built as **a pre-computed index, shipped with the page**, drawing
+on three sources in order of authority:
 
 ```
   build time (a laptop or CI, never the user's browser)
-  ┌──────────────────────────────────────────────────────┐
-  │  tools/harvest-imslp.mjs   →  data/imslp.json        │
-  │      pass A: category names encode exact scoring     │
-  │      pass B: |Instrumentation= field, 50 pages/call  │
-  │                                                      │
-  │  data/curated.json         →  hand-checked orchestral│
-  │                                                      │
-  │  tools/build.mjs  merges both → data/works.json      │
-  └──────────────────────────────────────────────────────┘
+  ┌──────────────────────────────────────────────────────────┐
+  │  data/curated.json          hand-checked orchestral       │  ← wins
+  │  tools/harvest-wikipedia.mjs → data/wikipedia.json        │
+  │      Instrumentation section, or a "scored for" sentence  │
+  │  tools/harvest-imslp.mjs     → data/imslp.json            │  ← breadth
+  │      pass A: category names encode exact scoring          │
+  │      pass B: |Instrumentation= field, 50 pages/call       │
+  │                                                           │
+  │  tools/build.mjs  merges all three → data/works.json      │
+  └──────────────────────────────────────────────────────────┘
                               │
   run time                    ▼
-  ┌──────────────────────────────────────────────────────┐
-  │  index.html + assets/app.js  fetch data/works.json    │
-  │  every search runs in memory, same origin, no network │
-  └──────────────────────────────────────────────────────┘
+  ┌──────────────────────────────────────────────────────────┐
+  │  index.html + assets/app.js  fetch data/works.json        │
+  │  every search runs in memory, same origin, no network     │
+  └──────────────────────────────────────────────────────────┘
 ```
+
+Each row carries its provenance, and the app labels anything not hand-checked
+*via Wikipedia* or *via IMSLP* with a link back to the source.
 
 This sidesteps CORS entirely, makes search instant, keeps working when IMSLP is
 down, and sends no user query anywhere.
@@ -106,6 +117,30 @@ a few hundred API calls, rather than fetching thousands of pages. A `(arr)`
 suffix marks an arrangement by another hand; those are tagged and hidden by
 default, so a transcription of Beethoven 9 for oboe quartet does not masquerade
 as Beethoven scoring for oboe quartet.
+
+### Reading Wikipedia
+
+Two shapes have to be handled, because articles use both. A section:
+
+```wikitext
+==Instrumentation==
+:4 [[oboe]]s (fourth doubling second [[cor anglais]])
+:1 [[cor anglais]]
+```
+
+…and a bare sentence, which is how Boléro states it — *"written for a large
+orchestra consisting of: 2 oboes (one doubling on oboe d'amore), cor anglais…"*.
+The prose fallback only fires when the surrounding text also names at least three
+other orchestral instruments, so "written for Diaghilev" cannot be mistaken for a
+scoring. Markup is stripped, the result is flattened to one comma-separated
+string, and the same parser the rest of the app uses reads it.
+
+One transport note worth recording: `api.php` rate-limits this network path
+hard — 429 within a handful of requests even at one per 1.2 seconds, because the
+address is shared rather than because of our pace. The CDN-cached paths are not
+throttled at all, so the harvester reads article text from
+`index.php?action=raw` and category membership from the rendered category page.
+Measured on ten fetches: **0 throttled via `action=raw`, 8 via the REST API.**
 
 ### The curated layer
 
@@ -159,9 +194,11 @@ assets/app.js                  search, filtering, rendering
 assets/styles.css              light/dark, no external assets
 lib/instrumentation.mjs        the parser — runs in Node and the browser alike
 tools/harvest-imslp.mjs        build-time IMSLP harvester
+tools/harvest-wikipedia.mjs    build-time Wikipedia harvester
 tools/build.mjs                merge + single-file bundle
 tools/test-instrumentation.mjs regression tests (npm test)
 data/curated.json              hand-checked works  (edit this)
+data/wikipedia.json            harvest output      (generated)
 data/imslp.json                harvest output      (generated)
 data/works.json                merged index the app loads (generated)
 dist/oboe-finder.html          standalone offline build (generated)
@@ -174,10 +211,16 @@ disagree with the text on screen.
 ## Refreshing the data
 
 ```bash
-npm run harvest    # ~1,900 API calls, rate-limited, roughly 20 minutes
+npm run harvest              # both sources; roughly an hour in total
+npm run harvest:imslp        # ~1,900 API calls, ~20 min
+npm run harvest:wikipedia    # ~90 composers, ~45 min
 npm run build
 npm test
 ```
+
+The Wikipedia sweep saves after every composer and takes `--resume`, so an
+interrupted run picks up where it stopped instead of starting over. Composers are
+ordered most-wanted first for the same reason.
 
 `.github/workflows/refresh-data.yml` does this monthly and opens a pull request
 when the index changes, so the snapshot does not quietly rot.
@@ -188,12 +231,17 @@ when the index changes, so the snapshot does not quietly rot.
 
 Worth being straight about:
 
-- **Coverage is IMSLP's coverage.** IMSLP is public-domain-weighted, so a
-  living composer may be thin or absent regardless of how much oboe music they
-  have written. The curated layer partly offsets this for standard repertoire.
-- **Orchestral detail outside the curated 133 is coarse.** A harvested
-  orchestral work may show only what IMSLP knew. Entries carry their source, and
-  IMSLP-derived rows link back to the page they came from.
+- **Coverage follows the sources.** The Wikipedia sweep covers a fixed list of
+  composers (see `COMPOSERS` in the harvester) — adding a name there and
+  re-running is the way to extend it. Outside that list, coverage falls back to
+  IMSLP, which is public-domain-weighted and thin on recent composers.
+- **A work needs an article to be found.** Wikipedia only yields a scoring where
+  the individual work has its own page with an instrumentation section or a
+  "scored for…" sentence. Well-known symphonies and tone poems almost always do;
+  minor works often do not.
+- **Wikipedia is taken at face value.** Its scorings are used as given, without
+  checking them against a score. Rows are labelled *via Wikipedia* and link to
+  the article so a claim can be followed back.
 - **A bare plural is a guess.** `"oboes, bassoons, strings"` gives no number;
   the parser records two and flags the row *count inferred from a plural*. A
   checkbox hides these.

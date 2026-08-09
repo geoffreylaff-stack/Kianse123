@@ -43,6 +43,14 @@ test('attaches doublings to the instrument that doubles', () => {
     "two oboes (2nd doubling oboe d'amore), english horn");
 });
 
+test('reads ordinal words in doublings, as Wikipedia writes them', () => {
+  // Wikipedia: "three oboes (third doubling bass oboe)"; scores say "3rd".
+  assert.equal(scoring('three oboes (third doubling bass oboe), one cor anglais'),
+    'three oboes (3rd doubling bass oboe), english horn');
+  assert.equal(scoring('4 oboes (fourth doubling second cor anglais)'),
+    'four oboes (4th doubling english horn)');
+});
+
 test('a doubled instrument still counts as required', () => {
   const dvorak = parseInstrumentation('2 oboes (2nd doubling english horn)');
   assert.deepEqual(requiredInstruments(dvorak), ['oboe', 'englishHorn']);
