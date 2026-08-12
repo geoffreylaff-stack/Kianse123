@@ -1,4 +1,4 @@
-import { OBOE_FAMILY, FAMILY_KEYS } from '../lib/instrumentation.mjs';
+import { OBOE_FAMILY, FAMILY_KEYS } from '../lib/instrumentation.mjs?v=28a60515d1';
 
 /**
  * All searching happens against an index that ships with the page, so the app
@@ -51,7 +51,9 @@ const composerLabel = (id) => composerOf(id)?.name ?? 'Unknown';
 async function loadData() {
   // The single-file build injects the index directly; the hosted build fetches it.
   if (window.__WORKS_DATA__) return window.__WORKS_DATA__;
-  const res = await fetch('data/works.json');
+  // The version marker makes a new index.html unable to reuse an old index.
+  const v = window.__DATA_V__ ? `?v=${window.__DATA_V__}` : '';
+  const res = await fetch(`data/works.json${v}`);
   if (!res.ok) throw new Error(`Could not load the work index (HTTP ${res.status}).`);
   return res.json();
 }
@@ -788,6 +790,41 @@ for (const tab of document.querySelectorAll('.mode-tabs [role="tab"]')) {
   });
 }
 
+/**
+ * Tell the visitor when they are looking at a superseded build.
+ *
+ * Pages caches for ten minutes and its headers cannot be changed, so a visitor
+ * arriving inside that window can be served a stale page with no signal at all.
+ * version.json is fetched with `cache: 'no-store'`, which bypasses the HTTP
+ * cache entirely — the one request guaranteed to describe what is actually
+ * published — and the page compares it with the build stamped into itself.
+ */
+async function checkForNewerBuild() {
+  if (window.__WORKS_DATA__) return;      // the standalone copy is self-contained
+  const current = window.__BUILD__;
+  if (!current) return;
+  try {
+    const res = await fetch('data/version.json', { cache: 'no-store' });
+    if (!res.ok) return;
+    const latest = await res.json();
+    if (latest.build && latest.build !== current) announceUpdate(latest.build);
+  } catch {
+    // Offline, or the file is not published yet: leave the page alone.
+  }
+}
+
+function announceUpdate(build) {
+  const reload = () => {
+    // A URL the browser has never seen, so the markup itself cannot come from
+    // cache; the hash is carried over so the visitor keeps their search.
+    location.replace(`${location.pathname}?v=${encodeURIComponent(build)}${location.hash}`);
+  };
+  document.body.prepend(el('div', { className: 'update-bar', role: 'status' },
+    el('span', { textContent: 'A newer version of this index has been published.' }),
+    el('button', { type: 'button', className: 'secondary', textContent: 'Load it', onclick: reload }),
+  ));
+}
+
 // ── Boot ──────────────────────────────────────────────────────────────────────
 try {
   const data = await loadData();
@@ -800,7 +837,9 @@ try {
 
   $('#provenance').textContent =
     `Index built ${new Date(data.generated).toLocaleDateString()} — ` +
-    `${data.stats.works.toLocaleString()} works by ${data.stats.composers.toLocaleString()} composers.`;
+    `${data.stats.works.toLocaleString()} works by ${data.stats.composers.toLocaleString()} composers.`
+    + (window.__BUILD__ ? ` Build ${window.__BUILD__}.` : '');
+  checkForNewerBuild();
 
   // A few well-stocked composers as one-click starting points.
   const popular = [...data.composers].sort((a, b) => b.n - a.n).slice(0, 10);

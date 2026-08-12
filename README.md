@@ -96,6 +96,43 @@ markup, styles, code and the entire index into one ~2 MB file. Double-click it
 and it runs from `file://`, offline, forever. Useful for handing to someone on a
 locked-down machine or taking into a library with no wifi.
 
+## Making sure a visitor has the current build
+
+GitHub Pages serves everything with `Cache-Control: max-age=600` and an ETag,
+and gives no way to set headers. A visitor returning the next day revalidates
+and gets current files — a conditional request answers `304` when nothing
+changed — so the ordinary case was already correct. Two things were not:
+
+- **Bare asset paths.** A freshly revalidated `index.html` could pair with an
+  `app.js` still inside its ten-minute window: new markup, old code.
+- **No way to tell.** Inside that window nothing revalidates, and the page said
+  nothing about which build it was.
+
+Both are closed without asking anyone to clear a cache:
+
+**Content hashes in every asset URL.** `tools/build.mjs` hashes each asset and
+rewrites the references — `app.js?v=6093b2dbae`, and the same for the stylesheet,
+the shared parser and `works.json`. New markup therefore *cannot* load old
+assets: the URL it asks for did not exist before. The hash is of file content, so
+it changes only when that file does — editing the CSS does not re-download the
+1.8 MB index.
+
+**A freshness check the cache cannot answer.** `data/version.json` is a few bytes
+holding the build id, fetched on load with `cache: 'no-store'`, which bypasses
+the HTTP cache outright. The page compares it with the id stamped into itself and
+shows a bar — *"A newer version of this index has been published. Load it"* —
+when they differ. The button navigates to `?v=<newbuild>`, a URL the browser has
+never seen, so even the markup cannot come from cache. The current search is
+carried across in the fragment.
+
+**A build id in the footer**, next to the work count, so it can be read off and
+compared against what is published.
+
+Builds are byte-identical when nothing changed, which matters more than it
+sounds: the build date derives from the newest data input rather than the clock,
+so a CI run that changes nothing produces the same id and no visitor is prompted
+to re-download anything.
+
 ---
 
 ## The design problem, and why it is shaped this way

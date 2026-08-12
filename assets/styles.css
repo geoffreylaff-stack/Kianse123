@@ -72,6 +72,26 @@ a { color: var(--accent); }
 }
 .tagline { margin: 0; color: var(--ink-soft); max-width: 44rem; }
 
+/* Shown only when the published build differs from the one on screen. */
+.update-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .85rem;
+  flex-wrap: wrap;
+  padding: .6rem 1.25rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: .9rem;
+}
+.update-bar button.secondary {
+  padding: .3rem .8rem;
+  background: transparent;
+  border-color: var(--accent-ink);
+  color: var(--accent-ink);
+}
+.update-bar button.secondary:hover { background: rgb(255 255 255 / .16); color: var(--accent-ink); }
+
 /* ── Mode tabs ────────────────────────────────────────────────────────────── */
 /* Two entry points of equal weight: neither workflow is the secondary one. */
 .mode-bar {

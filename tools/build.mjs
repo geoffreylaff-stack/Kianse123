@@ -14,6 +14,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { parseInstrumentation, formatOboeScoring, requiredInstruments } from '../lib/instrumentation.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -254,15 +255,84 @@ for (const [id, c] of composers) if (!c.n && !c.nArr) composers.delete(id);
 // rather than left for anyone reading the JSON or the network tab.
 const shipped = works.map(({ src, url, ...rest }) => rest);
 
+// Dated from the newest data input rather than the clock: a rebuild that
+// changes nothing must produce an identical index, or every CI run would mint a
+// new build id and prompt every visitor to re-download 1.8 MB for nothing.
+const inputMtimes = await Promise.all(
+  ['data/curated.json', 'data/wikipedia.json', 'data/imslp.json']
+    .map((f) => fs.stat(p(f)).then((st) => st.mtimeMs).catch(() => 0)),
+);
+const dataDate = new Date(Math.max(...inputMtimes, 0) || Date.now()).toISOString();
+
 const payload = {
-  generated: new Date().toISOString(),
+  generated: dataDate,
   stats: { works: works.length, composers: composers.size },
   composers: [...composers.values()].sort((a, b) => String(a.sort).localeCompare(String(b.sort))),
   works: shipped,
 };
 
+const dataJson = JSON.stringify(payload);
 await fs.mkdir(p('data'), { recursive: true });
-await fs.writeFile(p('data/works.json'), JSON.stringify(payload));
+await fs.writeFile(p('data/works.json'), dataJson);
+
+// ── Cache busting and version stamping ────────────────────────────────────────
+/*
+ * GitHub Pages serves everything with `Cache-Control: max-age=600` and an ETag,
+ * and offers no way to set headers. After ten minutes a returning visitor
+ * revalidates and gets current files, so the usual case is already correct. Two
+ * gaps are not:
+ *
+ *   1. Bare asset paths let a freshly revalidated index.html pair with an
+ *      app.js still inside its ten-minute window — new markup, old code.
+ *   2. Inside that window nothing revalidates at all, and the visitor has no
+ *      way to tell which build they are looking at.
+ *
+ * So every asset gets a content hash in its query string, which makes a new
+ * index.html incapable of loading old assets, and the build id is published
+ * separately in data/version.json for the page to check against itself.
+ */
+const short = (text) => createHash('sha256').update(text).digest('hex').slice(0, 10);
+
+// The lib is imported *by* app.js, so version it first and rewrite the import
+// before hashing app.js — otherwise app.js's hash would not cover the change.
+const libSrc = await fs.readFile(p('lib/instrumentation.mjs'), 'utf8');
+const vLib = short(libSrc);
+
+const appOriginal = await fs.readFile(p('assets/app.js'), 'utf8');
+const appSrc = appOriginal.replace(
+  /from '(\.\.\/lib\/instrumentation\.mjs)(?:\?v=[^']*)?'/,
+  `from '$1?v=${vLib}'`,
+);
+if (appSrc !== appOriginal) await fs.writeFile(p('assets/app.js'), appSrc);
+
+const cssSrc = await fs.readFile(p('assets/styles.css'), 'utf8');
+const vApp = short(appSrc);
+const vCss = short(cssSrc);
+const vData = short(dataJson);
+const build = short(vLib + vApp + vCss + vData);
+
+let html = await fs.readFile(p('index.html'), 'utf8');
+html = html
+  .replace(/href="assets\/styles\.css(?:\?v=[^"]*)?"/, `href="assets/styles.css?v=${vCss}"`)
+  .replace(/src="assets\/app\.js(?:\?v=[^"]*)?"/, `src="assets/app.js?v=${vApp}"`);
+
+const buildInfo = '<script id="build-info">'
+  + `window.__BUILD__=${JSON.stringify(build)};window.__DATA_V__=${JSON.stringify(vData)};`
+  + '</script>';
+html = /<script id="build-info">[\s\S]*?<\/script>/.test(html)
+  ? html.replace(/<script id="build-info">[\s\S]*?<\/script>/, buildInfo)
+  : html.replace(/(\n(\s*))<script type="module"/, `$1${buildInfo}$1<script type="module"`);
+await fs.writeFile(p('index.html'), html);
+
+// Deliberately tiny, and fetched with cache: 'no-store', so the check itself
+// can never be answered from the cache it is meant to see past.
+await fs.writeFile(p('data/version.json'), JSON.stringify({
+  build,
+  generated: payload.generated,
+  works: payload.stats.works,
+  composers: payload.stats.composers,
+}));
+
 
 /**
  * Plausibility report. An over-count from mis-read source text looks exactly
@@ -286,18 +356,13 @@ if (implausible.length) {
 }
 
 // ── Self-contained single-file build ──────────────────────────────────────────
-const html = await fs.readFile(p('index.html'), 'utf8');
-const css = await fs.readFile(p('assets/styles.css'), 'utf8');
-const appJs = await fs.readFile(p('assets/app.js'), 'utf8');
-const libJs = await fs.readFile(p('lib/instrumentation.mjs'), 'utf8');
-
 const inlined = html
-  .replace('<link rel="stylesheet" href="assets/styles.css" />', `<style>\n${css}\n</style>`)
+  .replace(/<link rel="stylesheet" href="assets\/styles\.css[^"]*" \/>/, `<style>\n${cssSrc}\n</style>`)
   .replace(
-    '<script type="module" src="assets/app.js"></script>',
-    `<script type="module">\n${libJs.replace(/^export /gm, '')}\n` +
-    `window.__WORKS_DATA__ = ${JSON.stringify(payload)};\n` +
-    `${appJs.replace(/^import[\s\S]*?from '[^']*';\n/m, '')}\n</script>`
+    /<script type="module" src="assets\/app\.js[^"]*"><\/script>/,
+    `<script type="module">\n${libSrc.replace(/^export /gm, '')}\n` +
+    `window.__WORKS_DATA__ = ${dataJson};\n` +
+    `${appSrc.replace(/^import[\s\S]*?from '[^']*';\n/m, '')}\n</script>`
   );
 
 await fs.mkdir(p('dist'), { recursive: true });
