@@ -26,7 +26,21 @@ suggested. Results group by genre.
 include* and the whole catalogue is searched. Several chips mean **all** of them
 — *oboe + english horn* returns the 492 works needing both, not the union.
 Doublings count: Dvořák's *New World* answers an English horn search even though
-the part belongs to the second oboist. Results group by composer and render in
+the part belongs to the second oboist.
+
+Each chosen instrument also takes a count — *exactly 2*, *3 or more*, and so on:
+
+```
+exactly two oboes                  1,345 works
+three or more oboes                  130 works
+exactly two oboes + english horn     322 works
+```
+
+A count means players, not printed parts, which matters where the two differ. 94
+works reach their English horn only through a doubling and so have no separate
+part; *exactly one english horn* still finds them, because one person does play
+one. Deselecting an instrument drops its count with it, so a rule can never
+outlive the instrument it applied to. Results group by composer and render in
 batches of 150, since *english horn* alone matches 811 works and building every
 row up front makes the page crawl. The selection lives in the URL as
 `#i=oboe,englishHorn`, so a search can be shared; CSV export covers the whole

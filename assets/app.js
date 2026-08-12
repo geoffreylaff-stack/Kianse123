@@ -33,6 +33,7 @@ const state = {
   mode: null,          // 'composer' | 'catalogue' | null (start screen)
   shown: CATALOGUE_PAGE,
   required: new Set(),
+  counts: {},          // instrument key -> 'any' | 'eqN' | 'geN'
   arrangements: false,
   estimated: true,
   group: true,
@@ -123,6 +124,56 @@ function nearestComposers(query, limit = 5) {
 /** Does the work call for this instrument, whether as its own part or a doubling? */
 const needs = (w, key) => (w.req?.includes(key) ?? false) || (w.counts?.[key] ?? 0) > 0;
 
+/**
+ * How many of this instrument a work asks for. Printed parts where there are
+ * any; otherwise one, when the instrument is reached only by a doubling — the
+ * New World has no separate English horn part but somebody still plays one, so
+ * "exactly one english horn" ought to find it.
+ */
+function instrumentCount(w, key) {
+  const printed = w.counts?.[key] ?? 0;
+  if (printed > 0) return printed;
+  return needs(w, key) ? 1 : 0;
+}
+
+/** Count constraints offered per instrument, keyed by their URL token. */
+const COUNT_OPTIONS = [
+  ['any', 'any number'],
+  ['eq1', 'exactly 1'],
+  ['eq2', 'exactly 2'],
+  ['eq3', 'exactly 3'],
+  ['eq4', 'exactly 4'],
+  ['ge2', '2 or more'],
+  ['ge3', '3 or more'],
+  ['ge4', '4 or more'],
+  ['ge5', '5 or more'],
+];
+
+/** Every selected instrument must satisfy its own count constraint. */
+function matchesCounts(w) {
+  for (const key of state.required) {
+    const rule = state.counts[key];
+    if (!rule || rule === 'any') continue;
+    const m = /^(eq|ge)(\d+)$/.exec(rule);
+    if (!m) continue;
+    const n = instrumentCount(w, key);
+    if (m[1] === 'eq' ? n !== Number(m[2]) : n < Number(m[2])) return false;
+  }
+  return true;
+}
+
+/** "exactly two oboes", "three or more oboes", or just the instrument name. */
+function describeRequirement(key) {
+  const meta = OBOE_FAMILY[key];
+  const rule = state.counts[key];
+  const m = rule && /^(eq|ge)(\d+)$/.exec(rule);
+  if (!m) return meta.label;
+  const n = Number(m[2]);
+  const word = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'][n] ?? String(n);
+  if (m[1] === 'eq') return n === 1 ? `exactly one ${meta.label}` : `exactly ${word} ${meta.plural}`;
+  return `${word} or more ${meta.plural}`;
+}
+
 function worksFor(composerId) {
   let list = state.data.works.filter((w) => w.c === composerId);
 
@@ -131,7 +182,7 @@ function worksFor(composerId) {
   if (state.required.size) {
     // `req` counts doubled instruments too: Dvořák 9 has no separate English
     // horn part, but it unquestionably needs an English horn player.
-    list = list.filter((w) => [...state.required].every((k) => needs(w, k)));
+    list = list.filter((w) => [...state.required].every((k) => needs(w, k)) && matchesCounts(w));
   }
 
   const sectionSize = (w) => FAMILY_KEYS.reduce((sum, k) => sum + (w.counts?.[k] ?? 0), 0);
@@ -243,7 +294,7 @@ function catalogueMatches() {
   if (!state.estimated) list = list.filter((w) => !w.est);
   // Several chips mean *all* of them: "oboe + english horn" is an AND.
   if (state.required.size) {
-    list = list.filter((w) => [...state.required].every((k) => needs(w, k)));
+    list = list.filter((w) => [...state.required].every((k) => needs(w, k)) && matchesCounts(w));
   } else {
     list = [...list];
   }
@@ -266,7 +317,7 @@ function catalogueMatches() {
 function requirementLabel() {
   if (!state.required.size) return 'any oboe-family instrument';
   return FAMILY_KEYS.filter((k) => state.required.has(k))
-    .map((k) => OBOE_FAMILY[k].label)
+    .map(describeRequirement)
     .join(' + ');
 }
 
@@ -342,7 +393,13 @@ function rerender() {
 }
 
 /** Canonical, order-stable URL for the current instrument selection. */
-const requiredHash = () => `#i=${FAMILY_KEYS.filter((k) => state.required.has(k)).join(',')}`;
+const requiredHash = () => {
+  const parts = FAMILY_KEYS.filter((k) => state.required.has(k)).map((k) => {
+    const rule = state.counts[k];
+    return rule && rule !== 'any' ? `${k}:${rule}` : k;
+  });
+  return `#i=${parts.join(',')}`;
+};
 
 /** Re-run the current query from the top after the criteria change. */
 function refine() {
@@ -512,6 +569,7 @@ function resetApp() {
   state.mode = null;
   state.shown = CATALOGUE_PAGE;
   state.required.clear();
+  state.counts = {};
   state.arrangements = false;
   state.estimated = true;
   state.group = true;
@@ -523,6 +581,7 @@ function resetApp() {
   for (const chip of document.querySelectorAll('#instrument-filters .chip')) {
     chip.setAttribute('aria-pressed', 'false');
   }
+  renderCountFilters();
   $('#opt-arrangements').checked = false;
   $('#opt-estimated').checked = true;
   $('#opt-group').checked = true;
@@ -546,6 +605,31 @@ $('#browse-all').addEventListener('click', () => {
 });
 
 // ── Filter wiring ─────────────────────────────────────────────────────────────
+/**
+ * One count selector per chosen instrument. Only selected instruments get one:
+ * a constraint on an instrument the work need not contain has nothing to say.
+ */
+function renderCountFilters() {
+  const holder = $('#count-filters');
+  const chosen = FAMILY_KEYS.filter((k) => state.required.has(k));
+  holder.hidden = chosen.length === 0;
+  if (!chosen.length) return holder.replaceChildren();
+
+  holder.replaceChildren(...chosen.map((key) => el('label', {},
+    `${OBOE_FAMILY[key].label}:`,
+    el('select', {
+      dataset: { instrument: key },
+      'aria-label': `How many ${OBOE_FAMILY[key].plural}`,
+      onchange(e) {
+        state.counts[key] = e.target.value;
+        refine();
+      },
+    }, COUNT_OPTIONS.map(([value, text]) => el('option', {
+      value, textContent: text, selected: (state.counts[key] ?? 'any') === value,
+    }))),
+  )));
+}
+
 function buildInstrumentChips() {
   const holder = $('#instrument-filters');
   holder.replaceChildren(...FAMILY_KEYS.map((key) =>
@@ -558,7 +642,13 @@ function buildInstrumentChips() {
       onclick(e) {
         const on = e.currentTarget.getAttribute('aria-pressed') === 'true';
         e.currentTarget.setAttribute('aria-pressed', String(!on));
-        if (on) state.required.delete(key); else state.required.add(key);
+        if (on) {
+          state.required.delete(key);
+          delete state.counts[key]; // a rule without its instrument means nothing
+        } else {
+          state.required.add(key);
+        }
+        renderCountFilters();
         // With nothing searched yet, picking an instrument is itself the query.
         if (!state.mode) return searchCatalogue({ silent: true });
         refine();
@@ -604,11 +694,18 @@ try {
 
     // #i=oboe,englishHorn — a shareable catalogue-wide instrument search.
     if (hash.startsWith('i=')) {
-      const keys = hash.slice(2).split(',').filter((k) => FAMILY_KEYS.includes(k));
-      state.required = new Set(keys);
+      state.required = new Set();
+      state.counts = {};
+      for (const token of hash.slice(2).split(',')) {
+        const [key, rule] = token.split(':');
+        if (!FAMILY_KEYS.includes(key)) continue;
+        state.required.add(key);
+        if (rule && COUNT_OPTIONS.some(([v]) => v === rule)) state.counts[key] = rule;
+      }
       for (const chip of document.querySelectorAll('#instrument-filters .chip')) {
         chip.setAttribute('aria-pressed', String(state.required.has(chip.dataset.instrument)));
       }
+      renderCountFilters();
       searchCatalogue({ silent: true });
       return true;
     }
