@@ -125,8 +125,16 @@ when they differ. The button navigates to `?v=<newbuild>`, a URL the browser has
 never seen, so even the markup cannot come from cache. The current search is
 carried across in the fragment.
 
+**A re-check when a tab is brought back to the front.** The load-time check
+misses a tab left open all day, and `visibilitychange` covers that without
+polling. The bar never appears twice.
+
 **A build id in the footer**, next to the work count, so it can be read off and
 compared against what is published.
+
+So after a redeploy an end user does nothing: a new visit fetches the new build,
+and a session already open is offered it. Clearing caches or cookies is never
+required, and a hard reload is never required.
 
 Builds are byte-identical when nothing changed, which matters more than it
 sounds: the build date derives from the newest data input rather than the clock,

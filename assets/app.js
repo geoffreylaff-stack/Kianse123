@@ -814,6 +814,7 @@ async function checkForNewerBuild() {
 }
 
 function announceUpdate(build) {
+  if (document.querySelector('.update-bar')) return;   // already showing
   const reload = () => {
     // A URL the browser has never seen, so the markup itself cannot come from
     // cache; the hash is carried over so the visitor keeps their search.
@@ -839,7 +840,14 @@ try {
     `Index built ${new Date(data.generated).toLocaleDateString()} — ` +
     `${data.stats.works.toLocaleString()} works by ${data.stats.composers.toLocaleString()} composers.`
     + (window.__BUILD__ ? ` Build ${window.__BUILD__}.` : '');
+
   checkForNewerBuild();
+  // A tab left open for hours would otherwise never look again, since the check
+  // runs at load. Re-checking when the tab is brought back to the front covers
+  // that without polling.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') checkForNewerBuild();
+  });
 
   // A few well-stocked composers as one-click starting points.
   const popular = [...data.composers].sort((a, b) => b.n - a.n).slice(0, 10);
