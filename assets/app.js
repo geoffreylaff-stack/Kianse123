@@ -33,6 +33,7 @@ const state = {
   mode: null,          // 'composer' | 'catalogue' | null (start screen)
   shown: CATALOGUE_PAGE,
   required: new Set(),
+  explicit: new Set(), // ticked by hand, as opposed to implied by a quantity
   counts: {},          // instrument key -> 'any' | 'eqN' | 'geN'
   arrangements: false,
   estimated: true,
@@ -350,9 +351,25 @@ function renderCatalogue(list) {
 
   results.replaceChildren();
   if (!list.length) {
+    // Spell the query out as removable pieces. An empty result is nearly always
+    // one requirement too many, and naming them makes the culprit obvious.
+    const active = FAMILY_KEYS.filter((k) => state.required.has(k));
     results.append(el('div', { className: 'empty' },
-      el('p', {}, el('strong', { textContent: `No works require ${label}.` })),
-      el('p', { className: 'muted', textContent: 'Try fewer instruments, or allow arrangements.' }),
+      el('p', {}, el('strong', { textContent: `No works match all ${active.length} requirements.` })),
+      el('p', { className: 'muted', textContent: 'Every one of these must be true at once — drop any to widen the search:' }),
+      el('div', { className: 'popular' }, active.map((k) => el('button', {
+        type: 'button',
+        className: 'chip',
+        'aria-pressed': 'true',
+        textContent: `${describeRequirement(k)} ✕`,
+        onclick() {
+          state.required.delete(k);
+          state.explicit.delete(k);
+          delete state.counts[k];
+          syncInstrumentControls();
+          refine();
+        },
+      }))),
     ));
     return;
   }
@@ -569,6 +586,7 @@ function resetApp() {
   state.mode = null;
   state.shown = CATALOGUE_PAGE;
   state.required.clear();
+  state.explicit.clear();
   state.counts = {};
   state.arrangements = false;
   state.estimated = true;
@@ -637,9 +655,11 @@ function buildInstrumentChips() {
         const on = e.currentTarget.getAttribute('aria-pressed') === 'true';
         if (on) {
           state.required.delete(key);
+          state.explicit.delete(key);
           delete state.counts[key]; // a rule without its instrument means nothing
         } else {
           state.required.add(key);
+          state.explicit.add(key);
         }
         syncInstrumentControls();
         // With nothing searched yet, picking an instrument is itself the query.
@@ -652,8 +672,14 @@ function buildInstrumentChips() {
       'aria-label': `How many ${OBOE_FAMILY[key].plural}`,
       onchange(e) {
         const rule = e.target.value;
-        if (rule === 'any') delete state.counts[key];
-        else {
+        if (rule === 'any') {
+          delete state.counts[key];
+          // Setting a quantity implies the instrument; taking it away again has
+          // to release it, or an abandoned experiment silently keeps narrowing
+          // every later search — "2 oboes + 1 english horn" then finds nothing
+          // because a forgotten oboe da caccia is still required.
+          if (!state.explicit.has(key)) state.required.delete(key);
+        } else {
           state.counts[key] = rule;
           // Asking for a quantity plainly means requiring the instrument, so
           // don't make the user tick it separately.
@@ -707,11 +733,13 @@ try {
     // #i=oboe,englishHorn — a shareable catalogue-wide instrument search.
     if (hash.startsWith('i=')) {
       state.required = new Set();
+      state.explicit = new Set();
       state.counts = {};
       for (const token of hash.slice(2).split(',')) {
         const [key, rule] = token.split(':');
         if (!FAMILY_KEYS.includes(key)) continue;
         state.required.add(key);
+        state.explicit.add(key);
         if (rule && COUNT_OPTIONS.some(([v]) => v === rule)) state.counts[key] = rule;
       }
       for (const chip of document.querySelectorAll('#instrument-filters .chip')) {
