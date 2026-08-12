@@ -43,10 +43,20 @@ setting a quantity now also selects the instrument, so neither control is a
 prerequisite for the other.
 
 ```
-exactly two oboes                  1,345 works
-three or more oboes                  130 works
-exactly two oboes + english horn     322 works
+exactly two oboes                       1,345 works
+three or more oboes                       130 works
+exactly two oboes + english horn          322 works
+exactly one oboe, without english horn  2,775 works
 ```
+
+**none** is the other end of the same control, and it excludes rather than
+requires: *exactly 1 oboe* with *none* against English horn finds works for a
+single oboist with no English horn anywhere, doublings included. Exclusion could
+not be expressed as a count layered on a presence test, so presence and quantity
+are decided together in one predicate. An excluded instrument is struck through
+in the panel and named separately in the heading — "Works including exactly one
+oboe, without english horn" — because it is a different kind of clause from the
+requirements beside it.
 
 A count means players, not printed parts, which matters where the two differ. 94
 works reach their English horn only through a doubling and so have no separate

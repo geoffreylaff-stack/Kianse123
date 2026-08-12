@@ -141,6 +141,7 @@ function instrumentCount(w, key) {
 /** Count constraints offered per instrument, keyed by their URL token. */
 const COUNT_OPTIONS = [
   ['any', 'any number'],
+  ['eq0', 'none'],
   ['eq1', 'exactly 1'],
   ['eq2', 'exactly 2'],
   ['eq3', 'exactly 3'],
@@ -151,14 +152,27 @@ const COUNT_OPTIONS = [
   ['ge5', '5 or more'],
 ];
 
-/** Every selected instrument must satisfy its own count constraint. */
-function matchesCounts(w) {
+/**
+ * Does the work satisfy every instrument constraint at once?
+ *
+ * A selected instrument normally has to be present, optionally in a given
+ * number. "none" reverses that for its instrument: the work must not call for it
+ * at all. That cannot be expressed as a count on top of a presence test, so
+ * presence and quantity are decided together here.
+ */
+function matchesInstruments(w) {
   for (const key of state.required) {
     const rule = state.counts[key];
-    if (!rule || rule === 'any') continue;
-    const m = /^(eq|ge)(\d+)$/.exec(rule);
-    if (!m) continue;
     const n = instrumentCount(w, key);
+
+    if (rule === 'eq0') {          // must not appear, doublings included
+      if (n !== 0) return false;
+      continue;
+    }
+    if (n === 0) return false;     // every other rule implies presence
+
+    const m = rule && /^(eq|ge)(\d+)$/.exec(rule);
+    if (!m) continue;
     if (m[1] === 'eq' ? n !== Number(m[2]) : n < Number(m[2])) return false;
   }
   return true;
@@ -168,6 +182,7 @@ function matchesCounts(w) {
 function describeRequirement(key) {
   const meta = OBOE_FAMILY[key];
   const rule = state.counts[key];
+  if (rule === 'eq0') return `no ${meta.label}`;
   const m = rule && /^(eq|ge)(\d+)$/.exec(rule);
   if (!m) return meta.label;
   const n = Number(m[2]);
@@ -184,7 +199,7 @@ function worksFor(composerId) {
   if (state.required.size) {
     // `req` counts doubled instruments too: Dvořák 9 has no separate English
     // horn part, but it unquestionably needs an English horn player.
-    list = list.filter((w) => [...state.required].every((k) => needs(w, k)) && matchesCounts(w));
+    list = list.filter(matchesInstruments);
   }
 
   const sectionSize = (w) => FAMILY_KEYS.reduce((sum, k) => sum + (w.counts?.[k] ?? 0), 0);
@@ -296,7 +311,7 @@ function catalogueMatches() {
   if (!state.estimated) list = list.filter((w) => !w.est);
   // Several chips mean *all* of them: "oboe + english horn" is an AND.
   if (state.required.size) {
-    list = list.filter((w) => [...state.required].every((k) => needs(w, k)) && matchesCounts(w));
+    list = list.filter(matchesInstruments);
   } else {
     list = [...list];
   }
@@ -315,12 +330,27 @@ function catalogueMatches() {
   return list;
 }
 
+const includedKeys = () => FAMILY_KEYS.filter((k) => state.required.has(k) && state.counts[k] !== 'eq0');
+const excludedKeys = () => FAMILY_KEYS.filter((k) => state.required.has(k) && state.counts[k] === 'eq0');
+
 /** "oboe + english horn", or a plain description when nothing is selected. */
 function requirementLabel() {
   if (!state.required.size) return 'any oboe-family instrument';
-  return FAMILY_KEYS.filter((k) => state.required.has(k))
-    .map(describeRequirement)
-    .join(' + ');
+  const inc = includedKeys().map(describeRequirement).join(' + ');
+  const exc = excludedKeys().map((k) => OBOE_FAMILY[k].label).join(' or ');
+  if (inc && exc) return `${inc}, without ${exc}`;
+  return inc || `no ${exc}`;
+}
+
+/** Headline for a catalogue search, phrased for whichever kinds are in play. */
+function summaryHeading() {
+  const inc = includedKeys();
+  const exc = excludedKeys();
+  if (!inc.length && !exc.length) return 'Works including any oboe-family instrument';
+  const without = exc.map((k) => OBOE_FAMILY[k].label).join(' or ');
+  if (!inc.length) return `Works without ${without}`;
+  const base = `Works including ${inc.map(describeRequirement).join(' + ')}`;
+  return exc.length ? `${base}, without ${without}` : base;
 }
 
 function renderCatalogue(list) {
@@ -334,14 +364,14 @@ function renderCatalogue(list) {
   const summary = $('#summary');
   summary.hidden = false;
   summary.replaceChildren(
-    el('h2', {}, `Works including ${label}`),
+    el('h2', {}, summaryHeading()),
     el('span', {
       className: 'tally',
       textContent: `${list.length.toLocaleString()} work${list.length === 1 ? '' : 's'}`
         + ` by ${composerCount.toLocaleString()} composer${composerCount === 1 ? '' : 's'}`,
     }),
     el('div', { className: 'actions' },
-      el('button', { type: 'button', textContent: 'Copy list', onclick: () => copyList(`Works including ${label}`, list, true) }),
+      el('button', { type: 'button', textContent: 'Copy list', onclick: () => copyList(summaryHeading(), list, true) }),
       el('button', {
         type: 'button',
         textContent: 'Download CSV',
@@ -665,7 +695,11 @@ $('#browse-all').addEventListener('click', () => {
 /** Reflect state onto the chips and quantity selects without rebuilding them. */
 function syncInstrumentControls() {
   for (const chip of document.querySelectorAll('#instrument-filters .chip')) {
-    chip.setAttribute('aria-pressed', String(state.required.has(chip.dataset.instrument)));
+    const key = chip.dataset.instrument;
+    chip.setAttribute('aria-pressed', String(state.required.has(key)));
+    // "none" is still an active constraint, but the opposite one, so it must not
+    // look like the instrument is being asked for.
+    chip.classList.toggle('exclude', state.counts[key] === 'eq0');
   }
   for (const sel of document.querySelectorAll('#instrument-filters select[data-instrument]')) {
     sel.value = state.counts[sel.dataset.instrument] ?? 'any';
