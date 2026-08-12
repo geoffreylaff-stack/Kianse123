@@ -190,6 +190,10 @@ button.secondary:hover { background: var(--surface-2); color: var(--ink); }
   margin-bottom: .5rem;
 }
 .chips { display: flex; gap: .4rem; flex-wrap: wrap; }
+.filters .instruments { max-width: 34rem; }
+.filters .instruments .help { margin-top: .5rem; }
+
+.more { display: flex; justify-content: center; padding: 1.5rem 0 .5rem; }
 .chip {
   font: inherit;
   font-size: .85rem;

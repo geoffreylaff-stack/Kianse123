@@ -8,7 +8,14 @@ import { OBOE_FAMILY, FAMILY_KEYS } from '../lib/instrumentation.mjs';
 
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, props = {}, ...kids) => {
-  const node = Object.assign(document.createElement(tag), props);
+  const node = document.createElement(tag);
+  for (const [key, value] of Object.entries(props)) {
+    // Object.assign cannot set these: `dataset` is read-only, and a hyphenated
+    // name like aria-pressed becomes a stray JS property instead of an attribute.
+    if (key === 'dataset') Object.assign(node.dataset, value);
+    else if (key.includes('-')) node.setAttribute(key, value);
+    else node[key] = value;
+  }
   for (const kid of kids.flat()) if (kid != null) node.append(kid);
   return node;
 };
@@ -17,15 +24,25 @@ const fold = (s) => String(s ?? '')
   .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
   .toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
+/** Works rendered per batch when searching the whole catalogue. */
+const CATALOGUE_PAGE = 150;
+
 const state = {
   data: null,
   composer: null,
+  mode: null,          // 'composer' | 'catalogue' | null (start screen)
+  shown: CATALOGUE_PAGE,
   required: new Set(),
   arrangements: false,
   estimated: true,
   group: true,
   sort: 'default',
 };
+
+/** id -> composer record, for naming works in catalogue-wide results. */
+let composersById = new Map();
+const composerOf = (id) => composersById.get(id);
+const composerLabel = (id) => composerOf(id)?.name ?? 'Unknown';
 
 // ── Data loading ──────────────────────────────────────────────────────────────
 async function loadData() {
@@ -179,8 +196,16 @@ function renderResults(composer, list) {
       composer.dates ? el('span', { className: 'dates', textContent: ` (${composer.dates})` }) : null),
     el('span', { className: 'tally', textContent: `${list.length} work${list.length === 1 ? '' : 's'}${tally ? ` — ${tally}` : ''}` }),
     el('div', { className: 'actions' },
-      el('button', { type: 'button', textContent: 'Copy list', onclick: () => copyList(composer, list) }),
-      el('button', { type: 'button', textContent: 'Download CSV', onclick: () => downloadCsv(composer, list) }),
+      el('button', {
+        type: 'button',
+        textContent: 'Copy list',
+        onclick: () => copyList(`${composer.name} — works including oboe / English horn`, list),
+      }),
+      el('button', {
+        type: 'button',
+        textContent: 'Download CSV',
+        onclick: () => downloadCsv(list, `${fold(composer.name).replace(/ /g, '-')}-oboe-works.csv`),
+      }),
     ),
   );
 
@@ -210,31 +235,160 @@ function renderResults(composer, list) {
   }
 }
 
+// ── Catalogue-wide search ─────────────────────────────────────────────────────
+/** Every work matching the chosen instruments, regardless of composer. */
+function catalogueMatches() {
+  let list = state.data.works;
+  if (!state.arrangements) list = list.filter((w) => !w.arr);
+  if (!state.estimated) list = list.filter((w) => !w.est);
+  // Several chips mean *all* of them: "oboe + english horn" is an AND.
+  if (state.required.size) {
+    list = list.filter((w) => [...state.required].every((k) => needs(w, k)));
+  } else {
+    list = [...list];
+  }
+
+  const sectionSize = (w) => FAMILY_KEYS.reduce((s, k) => s + (w.counts?.[k] ?? 0), 0);
+  const cmpTitle = (a, b) => a.t.localeCompare(b.t);
+  const cmpComposer = (a, b) =>
+    String(composerOf(a.c)?.sort ?? '').localeCompare(String(composerOf(b.c)?.sort ?? ''));
+
+  switch (state.sort) {
+    case 'title': list.sort((a, b) => cmpTitle(a, b) || cmpComposer(a, b)); break;
+    case 'year': list.sort((a, b) => (a.y ?? 9999) - (b.y ?? 9999) || cmpComposer(a, b)); break;
+    case 'size': list.sort((a, b) => sectionSize(b) - sectionSize(a) || cmpComposer(a, b)); break;
+    default: list.sort((a, b) => cmpComposer(a, b) || cmpTitle(a, b));
+  }
+  return list;
+}
+
+/** "oboe + english horn", or a plain description when nothing is selected. */
+function requirementLabel() {
+  if (!state.required.size) return 'any oboe-family instrument';
+  return FAMILY_KEYS.filter((k) => state.required.has(k))
+    .map((k) => OBOE_FAMILY[k].label)
+    .join(' + ');
+}
+
+function renderCatalogue(list) {
+  const results = $('#results');
+  $('#intro').hidden = true;
+  $('#filters').hidden = false;
+
+  const label = requirementLabel();
+  const composerCount = new Set(list.map((w) => w.c)).size;
+
+  const summary = $('#summary');
+  summary.hidden = false;
+  summary.replaceChildren(
+    el('h2', {}, `Works including ${label}`),
+    el('span', {
+      className: 'tally',
+      textContent: `${list.length.toLocaleString()} work${list.length === 1 ? '' : 's'}`
+        + ` by ${composerCount.toLocaleString()} composer${composerCount === 1 ? '' : 's'}`,
+    }),
+    el('div', { className: 'actions' },
+      el('button', { type: 'button', textContent: 'Copy list', onclick: () => copyList(`Works including ${label}`, list, true) }),
+      el('button', {
+        type: 'button',
+        textContent: 'Download CSV',
+        onclick: () => downloadCsv(list, `works-${[...state.required].join('-') || 'all'}.csv`),
+      }),
+    ),
+  );
+
+  results.replaceChildren();
+  if (!list.length) {
+    results.append(el('div', { className: 'empty' },
+      el('p', {}, el('strong', { textContent: `No works require ${label}.` })),
+      el('p', { className: 'muted', textContent: 'Try fewer instruments, or allow arrangements.' }),
+    ));
+    return;
+  }
+
+  // Rendered in batches: "includes oboe" alone matches thousands of works, and
+  // building every row up front makes the page crawl.
+  const batch = list.slice(0, state.shown);
+  const groups = new Map();
+  for (const w of batch) {
+    if (!groups.has(w.c)) groups.set(w.c, []);
+    groups.get(w.c).push(w);
+  }
+
+  for (const [composerId, items] of groups) {
+    const c = composerOf(composerId);
+    const heading = c?.dates ? `${c.name} (${c.dates})` : composerLabel(composerId);
+    results.append(
+      el('h2', { className: 'genre-heading', textContent: `${heading} — ${items.length}` }),
+      ...items.map(renderWork),
+    );
+  }
+
+  const remaining = list.length - batch.length;
+  if (remaining > 0) {
+    results.append(el('div', { className: 'more' },
+      el('button', {
+        type: 'button',
+        className: 'secondary',
+        textContent: `Show ${Math.min(CATALOGUE_PAGE, remaining)} more (${remaining.toLocaleString()} remaining)`,
+        onclick() { state.shown += CATALOGUE_PAGE; rerender(); },
+      })));
+  }
+}
+
 function rerender() {
-  if (!state.composer) return;
-  renderResults(state.composer, worksFor(state.composer.id));
+  if (state.mode === 'catalogue') return renderCatalogue(catalogueMatches());
+  if (state.composer) return renderResults(state.composer, worksFor(state.composer.id));
+}
+
+/** Canonical, order-stable URL for the current instrument selection. */
+const requiredHash = () => `#i=${FAMILY_KEYS.filter((k) => state.required.has(k)).join(',')}`;
+
+/** Re-run the current query from the top after the criteria change. */
+function refine() {
+  state.shown = CATALOGUE_PAGE;
+  // Keep the URL in step, or a link copied after adjusting the chips would
+  // reproduce the previous search rather than the one on screen.
+  if (state.mode === 'catalogue' && location.hash !== requiredHash()) {
+    history.replaceState(null, '', requiredHash());
+  }
+  rerender();
+}
+
+function searchCatalogue({ silent = false } = {}) {
+  state.mode = 'catalogue';
+  state.composer = null;
+  state.shown = CATALOGUE_PAGE;
+  input.value = '';
+  closeSuggestions();
+  if (location.hash !== requiredHash()) history.replaceState(null, '', requiredHash());
+  rerender();
+  if (!silent) $('#summary').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 // ── Export ────────────────────────────────────────────────────────────────────
 const csvCell = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
 
-function downloadCsv(composer, list) {
+/** Exports the whole match set, not just the batch currently on screen. */
+function downloadCsv(list, filename) {
   const rows = [
     ['Composer', 'Work', 'Catalogue', 'Year', 'Genre', 'Oboe-family scoring', 'Full instrumentation', 'Arrangement'],
-    ...list.map((w) => [composer.name, w.t, w.cat, w.y, w.g, w.s, w.full, w.arr ? 'yes' : 'no']),
+    ...list.map((w) => [composerLabel(w.c), w.t, w.cat, w.y, w.g, w.s, w.full, w.arr ? 'yes' : 'no']),
   ];
   const blob = new Blob(['﻿' + rows.map((r) => r.map(csvCell).join(',')).join('\r\n')],
     { type: 'text/csv;charset=utf-8' });
   const url = URL.createObjectURL(blob);
-  const a = el('a', { href: url, download: `${fold(composer.name).replace(/ /g, '-')}-oboe-works.csv` });
+  const a = el('a', { href: url, download: filename });
   document.body.append(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-async function copyList(composer, list) {
-  const text = [`${composer.name} — works including oboe / English horn`, '']
-    .concat(list.map((w) => `${w.cat ? `${w.t}, ${w.cat}` : w.t} — ${w.s}`))
-    .join('\n');
+async function copyList(heading, list, withComposer = false) {
+  const line = (w) => {
+    const title = w.cat ? `${w.t}, ${w.cat}` : w.t;
+    return withComposer ? `${composerLabel(w.c)} — ${title} — ${w.s}` : `${title} — ${w.s}`;
+  };
+  const text = [heading, ''].concat(list.map(line)).join('\n');
   try {
     await navigator.clipboard.writeText(text);
     flash('Copied to clipboard');
@@ -304,6 +458,7 @@ function setActive(i) {
 
 function select(composer, { silent = false } = {}) {
   state.composer = composer;
+  state.mode = 'composer';
   input.value = composer.name;
   closeSuggestions();
   if (location.hash.slice(1) !== encodeURIComponent(composer.id)) {
@@ -354,6 +509,8 @@ $('#search-form').addEventListener('submit', (e) => {
 /** Put the page back exactly as it loads, filters included. */
 function resetApp() {
   state.composer = null;
+  state.mode = null;
+  state.shown = CATALOGUE_PAGE;
   state.required.clear();
   state.arrangements = false;
   state.estimated = true;
@@ -373,7 +530,6 @@ function resetApp() {
 
   $('#results').replaceChildren();
   $('#summary').hidden = true;
-  $('#filters').hidden = true;
   $('#intro').hidden = false;
 
   // Drop the composer from the URL so a reload also starts clean.
@@ -397,26 +553,32 @@ function buildInstrumentChips() {
       type: 'button',
       className: 'chip',
       textContent: OBOE_FAMILY[key].label,
+      dataset: { instrument: key },
       'aria-pressed': 'false',
       onclick(e) {
         const on = e.currentTarget.getAttribute('aria-pressed') === 'true';
         e.currentTarget.setAttribute('aria-pressed', String(!on));
         if (on) state.required.delete(key); else state.required.add(key);
-        rerender();
+        // With nothing searched yet, picking an instrument is itself the query.
+        if (!state.mode) return searchCatalogue({ silent: true });
+        refine();
       },
     })));
 }
 
-$('#opt-arrangements').addEventListener('change', (e) => { state.arrangements = e.target.checked; rerender(); });
-$('#opt-estimated').addEventListener('change', (e) => { state.estimated = e.target.checked; rerender(); });
-$('#opt-group').addEventListener('change', (e) => { state.group = e.target.checked; rerender(); });
-$('#sort').addEventListener('change', (e) => { state.sort = e.target.value; rerender(); });
+$('#opt-arrangements').addEventListener('change', (e) => { state.arrangements = e.target.checked; refine(); });
+$('#opt-estimated').addEventListener('change', (e) => { state.estimated = e.target.checked; refine(); });
+$('#opt-group').addEventListener('change', (e) => { state.group = e.target.checked; refine(); });
+$('#sort').addEventListener('change', (e) => { state.sort = e.target.value; refine(); });
+
+$('#search-all').addEventListener('click', () => searchCatalogue());
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 try {
   const data = await loadData();
   data.composers = indexComposers(data.composers);
   state.data = data;
+  composersById = new Map(data.composers.map((c) => [c.id, c]));
 
   buildInstrumentChips();
 
@@ -439,6 +601,18 @@ try {
   const selectFromHash = () => {
     const hash = decodeURIComponent(location.hash.slice(1));
     if (!hash) return false;
+
+    // #i=oboe,englishHorn — a shareable catalogue-wide instrument search.
+    if (hash.startsWith('i=')) {
+      const keys = hash.slice(2).split(',').filter((k) => FAMILY_KEYS.includes(k));
+      state.required = new Set(keys);
+      for (const chip of document.querySelectorAll('#instrument-filters .chip')) {
+        chip.setAttribute('aria-pressed', String(state.required.has(chip.dataset.instrument)));
+      }
+      searchCatalogue({ silent: true });
+      return true;
+    }
+
     const linked = data.composers.find((c) => c.id === hash);
     if (linked && linked !== state.composer) select(linked, { silent: true });
     return !!linked;

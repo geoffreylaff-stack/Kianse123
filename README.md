@@ -17,6 +17,21 @@ Nothing is installed. The end user opens a URL in Chrome or Edge and searches.
 
 ---
 
+## Two ways to search
+
+**By composer.** Type a name; accents are optional and near-misses are
+suggested. Results group by genre.
+
+**By instrument, across every composer.** Pick one or more chips under *Must
+include* and the whole catalogue is searched. Several chips mean **all** of them
+— *oboe + english horn* returns the 492 works needing both, not the union.
+Doublings count: Dvořák's *New World* answers an English horn search even though
+the part belongs to the second oboist. Results group by composer and render in
+batches of 150, since *english horn* alone matches 811 works and building every
+row up front makes the page crawl. The selection lives in the URL as
+`#i=oboe,englishHorn`, so a search can be shared; CSV export covers the whole
+match set rather than the batch on screen.
+
 ## Running it
 
 **Hosted (what end users get):** <https://geoffreylaff-stack.github.io/Kianse123/>

@@ -13,8 +13,8 @@
     <div class="wrap">
       <h1>Oboe &amp; English Horn Repertoire Finder</h1>
       <p class="tagline">
-        Enter a composer. Get every catalogued work whose scoring includes an
-        instrument of the oboe family — with the exact instrumentation for each.
+        Enter a composer, or pick the instruments you need. Get every catalogued
+        work scored for the oboe family — with the exact instrumentation for each.
       </p>
     </div>
   </header>
@@ -39,10 +39,15 @@
       </div>
     </form>
 
-    <section class="filters" id="filters" hidden aria-label="Filters">
-      <fieldset>
+    <section class="filters" id="filters" aria-label="Filters">
+      <fieldset class="instruments">
         <legend>Must include</legend>
         <div class="chips" id="instrument-filters"></div>
+        <p class="help">
+          Narrows the composer shown, or
+          <button type="button" class="linkish" id="search-all">search every composer</button>
+          for every work with that combination.
+        </p>
       </fieldset>
       <fieldset>
         <legend>Options</legend>
@@ -73,6 +78,13 @@
         <strong>bass oboe</strong> and <strong>heckelphone</strong>. Search a
         composer and every matching work is listed with its exact scoring —
         “two oboes, english horn”, “three oboes”, and so on.
+      </p>
+      <p>
+        You can also search by instrument alone. Choose one or more under
+        <strong>Must include</strong> and every work needing that combination is
+        listed, from any composer — English horn on its own, oboe d’amore, or
+        oboe <em>and</em> English horn together. Several instruments mean all of
+        them at once, and the resulting link can be shared as it stands.
       </p>
       <p class="muted">
         Nothing is installed and nothing is sent anywhere: the index ships with
