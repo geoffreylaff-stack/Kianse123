@@ -13,41 +13,55 @@
     <div class="wrap">
       <h1>Oboe &amp; English Horn Repertoire Finder</h1>
       <p class="tagline">
-        Enter a composer, or pick the instruments you need. Get every catalogued
-        work scored for the oboe family — with the exact instrumentation for each.
+        Search by composer, or by instrumentation across every composer. Either way
+        you get the exact scoring for each work.
       </p>
     </div>
   </header>
 
   <main class="wrap">
-    <form class="search" id="search-form" autocomplete="off" role="search">
-      <div class="field">
-        <label for="composer">Composer</label>
-        <div class="combo">
-          <input id="composer" name="composer" type="text" placeholder="e.g. Dvořák, Bach, Ravel, Britten…"
-                 aria-describedby="composer-help" aria-autocomplete="list"
-                 aria-expanded="false" aria-controls="suggestions" role="combobox" />
-          <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
+    <div class="mode-bar">
+      <div class="mode-tabs" role="tablist" aria-label="How to search">
+        <button type="button" role="tab" id="tab-composer" aria-selected="true" aria-controls="composer-panel">
+          <span class="tab-title">Search by composer</span>
+          <span class="tab-sub">Pick a composer, then narrow by instrument</span>
+        </button>
+        <button type="button" role="tab" id="tab-instrument" aria-selected="false" aria-controls="instrument-panel">
+          <span class="tab-title">Search by instrumentation</span>
+          <span class="tab-sub">Find a scoring across every composer</span>
+        </button>
+      </div>
+      <!-- Outside both panels: a search needs clearing from either workflow. -->
+      <button type="button" class="secondary" id="clear">Clear</button>
+    </div>
+
+    <div id="composer-panel" role="tabpanel" aria-labelledby="tab-composer">
+      <form class="search" id="search-form" autocomplete="off" role="search">
+        <div class="field">
+          <label for="composer">Composer</label>
+          <div class="combo">
+            <input id="composer" name="composer" type="text" placeholder="e.g. Dvořák, Bach, Ravel, Britten…"
+                   aria-describedby="composer-help" aria-autocomplete="list"
+                   aria-expanded="false" aria-controls="suggestions" role="combobox" />
+            <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
+          </div>
+          <p class="help" id="composer-help">
+            Accents optional — “dvorak” finds Dvořák. <button type="button" class="linkish" id="browse-all">Browse all composers</button>
+          </p>
         </div>
-        <p class="help" id="composer-help">
-          Accents optional — “dvorak” finds Dvořák. <button type="button" class="linkish" id="browse-all">Browse all composers</button>
-        </p>
-      </div>
-      <div class="actions">
-        <button type="submit" class="primary">Find works</button>
-        <button type="button" class="secondary" id="clear">Clear</button>
-      </div>
-    </form>
+        <div class="actions">
+          <button type="submit" class="primary">Find works</button>
+        </div>
+      </form>
+    </div>
 
     <section class="filters" id="filters" aria-label="Filters">
-      <fieldset class="instruments">
+      <fieldset class="instruments" id="instrument-panel" role="tabpanel" aria-labelledby="tab-instrument">
         <legend>Must include</legend>
+        <p class="scope-note" id="scope-note"></p>
         <div class="instrument-grid" id="instrument-filters"></div>
         <p class="help">
-          Tick the instruments a work must use, and how many of each. Narrows the
-          composer shown, or
-          <button type="button" class="linkish" id="search-all">search every composer</button>
-          for every work with that combination.
+          Tick the instruments a work must use, and how many of each.
         </p>
       </fieldset>
       <fieldset>
@@ -76,16 +90,18 @@
         This page holds an offline index of works scored for the oboe family:
         <strong>oboe</strong>, <strong>English horn</strong> (cor anglais),
         <strong>oboe d’amore</strong>, <strong>oboe da caccia</strong>,
-        <strong>bass oboe</strong> and <strong>heckelphone</strong>. Search a
-        composer and every matching work is listed with its exact scoring —
-        “two oboes, english horn”, “three oboes”, and so on.
+        <strong>bass oboe</strong> and <strong>heckelphone</strong>. Every work is
+        listed with its exact scoring — “two oboes, english horn”, “three oboes”,
+        and so on.
       </p>
       <p>
-        You can also search by instrument alone. Choose one or more under
-        <strong>Must include</strong> and every work needing that combination is
-        listed, from any composer — English horn on its own, oboe d’amore, or
-        oboe <em>and</em> English horn together. Several instruments mean all of
-        them at once, and the resulting link can be shared as it stands.
+        There are two ways in, and you can switch between them at any time.
+        <strong>Search by composer</strong> lists everything by one composer, which
+        you can then narrow by instrument. <strong>Search by instrumentation</strong>
+        turns the same instrument choices into a search across all composers — every
+        work with an English horn, or with an oboe d’amore, or with exactly two oboes
+        <em>and</em> an English horn. Whatever is selected carries over when you
+        switch, and either search can be shared as a link.
       </p>
       <p class="muted">
         Nothing is installed and nothing is sent anywhere: the index ships with

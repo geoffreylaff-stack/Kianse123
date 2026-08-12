@@ -303,6 +303,11 @@ const inlined = html
 await fs.mkdir(p('dist'), { recursive: true });
 await fs.writeFile(p('dist/oboe-finder.html'), inlined);
 
+// Printed because `src` is stripped from the shipped index, so this breakdown
+// is otherwise unrecoverable from data/works.json alone.
+const bySource = works.reduce((acc, w) => ({ ...acc, [w.src]: (acc[w.src] ?? 0) + 1 }), {});
+process.stderr.write(`  by source: ${Object.entries(bySource).map(([k, n]) => `${k} ${n}`).join(', ')}\n`);
+
 const kb = (s) => `${Math.round(s / 1024)} KB`;
 process.stderr.write(
   `Built data/works.json — ${payload.stats.works} works, ${payload.stats.composers} composers ` +

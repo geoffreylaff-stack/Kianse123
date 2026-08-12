@@ -72,6 +72,61 @@ a { color: var(--accent); }
 }
 .tagline { margin: 0; color: var(--ink-soft); max-width: 44rem; }
 
+/* ── Mode tabs ────────────────────────────────────────────────────────────── */
+/* Two entry points of equal weight: neither workflow is the secondary one. */
+.mode-bar {
+  display: flex;
+  align-items: stretch;
+  gap: .5rem;
+  margin-bottom: 1.25rem;
+}
+.mode-bar > #clear { flex: 0 0 auto; }
+.mode-tabs {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
+}
+.mode-tabs [role="tab"] {
+  font: inherit;
+  text-align: left;
+  padding: .7rem .95rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+}
+.mode-tabs [role="tab"]:hover { background: var(--surface-2); }
+.mode-tabs [role="tab"][aria-selected="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.mode-tabs .tab-title {
+  font-family: var(--sans);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.mode-tabs .tab-sub { font-size: .8rem; color: var(--ink-faint); }
+.mode-tabs [role="tab"][aria-selected="true"] .tab-title,
+.mode-tabs [role="tab"][aria-selected="true"] .tab-sub { color: var(--accent-ink); }
+
+.scope-note {
+  font-size: .82rem;
+  color: var(--ink-soft);
+  margin: 0 0 .55rem;
+}
+
+@media (max-width: 34rem) {
+  .mode-bar { flex-wrap: wrap; }
+  .mode-tabs { grid-template-columns: 1fr; }
+  .mode-bar > #clear { width: 100%; }
+}
+
 /* ── Search ───────────────────────────────────────────────────────────────── */
 .search {
   display: flex;

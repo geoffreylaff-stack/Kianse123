@@ -9,20 +9,27 @@ Nothing is installed. The end user opens a URL in Chrome or Edge and searches.
 
 | | |
 |---|---|
-| **Works indexed** | 6,592 |
-| **Composers** | 1,671 |
-| **Works needing an English horn** | 799 |
-| **Sources** | 133 hand-checked · 852 from Wikipedia · 5,607 from IMSLP |
+| **Works indexed** | 6,604 |
+| **Composers** | 1,672 |
+| **Works needing an English horn** | 811 |
+| **Sources** | 133 hand-checked · 864 from Wikipedia · 5,607 from IMSLP |
 | **Family members covered** | oboe · english horn (cor anglais) · oboe d'amore · oboe da caccia · bass oboe · heckelphone · musette |
 
 ---
 
 ## Two ways to search
 
-**By composer.** Type a name; accents are optional and near-misses are
-suggested. Results group by genre.
+The two workflows are peers, chosen with a tab pair of equal weight rather than
+one being a link inside the other's filter panel. The instrument grid is shared:
+it narrows a composer's list in one mode and *is* the query in the other, so a
+selection carries over when you switch and the scope note above it says which
+applies. `Clear` sits outside both panels, since a search needs clearing from
+either.
 
-**By instrument, across every composer.** Pick one or more chips under *Must
+**By composer.** Type a name; accents are optional and near-misses are
+suggested. Results group by genre, and the instrument grid then narrows them.
+
+**By instrumentation, across every composer.** Pick one or more chips under *Must
 include* and the whole catalogue is searched. Several chips mean **all** of them
 — *oboe + english horn* returns the 492 works needing both, not the union.
 Doublings count: Dvořák's *New World* answers an English horn search even though

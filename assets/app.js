@@ -31,6 +31,7 @@ const state = {
   data: null,
   composer: null,
   mode: null,          // 'composer' | 'catalogue' | null (start screen)
+  tab: 'composer',     // which workflow is on screen
   shown: CATALOGUE_PAGE,
   required: new Set(),
   explicit: new Set(), // ticked by hand, as opposed to implied by a quantity
@@ -429,12 +430,48 @@ function refine() {
   rerender();
 }
 
+/**
+ * The two workflows are peers, so switching between them is a first-class
+ * action rather than a link tucked inside the filters. The instrument grid is
+ * shared by both — it narrows a composer's list in one mode and *is* the query
+ * in the other — so only the composer field and the framing text change.
+ */
+function setTab(tab, { focus = false } = {}) {
+  state.tab = tab;
+  const onComposer = tab === 'composer';
+  $('#tab-composer').setAttribute('aria-selected', String(onComposer));
+  $('#tab-instrument').setAttribute('aria-selected', String(!onComposer));
+  $('#composer-panel').hidden = !onComposer;
+
+  const note = $('#scope-note');
+  if (onComposer) {
+    note.textContent = state.composer
+      ? `Narrowing ${state.composer.name}'s works.`
+      : 'Choose a composer above, then narrow their works by instrument.';
+  } else {
+    const total = state.data?.stats?.composers ?? 0;
+    note.textContent = `Searching all ${total.toLocaleString()} composers.`;
+  }
+  if (focus && onComposer) input.focus();
+}
+
+function showComposerTab({ focus = false } = {}) {
+  setTab('composer', { focus });
+}
+
+/** Switch to instrument-wide searching and run whatever is currently selected. */
+function showInstrumentTab({ silent = false } = {}) {
+  setTab('instrument');
+  searchCatalogue({ silent });
+}
+
 function searchCatalogue({ silent = false } = {}) {
   state.mode = 'catalogue';
   state.composer = null;
   state.shown = CATALOGUE_PAGE;
   input.value = '';
   closeSuggestions();
+  setTab('instrument');
   if (location.hash !== requiredHash()) history.replaceState(null, '', requiredHash());
   rerender();
   if (!silent) $('#summary').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -533,6 +570,7 @@ function setActive(i) {
 function select(composer, { silent = false } = {}) {
   state.composer = composer;
   state.mode = 'composer';
+  setTab('composer');
   input.value = composer.name;
   closeSuggestions();
   if (location.hash.slice(1) !== encodeURIComponent(composer.id)) {
@@ -608,6 +646,7 @@ function resetApp() {
   $('#results').replaceChildren();
   $('#summary').hidden = true;
   $('#intro').hidden = false;
+  showComposerTab();
 
   // Drop the composer from the URL so a reload also starts clean.
   history.replaceState(null, '', location.pathname + location.search);
@@ -662,8 +701,9 @@ function buildInstrumentChips() {
           state.explicit.add(key);
         }
         syncInstrumentControls();
-        // With nothing searched yet, picking an instrument is itself the query.
-        if (!state.mode) return searchCatalogue({ silent: true });
+        // On the instrument tab, or before anything has been searched, picking
+        // an instrument is itself the query.
+        if (state.tab === 'instrument' || !state.mode) return searchCatalogue({ silent: true });
         refine();
       },
     }),
@@ -686,7 +726,7 @@ function buildInstrumentChips() {
           state.required.add(key);
         }
         syncInstrumentControls();
-        if (!state.mode) return searchCatalogue({ silent: true });
+        if (state.tab === 'instrument' || !state.mode) return searchCatalogue({ silent: true });
         refine();
       },
     }, COUNT_OPTIONS.map(([value, text]) => el('option', { value, textContent: text }))),
@@ -699,7 +739,20 @@ $('#opt-estimated').addEventListener('change', (e) => { state.estimated = e.targ
 $('#opt-group').addEventListener('change', (e) => { state.group = e.target.checked; refine(); });
 $('#sort').addEventListener('change', (e) => { state.sort = e.target.value; refine(); });
 
-$('#search-all').addEventListener('click', () => searchCatalogue());
+$('#tab-composer').addEventListener('click', () => showComposerTab({ focus: true }));
+$('#tab-instrument').addEventListener('click', () => showInstrumentTab());
+
+// Left/right arrows move between tabs, as a tablist is expected to.
+for (const tab of document.querySelectorAll('.mode-tabs [role="tab"]')) {
+  tab.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault();
+    const next = state.tab === 'composer' ? 'instrument' : 'composer';
+    if (next === 'composer') showComposerTab({ focus: false });
+    else showInstrumentTab();
+    $(`#tab-${next}`).focus();
+  });
+}
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 try {
@@ -709,6 +762,7 @@ try {
   composersById = new Map(data.composers.map((c) => [c.id, c]));
 
   buildInstrumentChips();
+  setTab('composer');
 
   $('#provenance').textContent =
     `Index built ${new Date(data.generated).toLocaleDateString()} — ` +
@@ -746,7 +800,7 @@ try {
         chip.setAttribute('aria-pressed', String(state.required.has(chip.dataset.instrument)));
       }
       renderCountFilters();
-      searchCatalogue({ silent: true });
+      showInstrumentTab({ silent: true });
       return true;
     }
 
