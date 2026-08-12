@@ -605,34 +605,28 @@ $('#browse-all').addEventListener('click', () => {
 });
 
 // ── Filter wiring ─────────────────────────────────────────────────────────────
-/**
- * One count selector per chosen instrument. Only selected instruments get one:
- * a constraint on an instrument the work need not contain has nothing to say.
- */
-function renderCountFilters() {
-  const holder = $('#count-filters');
-  const chosen = FAMILY_KEYS.filter((k) => state.required.has(k));
-  holder.hidden = chosen.length === 0;
-  if (!chosen.length) return holder.replaceChildren();
-
-  holder.replaceChildren(...chosen.map((key) => el('label', {},
-    `${OBOE_FAMILY[key].label}:`,
-    el('select', {
-      dataset: { instrument: key },
-      'aria-label': `How many ${OBOE_FAMILY[key].plural}`,
-      onchange(e) {
-        state.counts[key] = e.target.value;
-        refine();
-      },
-    }, COUNT_OPTIONS.map(([value, text]) => el('option', {
-      value, textContent: text, selected: (state.counts[key] ?? 'any') === value,
-    }))),
-  )));
+/** Reflect state onto the chips and quantity selects without rebuilding them. */
+function syncInstrumentControls() {
+  for (const chip of document.querySelectorAll('#instrument-filters .chip')) {
+    chip.setAttribute('aria-pressed', String(state.required.has(chip.dataset.instrument)));
+  }
+  for (const sel of document.querySelectorAll('#instrument-filters select[data-instrument]')) {
+    sel.value = state.counts[sel.dataset.instrument] ?? 'any';
+  }
 }
 
+/** Kept for the deep-link path, which used to rebuild a separate counts row. */
+const renderCountFilters = syncInstrumentControls;
+
+/**
+ * One row per instrument: whether a work must use it, and how many. Both live
+ * here from the moment the page loads — an earlier version only revealed the
+ * quantity control after an instrument was ticked, which meant arriving at the
+ * page showed no sign the feature existed at all.
+ */
 function buildInstrumentChips() {
   const holder = $('#instrument-filters');
-  holder.replaceChildren(...FAMILY_KEYS.map((key) =>
+  holder.replaceChildren(...FAMILY_KEYS.map((key) => el('div', { className: 'instrument-row' },
     el('button', {
       type: 'button',
       className: 'chip',
@@ -641,19 +635,37 @@ function buildInstrumentChips() {
       'aria-pressed': 'false',
       onclick(e) {
         const on = e.currentTarget.getAttribute('aria-pressed') === 'true';
-        e.currentTarget.setAttribute('aria-pressed', String(!on));
         if (on) {
           state.required.delete(key);
           delete state.counts[key]; // a rule without its instrument means nothing
         } else {
           state.required.add(key);
         }
-        renderCountFilters();
+        syncInstrumentControls();
         // With nothing searched yet, picking an instrument is itself the query.
         if (!state.mode) return searchCatalogue({ silent: true });
         refine();
       },
-    })));
+    }),
+    el('select', {
+      dataset: { instrument: key },
+      'aria-label': `How many ${OBOE_FAMILY[key].plural}`,
+      onchange(e) {
+        const rule = e.target.value;
+        if (rule === 'any') delete state.counts[key];
+        else {
+          state.counts[key] = rule;
+          // Asking for a quantity plainly means requiring the instrument, so
+          // don't make the user tick it separately.
+          state.required.add(key);
+        }
+        syncInstrumentControls();
+        if (!state.mode) return searchCatalogue({ silent: true });
+        refine();
+      },
+    }, COUNT_OPTIONS.map(([value, text]) => el('option', { value, textContent: text }))),
+  )));
+  syncInstrumentControls();
 }
 
 $('#opt-arrangements').addEventListener('change', (e) => { state.arrangements = e.target.checked; refine(); });

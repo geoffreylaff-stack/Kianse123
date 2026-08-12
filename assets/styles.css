@@ -198,29 +198,35 @@ button.secondary:hover { background: var(--surface-2); color: var(--ink); }
   margin-bottom: .5rem;
 }
 .chips { display: flex; gap: .4rem; flex-wrap: wrap; }
-.filters .instruments { max-width: 34rem; }
+.filters .instruments { max-width: 36rem; flex: 1 1 32rem; }
 .filters .instruments .help { margin-top: .5rem; }
 
-.counts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .4rem .9rem;
-  margin-top: .6rem;
-  padding-top: .6rem;
-  border-top: 1px dashed var(--line);
+/* Instrument, and how many of it — one row each, both always visible. */
+.instrument-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: .35rem 1.25rem;
 }
-.counts label {
+.instrument-row {
   display: flex;
   align-items: center;
-  gap: .4rem;
-  font-size: .85rem;
-  color: var(--ink-soft);
+  gap: .5rem;
 }
-.counts select {
+.instrument-row .chip {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+  white-space: nowrap;   /* "oboe da caccia" otherwise wraps and skews the row */
+}
+.instrument-row select {
   width: auto;
-  font-size: .85rem;
+  flex: 0 0 auto;
+  font-size: .82rem;
   padding: .25rem .4rem;
+  color: var(--ink-faint);
 }
+/* A quantity that is actually constraining the search should read as active. */
+.instrument-row .chip[aria-pressed="true"] + select { color: var(--ink); }
 
 .more { display: flex; justify-content: center; padding: 1.5rem 0 .5rem; }
 .chip {

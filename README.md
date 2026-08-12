@@ -28,7 +28,12 @@ include* and the whole catalogue is searched. Several chips mean **all** of them
 Doublings count: Dvořák's *New World* answers an English horn search even though
 the part belongs to the second oboist.
 
-Each chosen instrument also takes a count — *exactly 2*, *3 or more*, and so on:
+Each instrument sits on its own row with a quantity beside it — *exactly 2*,
+*3 or more*, and so on. Both controls are present from the moment the page
+loads. An earlier version only revealed the quantity once an instrument had been
+ticked, which meant arriving at the page gave no sign the feature existed;
+setting a quantity now also selects the instrument, so neither control is a
+prerequisite for the other.
 
 ```
 exactly two oboes                  1,345 works
