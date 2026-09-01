@@ -137,9 +137,12 @@ and a session already open is offered it. Clearing caches or cookies is never
 required, and a hard reload is never required.
 
 Builds are byte-identical when nothing changed, which matters more than it
-sounds: the build date derives from the newest data input rather than the clock,
-so a CI run that changes nothing produces the same id and no visitor is prompted
-to re-download anything.
+sounds: a CI run that changes nothing must produce the same id, or every run
+would prompt every visitor to re-download the index for nothing. The date
+therefore comes from the harvest timestamps recorded *inside* `data/imslp.json`
+and `data/wikipedia.json`, which travel with the content. An earlier attempt
+used file mtimes and looked correct locally while being useless in CI, where
+`git checkout` resets every mtime to the moment the repository was cloned.
 
 ---
 
