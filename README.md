@@ -72,7 +72,7 @@ match set rather than the batch on screen.
 
 ## Running it
 
-**Hosted (what end users get):** <https://geoffreylaff-stack.github.io/Kianse123/>
+**Hosted (what end users get):** <https://geoffreylaff-stack.github.io/oboe-repertoire-finder/>
 
 Any static host works; the repository is laid out for GitHub Pages, and
 `.github/workflows/pages.yml` publishes `index.html`, `assets/`, `lib/`,
