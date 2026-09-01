@@ -9,10 +9,10 @@ Nothing is installed. The end user opens a URL in Chrome or Edge and searches.
 
 | | |
 |---|---|
-| **Works indexed** | 6,604 |
-| **Composers** | 1,672 |
-| **Works needing an English horn** | 811 |
-| **Sources** | 133 hand-checked · 864 from Wikipedia · 5,607 from IMSLP |
+| **Works indexed** | 6,613 |
+| **Composers** | 1,674 |
+| **Works needing an English horn** | 810 |
+| **Sources** | 133 hand-checked · 860 from Wikipedia · 5,620 from IMSLP |
 | **Family members covered** | oboe · english horn (cor anglais) · oboe d'amore · oboe da caccia · bass oboe · heckelphone · musette |
 
 ---
@@ -42,11 +42,13 @@ ticked, which meant arriving at the page gave no sign the feature existed;
 setting a quantity now also selects the instrument, so neither control is a
 prerequisite for the other.
 
+Counts as of the current index — they shift a little with each monthly refresh:
+
 ```
-exactly two oboes                       1,345 works
-three or more oboes                       130 works
-exactly two oboes + english horn          322 works
-exactly one oboe, without english horn  2,775 works
+exactly two oboes                       1,342 works
+three or more oboes                       131 works
+exactly two oboes + english horn          321 works
+exactly one oboe, without english horn  2,783 works
 ```
 
 **none** is the other end of the same control, and it excludes rather than
@@ -63,7 +65,7 @@ works reach their English horn only through a doubling and so have no separate
 part; *exactly one english horn* still finds them, because one person does play
 one. Deselecting an instrument drops its count with it, so a rule can never
 outlive the instrument it applied to. Results group by composer and render in
-batches of 150, since *english horn* alone matches 811 works and building every
+batches of 150, since *english horn* alone matches 810 works and building every
 row up front makes the page crawl. The selection lives in the URL as
 `#i=oboe,englishHorn`, so a search can be shared; CSV export covers the whole
 match set rather than the batch on screen.
