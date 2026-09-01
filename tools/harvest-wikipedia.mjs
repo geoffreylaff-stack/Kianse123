@@ -28,6 +28,7 @@ import { fileURLToPath } from 'node:url';
 import {
   parseInstrumentation, formatOboeScoring, requiredInstruments, mentionsOboeFamily,
 } from '../lib/instrumentation.mjs';
+import { writeIfChanged } from './stable-json.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WIKI = 'https://en.wikipedia.org';
@@ -348,13 +349,15 @@ if (PAGES) {
 
   const save = async () => {
     await fs.mkdir(path.dirname(OUT), { recursive: true });
-    await fs.writeFile(OUT, JSON.stringify({
+    // Leaves the file untouched when the harvest found the same works, so an
+    // unchanged month does not churn timestamps through the whole build.
+    return writeIfChanged(OUT, {
       generated: new Date().toISOString(),
       source: 'English Wikipedia (en.wikipedia.org)',
       license: 'Text from Wikipedia, CC BY-SA 4.0.',
       counts: { ...stats, works: records.length, apiCalls: calls },
       works: records,
-    }, null, 1));
+    });
   };
 
   for (const composer of targets) {
@@ -375,7 +378,8 @@ if (PAGES) {
     await save();
   }
 
-  await save();
+  const wrote = await save();
+  if (!wrote) process.stderr.write('  unchanged since the last harvest; file left as it was\n');
   process.stderr.write(
     `\nWrote ${OUT}\n  ${records.length} works with oboe-family scoring\n` +
     `  ${stats.articles} articles read, ${stats.withSection} had an instrumentation section, ${calls} requests\n`);

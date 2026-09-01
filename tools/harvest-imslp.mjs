@@ -25,6 +25,7 @@ import { fileURLToPath } from 'node:url';
 import {
   parseInstrumentation, formatOboeScoring, mentionsOboeFamily, fromCategoryName,
 } from '../lib/instrumentation.mjs';
+import { writeIfChanged } from './stable-json.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://imslp.org/api.php';
@@ -280,13 +281,14 @@ for (const w of works) {
 }
 
 await fs.mkdir(path.dirname(OUT), { recursive: true });
-await fs.writeFile(OUT, JSON.stringify({
+const wrote = await writeIfChanged(OUT, {
   generated: new Date().toISOString(),
   source: 'IMSLP / Petrucci Music Library (imslp.org)',
   license: 'Work metadata from IMSLP, which publishes catalogue data under CC-BY-SA.',
   counts: { works: works.length, composers: composers.size, apiCalls: calls },
   composers: [...composers.values()].sort((a, b) => a.sort.localeCompare(b.sort)),
   works,
-}, null, 1));
+});
+if (!wrote) process.stderr.write('  unchanged since the last harvest; file left as it was\n');
 
 process.stderr.write(`\nWrote ${OUT}\n  ${works.length} works, ${composers.size} composers, ${calls} API calls\n`);

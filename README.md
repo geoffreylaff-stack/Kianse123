@@ -138,11 +138,22 @@ required, and a hard reload is never required.
 
 Builds are byte-identical when nothing changed, which matters more than it
 sounds: a CI run that changes nothing must produce the same id, or every run
-would prompt every visitor to re-download the index for nothing. The date
-therefore comes from the harvest timestamps recorded *inside* `data/imslp.json`
-and `data/wikipedia.json`, which travel with the content. An earlier attempt
-used file mtimes and looked correct locally while being useless in CI, where
-`git checkout` resets every mtime to the moment the repository was cloned.
+would prompt every visitor to re-download the index for nothing. This took three
+attempts to get right, each failing further along:
+
+1. Dating the index from the clock — every build differed.
+2. Dating it from the newest input file's mtime — correct locally, useless in
+   CI, where `git checkout` resets every mtime to the moment it cloned.
+3. Dating it from the harvest timestamps *inside* the data files — which travel
+   with the content, but are rewritten by every harvest even when the harvest
+   found nothing new.
+
+The third only showed up in a real scheduled run: it pushed six files, one line
+each, with the work count unchanged at 6,613. Nothing about the repertoire had
+moved; only the timestamps and the request counters. So the harvesters and the
+build now compare the *substance* — the works and composers — and leave the file
+untouched when it matches (`tools/stable-json.mjs`). A month with no upstream
+change now writes nothing, pushes no branch, and prompts nobody.
 
 ---
 

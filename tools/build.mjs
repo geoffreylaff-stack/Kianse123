@@ -15,6 +15,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { writeIfChanged } from './stable-json.mjs';
 import { parseInstrumentation, formatOboeScoring, requiredInstruments } from '../lib/instrumentation.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -274,9 +275,12 @@ const payload = {
   works: shipped,
 };
 
-const dataJson = JSON.stringify(payload);
 await fs.mkdir(p('data'), { recursive: true });
-await fs.writeFile(p('data/works.json'), dataJson);
+// If the works and composers are unchanged, keep the existing file exactly as
+// it is — including its date — so the build id below stays put and no visitor
+// is asked to re-download an index that has not changed.
+await writeIfChanged(p('data/works.json'), payload);
+const dataJson = await fs.readFile(p('data/works.json'), 'utf8');
 
 // ── Cache busting and version stamping ────────────────────────────────────────
 /*
