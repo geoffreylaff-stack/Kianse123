@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-09T18:21:24.234Z",
+ "generated": "2026-09-01T04:15:34.789Z",
  "source": "IMSLP / Petrucci Music Library (imslp.org)",
  "license": "Work metadata from IMSLP, which publishes catalogue data under CC-BY-SA.",
  "counts": {
-  "works": 6121,
-  "composers": 1642,
+  "works": 6134,
+  "composers": 1644,
   "apiCalls": 1859
  },
  "composers": [
@@ -336,7 +336,7 @@
    "id": "argentesi-dario",
    "name": "Dario Argentesi",
    "sort": "Argentesi, Dario",
-   "works": 33
+   "works": 34
   },
   {
    "id": "ariosti-attilio",
@@ -762,7 +762,7 @@
    "id": "beecke-ignaz-von",
    "name": "Ignaz von Beecke",
    "sort": "Beecke, Ignaz von",
-   "works": 1
+   "works": 2
   },
   {
    "id": "beer-hans-peter",
@@ -1740,7 +1740,7 @@
    "id": "caldini-fulvio",
    "name": "Fulvio Caldini",
    "sort": "Caldini, Fulvio",
-   "works": 56
+   "works": 57
   },
   {
    "id": "califano-arcangelo",
@@ -1830,6 +1830,12 @@
    "id": "capelli-giovanni-maria",
    "name": "Giovanni Maria Capelli",
    "sort": "Capelli, Giovanni Maria",
+   "works": 1
+  },
+  {
+   "id": "caplet-andre",
+   "name": "André Caplet",
+   "sort": "Caplet, André",
    "works": 1
   },
   {
@@ -2820,7 +2826,7 @@
    "id": "druzecky-jiri",
    "name": "Jiří Družecký",
    "sort": "Družecký, Jiří",
-   "works": 8
+   "works": 9
   },
   {
    "id": "duben-anders-von",
@@ -3753,6 +3759,12 @@
    "works": 2
   },
   {
+   "id": "gillies-duncan-fyfe",
+   "name": "Duncan Fyfe Gillies",
+   "sort": "Gillies, Duncan Fyfe",
+   "works": 1
+  },
+  {
    "id": "gilson-paul",
    "name": "Paul Gilson",
    "sort": "Gilson, Paul",
@@ -4134,7 +4146,7 @@
    "id": "handel-george-frideric",
    "name": "George Frideric Handel",
    "sort": "Handel, George Frideric",
-   "works": 176
+   "works": 177
   },
   {
    "id": "handl-jacob",
@@ -6264,7 +6276,7 @@
    "id": "mozart-wolfgang-amadeus",
    "name": "Wolfgang Amadeus Mozart",
    "sort": "Mozart, Wolfgang Amadeus",
-   "works": 106
+   "works": 109
   },
   {
    "id": "muckenberger-hilmar",
@@ -7338,7 +7350,7 @@
    "id": "revueltas-silvestre",
    "name": "Silvestre Revueltas",
    "sort": "Revueltas, Silvestre",
-   "works": 2
+   "works": 3
   },
   {
    "id": "rewly-cheston",
@@ -7398,7 +7410,7 @@
    "id": "riegger-wallingford-constantine",
    "name": "Wallingford Constantine Riegger",
    "sort": "Riegger, Wallingford Constantine",
-   "works": 3
+   "works": 4
   },
   {
    "id": "riemann-hugo",
@@ -8544,7 +8556,7 @@
    "id": "stankovych-tatiana",
    "name": "Tatiana Stankovych",
    "sort": "Stankovych, Tatiana",
-   "works": 5
+   "works": 6
   },
   {
    "id": "stanley-john",
@@ -9914,7 +9926,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "''Solo:'' oboe, violin, cello <br>''Orchestra:'' 2 oboes, 2 horns, strings",
      "arrangement": false
     }
@@ -10320,7 +10332,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "violin, strings, continuo (Nos.1, 4, 7, 10)<br>oboe, strings, continuo (Nos.3, 6, 9, 12)<br>2 oboes, strings, continuo (Nos.2, 5, 8, 11)",
      "arrangement": false
     }
@@ -10349,7 +10361,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "violin, strings, continuo (Nos.1, 4, 7, 10)<br>oboe, strings, continuo (Nos.2, 5, 8, 11) <br>2 oboes, strings, continuo (Nos.3, 6, 9, 12)",
      "arrangement": false
     }
@@ -11325,7 +11337,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "flute, oboe (doubles English Horn), clarinet in B{{flat",
      "arrangement": false
     }
@@ -13567,7 +13579,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "oboe (doubling English horn), clarinet (B{{flat",
      "arrangement": false
     }
@@ -14241,6 +14253,24 @@
    ],
    "source": "imslp-category",
    "url": "https://imslp.org/wiki/Oboe_Concerto_(Argentesi%2C_Dario)"
+  },
+  {
+   "id": "Oboe_Concerto_No.2_(Argentesi,_Dario)",
+   "title": "Oboe Concerto No.2",
+   "catalogue": null,
+   "composer": "Dario Argentesi",
+   "composerSort": "Argentesi, Dario",
+   "composerId": "argentesi-dario",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "full": "oboe, orchestra",
+   "arrangement": false,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Oboe_Concerto_No.2_(Argentesi%2C_Dario)"
   },
   {
    "id": "Oboe_Sonata_(Argentesi,_Dario)",
@@ -15426,7 +15456,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "''No.1:'' flute, oboe, violin, cello, keyboard; or keyboard solo<br>''No.2:'' oboe, violin, viola, cello, keyboard; or keyboard solo",
      "arrangement": false
     }
@@ -23735,7 +23765,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "oboe; oboe, bass instrument",
      "arrangement": false
     }
@@ -24045,7 +24075,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes, two english horns",
+     "scoring": "oboe, english horn",
      "full": "Oboe; oboe, cor anglais. Sonata arranged for 2 oboes & cor anglais",
      "arrangement": false
     }
@@ -24224,7 +24254,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three musettes",
+     "scoring": "two musettes",
      "full": "vielle (=hurdy-gurdy) b.c. (Sonatas 1-4), 2 vielles (=hurdy gurdies) (Sonatas 5-6); or musette, bc; 2 musettes",
      "arrangement": false
     }
@@ -24409,7 +24439,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "flute/oboe, violin, viola, cello (1,3,5); flute/oboe, 2 violins, cello (2,4,6)",
      "arrangement": false
     }
@@ -33255,6 +33285,24 @@
    "url": "https://imslp.org/wiki/Quintett_for_Flute%2C_Oboe%2C_Violin%2C_Viola_and_Cello_(Beecke%2C_Ignaz_von)"
   },
   {
+   "id": "Symphony_in_B-flat_major,_Op.4_No.4_(Beecke,_Ignaz_von)",
+   "title": "Symphony in B-flat major",
+   "catalogue": "Op.4 No.4",
+   "composer": "Ignaz von Beecke",
+   "composerSort": "Beecke, Ignaz von",
+   "composerId": "beecke-ignaz-von",
+   "scoring": "two oboes",
+   "counts": {
+    "oboe": 2
+   },
+   "full": "2 oboes, 2 horns, strings",
+   "arrangement": false,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Symphony_in_B-flat_major%2C_Op.4_No.4_(Beecke%2C_Ignaz_von)"
+  },
+  {
    "id": "Vier_Gedichte_von_Li_Tai-Pe_(Beer,_Hans-Peter)",
    "title": "Vier Gedichte von Li Tai-Pe",
    "catalogue": null,
@@ -35105,7 +35153,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "2 oboes, continuo or flute, oboe, continuo",
      "arrangement": false
     }
@@ -36076,7 +36124,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "flute (also alto flute), oboe (also English horn), violin, viola, cello",
      "arrangement": false
     }
@@ -36500,7 +36548,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "2 violins, continuo; oboe, violin, continuo; 2 oboes, continuo; flute, violin continuo",
      "arrangement": false
     }
@@ -37173,7 +37221,7 @@
      "arrangement": false
     },
     {
-     "scoring": "nine oboes",
+     "scoring": "two oboes",
      "full": "alto, 2 oboes, 2 violins, continuo; SA, 2 instruments (treble, soprano clefs), continuo; Sop, 2 violins, viola, continuo; Sop, 2 oboes/violins, 2 violas (soprano, alto clefs), continuo; Tenor, continuo; Sop, 2 oboes, viola, continuo; Soprano, cello, continuo; alto, continuo; 2 soprani, continuo; sop, continuo; soprano, 2 trumpets, 2 oboes, strings, continuo; alto, strings, continuo; soprano, violin, continuo; sop, oboe, continuo. [soprano clef instrument named as viollette]",
      "arrangement": false
     }
@@ -37202,7 +37250,7 @@
      "arrangement": false
     },
     {
-     "scoring": "eight oboes",
+     "scoring": "two oboes",
      "full": "alto, 2 oboes, 2 violins, continuo; alto, tenor, 2 violins, continuo; soprano, 2 violins, viola, cello, continuo; soprano, 2 oboes, 3 violins, viola, continuo; tenor, continuo; alto, oboe, 2 violins, viola, continuo; soprano, 2 oboes, 2 violins, viola, continuo; soprano, cello, continuo; alto, continuo; 2 sopranos, continuo; soprano, continuo; soprano, trumpet, 2 violins, viola, continuo; alto, 2 violins, viola, continuo; soprano, 2 violins, continuo; soprano, lute, 2 violins, viola; soprano, oboe, continuo; soprano, violin, continuo; alto, 2 violins, viola, continuo",
      "arrangement": false
     }
@@ -37244,7 +37292,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "two oboes, 2nd doubling english horn",
+     "scoring": "two oboes (2nd doubling english horn)",
      "full": "flute (also piccolo), 2 oboes (2nd also English horn), clarinet",
      "arrangement": false
     }
@@ -41511,6 +41559,24 @@
    "url": "https://imslp.org/wiki/Sonatina_for_Oboe_and_Clarinet%2C_Marginalia_No.233_(Caldini%2C_Fulvio)"
   },
   {
+   "id": "Sonatina_in_C_major,_Op.209_(Caldini,_Fulvio)",
+   "title": "Sonatina in C major",
+   "catalogue": "Op.209",
+   "composer": "Fulvio Caldini",
+   "composerSort": "Caldini, Fulvio",
+   "composerId": "caldini-fulvio",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "full": "oboe, piano",
+   "arrangement": false,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Sonatina_in_C_major%2C_Op.209_(Caldini%2C_Fulvio)"
+  },
+  {
    "id": "Sonatina_per_oboe_e_clarinetto,_Marginalia_No.124_(Caldini,_Fulvio)",
    "title": "Sonatina per oboe e clarinetto, Marginalia No.124",
    "catalogue": null,
@@ -41851,7 +41917,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "oboe, bassoon and orchestra: 2 oboes, 2 horns, strings",
      "arrangement": false
     }
@@ -42554,6 +42620,24 @@
    "url": "https://imslp.org/wiki/Tantum_ergo_in_B-flat_major_(Capelli%2C_Giovanni_Maria)"
   },
   {
+   "id": "Piano_Quintet_(Caplet,_André)",
+   "title": "Piano Quintet",
+   "catalogue": null,
+   "composer": "André Caplet",
+   "composerSort": "Caplet, André",
+   "composerId": "caplet-andre",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "full": "oboe, clarinet, bassoon, horn, piano",
+   "arrangement": true,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Piano_Quintet_(Caplet%2C_Andr%C3%A9)"
+  },
+  {
    "id": "Premier_livre_de_pièces_de_viole_(Cappus,_Jean-Baptiste)",
    "title": "Premier livre de pièces de viole",
    "catalogue": null,
@@ -42767,7 +42851,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "oboe, strings; oboe, 2 violins, viola, cello, double bass",
      "arrangement": false
     },
@@ -44012,7 +44096,7 @@
      "arrangement": false
     },
     {
-     "scoring": "four oboes",
+     "scoring": "oboe",
      "full": "''Soloists:'' 4 concertos for oboe, 2 for oboe or trumpet, 1 for oboe and cello, 1 for oboe and trumpet<br>''Orchestra:'' strings, continuo",
      "arrangement": false
     }
@@ -44305,7 +44389,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three english horns",
+     "scoring": "two english horns",
      "full": "English horn ; 2 English horns",
      "arrangement": false
     }
@@ -45116,7 +45200,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three musettes, doubling oboe",
+     "scoring": "two musettes, doubling oboe",
      "full": "musette, continuo (also mentions hurdy gurdy, oboe, flute/recorder); 2 musettes",
      "arrangement": false
     }
@@ -45155,7 +45239,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three musettes",
+     "scoring": "two musettes",
      "full": "''Book 1, Nos.1-4 and Book 2, Nos.1-3:'' 2 musettes (or vielles or recorders or flutes or oboes)<br>''Book 1, Nos.5-6 and Book 2, Nos.4-6:'' musette (or vielle or recorder or flute or oboe), continuo",
      "arrangement": false
     }
@@ -47726,7 +47810,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "two musettes",
+     "scoring": "musette",
      "full": "3 flutes (or 3 violins), continuo; musette, 2 violins, continuo; musette, 2 flutes, continuo (etc.)",
      "arrangement": false
     }
@@ -47808,7 +47892,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two musettes",
+     "scoring": "musette",
      "full": "3 flutes (or 3 oboes or 3 violins), continuo; musette, 2 violins, continuo; musette, 2 flutes, continuo; vielle/hurdy gurdy, 2 violins, continuo; recorder, 2 violins, continuo (etc.)",
      "arrangement": false
     }
@@ -48015,7 +48099,7 @@
      "arrangement": false
     },
     {
-     "scoring": "oboe, doubling oboe d'amore",
+     "scoring": "oboe (doubling oboe d'amore)",
      "full": "oboe (doubling English horn and oboe d'amore in some movements), piano",
      "arrangement": false
     }
@@ -48884,8 +48968,8 @@
    "url": "https://imslp.org/wiki/3_Ostinati_with_Chorales%2C_HC_532_(Cowell%2C_Henry)"
   },
   {
-   "id": "Ballad_(Cowell,_Henry)",
-   "title": "Ballad",
+   "id": "Quartet_for_Flute,_Oboe,_Cello_and_Harpsichord,_HC_802_(Cowell,_Henry)",
+   "title": "Quartet for Flute, Oboe, Cello and Harpsichord, HC 802",
    "catalogue": null,
    "composer": "Henry Cowell",
    "composerSort": "Cowell, Henry",
@@ -48894,12 +48978,12 @@
    "counts": {
     "oboe": 1
    },
-   "full": "flute, oboe, clarinet, horn and bassoon",
-   "arrangement": true,
+   "full": "flute, oboe, cello, harpsichord",
+   "arrangement": false,
    "estimated": false,
    "alternates": [],
    "source": "imslp-category",
-   "url": "https://imslp.org/wiki/Ballad_(Cowell%2C_Henry)"
+   "url": "https://imslp.org/wiki/Quartet_for_Flute%2C_Oboe%2C_Cello_and_Harpsichord%2C_HC_802_(Cowell%2C_Henry)"
   },
   {
    "id": "Suite_for_Woodwind_Quintet,_HC_491b_(Cowell,_Henry)",
@@ -49731,7 +49815,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "''Solo:'' flute, oboe, bassoon, horn<br>''Orchestra:'' 2 oboes, 2 horns, strings",
      "arrangement": false
     }
@@ -52275,7 +52359,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "flute, oboe (also English horn), guitar",
      "arrangement": false
     }
@@ -52971,6 +53055,24 @@
    ],
    "source": "imslp-category",
    "url": "https://imslp.org/wiki/Andante_Idillico_(Drigo%2C_Riccardo)"
+  },
+  {
+   "id": "Oboe_Concerto_in_G_major_(Družecký,_Jiří)",
+   "title": "Oboe Concerto in G major",
+   "catalogue": null,
+   "composer": "Jiří Družecký",
+   "composerSort": "Družecký, Jiří",
+   "composerId": "druzecky-jiri",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "full": "oboe, orchestra",
+   "arrangement": false,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Oboe_Concerto_in_G_major_(Dru%C5%BEeck%C3%BD%2C_Ji%C5%99%C3%AD)"
   },
   {
    "id": "Oboe_Quartet_in_D_major_(Družecký,_Jiří)",
@@ -54048,7 +54150,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three oboes",
+     "scoring": "oboe",
      "full": "voice, continuo; voice, recorder, continuo; voice, oboe, violin, continuo; 2 voices, continuo; 2 voices, oboe, violin, continuo; 3 voices, continuo; voice, 2 violins, viola, continuo; voice, 2 recorders, continuo; voice, bass instrument, continuo; 3 voices, 2 violins, continuo; 2 voices, 2 violins, continuo; voice, oboe, continuo; voice, trumpet, continuo; voice, violin, continuo",
      "arrangement": false
     }
@@ -54740,7 +54842,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "flute (doubling alto flute (G)), oboe (doubling English horn (F), clarinet (B{{flat",
      "arrangement": false
     }
@@ -54968,7 +55070,7 @@
      "arrangement": true
     }
    ],
-   "source": "imslp-instrumentation",
+   "source": "imslp-category",
    "url": "https://imslp.org/wiki/Oboe_Sonata_(Escudero_Royo%2C_Nicol%C3%A1s)"
   },
   {
@@ -55096,7 +55198,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "male narrator, flute, oboe (doubling English horn), clarinet (B{{flat",
      "arrangement": false
     }
@@ -58248,7 +58350,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "oboe, bassoon, violin, cello, orchestra or oboe, violin, viola, cello, orchestra",
      "arrangement": false
     }
@@ -58397,7 +58499,7 @@
      "arrangement": false
     },
     {
-     "scoring": "four oboes",
+     "scoring": "two oboes",
      "full": "Soprano Recorder, Oboe, Bassoon, or 2 Oboes and Bassoon, or Piccolo, Oboe, and Bassoon.",
      "arrangement": false
     }
@@ -62601,7 +62703,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes, 2nd doubling english horn",
+     "scoring": "two oboes (2nd doubling english horn)",
      "full": "2 flutes, 2 oboes (2nd also English horn), 2 clarinets and 2 bassoons",
      "arrangement": false
     }
@@ -62952,6 +63054,24 @@
    ],
    "source": "imslp-category",
    "url": "https://imslp.org/wiki/%C3%89tudes_pour_l'enseignement_sup%C3%A9rieur_du_hautbois_(Gillet%2C_Georges)"
+  },
+  {
+   "id": "5_Miniatures_(Gillies,_Duncan_Fyfe)",
+   "title": "5 Miniatures",
+   "catalogue": null,
+   "composer": "Duncan Fyfe Gillies",
+   "composerSort": "Gillies, Duncan Fyfe",
+   "composerId": "gillies-duncan-fyfe",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "full": "oboe, violin, viola, cello",
+   "arrangement": false,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/5_Miniatures_(Gillies%2C_Duncan_Fyfe)"
   },
   {
    "id": "Trio_(Gilson,_Paul)",
@@ -63803,13 +63923,7 @@
    "full": "flute, 2 oboes, 2 clarinets, 2 bassoons, 2 horns",
    "arrangement": false,
    "estimated": false,
-   "alternates": [
-    {
-     "scoring": "two oboes",
-     "full": "flute, 2 oboes, 2 clarinets (B{{flat",
-     "arrangement": false
-    }
-   ],
+   "alternates": [],
    "source": "imslp-category",
    "url": "https://imslp.org/wiki/Petite_suite_gauloise%2C_Op.90_(Gouvy%2C_Louis_Th%C3%A9odore)"
   },
@@ -65881,7 +65995,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "''Orchestra'': oboe or clarinet principal (or flute), 2 oboes + 2 horns (F/C ''ad lib'') + strings",
      "arrangement": false
     }
@@ -66326,7 +66440,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "flute, violin, continuo ; 2 violins/oboes, continuo ; violin/oboe/recorder, continuo",
      "arrangement": false
     }
@@ -68526,7 +68640,7 @@
      "arrangement": false
     },
     {
-     "scoring": "four oboes",
+     "scoring": "two oboes",
      "full": "Violin/Flute/Oboe with Continuo; 2 Oboes with Continuo; 2 Violins, Flute/Oboe with Continuo",
      "arrangement": false
     }
@@ -69291,6 +69405,24 @@
    "alternates": [],
    "source": "imslp-category",
    "url": "https://imslp.org/wiki/Trio_Sonata_in_C_major%2C_HWV_403_(Handel%2C_George_Frideric)"
+  },
+  {
+   "id": "Trio_Sonata_in_C-sharp_minor_(Handel,_George_Frideric)",
+   "title": "Trio Sonata in C-sharp minor",
+   "catalogue": null,
+   "composer": "George Frideric Handel",
+   "composerSort": "Handel, George Frideric",
+   "composerId": "handel-george-frideric",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "full": "flute, oboe, bassoon",
+   "arrangement": true,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Trio_Sonata_in_C-sharp_minor_(Handel%2C_George_Frideric)"
   },
   {
    "id": "Trio_Sonata_in_D_major,_HWV_385_(Handel,_George_Frideric)",
@@ -73948,7 +74080,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "oboe (doubling English horn), bassoon, viola, cello",
      "arrangement": false
     }
@@ -74133,7 +74265,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "''No.1:'' oboe, strings<br>''Nos.2-3 and separate movement:'' oboe, orchestra (bassoon, 2 horns, strings)",
      "arrangement": false
     }
@@ -76017,7 +76149,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "oboe",
      "full": "various: instructions for violin, flute, clarinet, cello, oboe, horn, bassoon. <br>Most pieces for 2 treble, bass instruments; larger forces - clarinets, horns, bassoons, oboes, flutes etc.",
      "arrangement": false
     }
@@ -77083,7 +77215,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "two oboes, english horn",
+     "scoring": "oboe, english horn",
      "full": "chamber version (main): flute, oboe, cello<br>orch.version: 2 flutes, oboe, English horn, 2 clarinets (B{{flat",
      "arrangement": false
     }
@@ -78848,7 +78980,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "oboe, horn (F), piano<br>with alternates for the oboe (clarinet (B{{flat",
      "arrangement": false
     }
@@ -79936,7 +80068,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "flute (also piccolo), oboe (also English horn), clarinet (also alto saxophone), bassoon, horn",
      "arrangement": false
     }
@@ -80817,7 +80949,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "''Solo'' - fortepiano, flute, oboe, bassoon, cello<br>''Orchestra'' - 2 oboes, 2 bassoons, 2 trumpets (E{{flat",
      "arrangement": false
     }
@@ -81083,7 +81215,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "oboe, violin, bassoon, continuo (Krause)<br>flute/oboe, violin, viola, continuo (Hasse)",
      "arrangement": false
     }
@@ -82171,7 +82303,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "oboe; 2 oboes",
      "arrangement": false
     }
@@ -83938,7 +84070,7 @@
      "arrangement": false
     },
     {
-     "scoring": "five oboes",
+     "scoring": "oboe",
      "full": "1. oboe, violin, bassoon/cello, cello<br>2. oboe/flute/clarinet, violin, bassoon/cello, cello<br>3. oboe/flute, violin, bassoon/cello, cello<br>4. oboe/flute, violin, bassoon/cello, cello<br>5. oboe/flute, violin, bassoon/cello, cello<br>6. flute, violin, bassoon/cello, cello",
      "arrangement": false
     }
@@ -84447,7 +84579,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes, english horn",
+     "scoring": "two oboes, english horn",
      "full": "''Solo:'' oboe<br>''Orchestra:'' piccolo, 2 flutes, 2 oboes, English horn<br>piccolo clarinet (E{{flat",
      "arrangement": false
     }
@@ -88359,7 +88491,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two english horns",
+     "scoring": "english horn",
      "full": "bansuri, piano<br>English horn, piano<br>English horn, strings <br>bansuri, orchestra",
      "arrangement": false
     }
@@ -88582,7 +88714,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "two english horns",
+     "scoring": "english horn",
      "full": "''Part 1:'' piccolo, bansuri, English horn, clarinet in A, bassoon, piano<br>''Part 2:'' English horn, clarinet in A, harp, electric piano",
      "arrangement": false
     }
@@ -88743,7 +88875,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three english horns",
+     "scoring": "english horn",
      "full": "''Miniature LN180120:'' flute, English horn, bass clarinet<br>''Miniature LN190120:'' flute, English horn, bass clarinet, bassoon, strings (plural:  violin, viola, cello, double bass sections), piano<br>''Miniature LN200120:'' flute, English horn, bass clarinet, cello",
      "arrangement": false
     }
@@ -89283,7 +89415,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two english horns",
+     "scoring": "english horn",
      "full": "English horn, strings<br>2 pianos<br>bansuri (flute), clarinet (A), bassoon<br>English horn, electric piano",
      "arrangement": false
     }
@@ -91122,8 +91254,8 @@
    "scoring": "two oboes, oboe d'amore, two english horns, bass oboe",
    "counts": {
     "oboe": 2,
-    "oboeDamore": 1,
     "englishHorn": 2,
+    "oboeDamore": 1,
     "bassOboe": 1
    },
    "full": "2 oboes, oboe damore, 2 English horns, bass oboe, 2 bassoons",
@@ -92790,7 +92922,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three musettes",
+     "scoring": "musette",
      "full": "flute, continuo<br>No.3: musette or flute, continuo<br>Nos.5-6: flute or trumpet(?), musettes or trumpet or fifes (as part of continuo)",
      "arrangement": false
     }
@@ -94352,6 +94484,24 @@
    "url": "https://imslp.org/wiki/Don_Giovanni%2C_K.527_(Mozart%2C_Wolfgang_Amadeus)"
   },
   {
+   "id": "Due_pupille_amabili,_K.439/Anh.A_47/01_(Mozart,_Wolfgang_Amadeus)",
+   "title": "Due pupille amabili, K.439/Anh.A 47/01",
+   "catalogue": null,
+   "composer": "Wolfgang Amadeus Mozart",
+   "composerSort": "Mozart, Wolfgang Amadeus",
+   "composerId": "mozart-wolfgang-amadeus",
+   "scoring": "two english horns",
+   "counts": {
+    "englishHorn": 2
+   },
+   "full": "2 English horns, bassoon",
+   "arrangement": true,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Due_pupille_amabili%2C_K.439%2FAnh.A_47%2F01_(Mozart%2C_Wolfgang_Amadeus)"
+  },
+  {
    "id": "Ein_musikalischer_Spaß,_K.522_(Mozart,_Wolfgang_Amadeus)",
    "title": "Ein musikalischer Spaß",
    "catalogue": "K.522",
@@ -95001,6 +95151,24 @@
    "url": "https://imslp.org/wiki/Quintet_in_E-flat_major%2C_K.452_(Mozart%2C_Wolfgang_Amadeus)"
   },
   {
+   "id": "Se_lontan_ben_mio,_tu_sei,_K.438/Anh.A_47/02_(Mozart,_Wolfgang_Amadeus)",
+   "title": "Se lontan ben mio, tu sei, K.438/Anh.A 47/02",
+   "catalogue": null,
+   "composer": "Wolfgang Amadeus Mozart",
+   "composerSort": "Mozart, Wolfgang Amadeus",
+   "composerId": "mozart-wolfgang-amadeus",
+   "scoring": "two english horns",
+   "counts": {
+    "englishHorn": 2
+   },
+   "full": "2 English horns, bassoon",
+   "arrangement": true,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Se_lontan_ben_mio%2C_tu_sei%2C_K.438%2FAnh.A_47%2F02_(Mozart%2C_Wolfgang_Amadeus)"
+  },
+  {
    "id": "Se_tutti_i_mali_miei,_K.83/73p_(Mozart,_Wolfgang_Amadeus)",
    "title": "Se tutti i mali miei",
    "catalogue": "K.83/73p",
@@ -95178,7 +95346,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "''Solo'': oboe, clarinet, bassoon, horn<br>''Orchestra'': 2 oboes + 2 horns + strings",
      "arrangement": false
     },
@@ -95535,6 +95703,24 @@
    "url": "https://imslp.org/wiki/Violin_Sonata_in_E_minor%2C_K.304%2F300c_(Mozart%2C_Wolfgang_Amadeus)"
   },
   {
+   "id": "Violin_Sonata_in_F_major,_K.376/374d_(Mozart,_Wolfgang_Amadeus)",
+   "title": "Violin Sonata in F major",
+   "catalogue": "K.376/374d",
+   "composer": "Wolfgang Amadeus Mozart",
+   "composerSort": "Mozart, Wolfgang Amadeus",
+   "composerId": "mozart-wolfgang-amadeus",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "full": "oboe, piano",
+   "arrangement": true,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Violin_Sonata_in_F_major%2C_K.376%2F374d_(Mozart%2C_Wolfgang_Amadeus)"
+  },
+  {
    "id": "Violin_Sonata_in_G_major,_K.379/373a_(Mozart,_Wolfgang_Amadeus)",
    "title": "Violin Sonata in G major",
    "catalogue": "K.379/373a",
@@ -95620,7 +95806,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "oboe solo, 2 oboes or violins, viola, continuo (with bassoon or cello)",
      "arrangement": false
     }
@@ -96384,7 +96570,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "6 pieces for military band in full score at the end. Methods for flute (also applies to piccolo), clarinet (also applies to basset horn), oboe, bassoon (fingerings given for 2 different key systems, also applies to other bassoons such as contrabassoon), Harmonie-Bass (a kind of keyed serpent or ophicleide), trumpet (natural and keyed, flugelhorn; bass trumpet and posthorn also mentioned), horn (natural and keyed), trombone (tenor, alto, bass, bombardone), percussion. Included are studies for the solo instruments and also duet studies for 2 flutes; 2 clarinets; 2 oboes; 2 bassoons; 2 trumpets; 2 flugelhorns; 2 natural horns; 2 keyed horns",
      "arrangement": false
     }
@@ -96774,7 +96960,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "flute, oboe (also English horn), clarinet (A), bassoon, horn (F)",
      "arrangement": false
     }
@@ -107191,8 +107377,8 @@
    "composerId": "price-florence",
    "scoring": "oboe, two english horns",
    "counts": {
-    "oboe": 1,
-    "englishHorn": 2
+    "englishHorn": 2,
+    "oboe": 1
    },
    "full": "oboe, 2 english horns, bassoon",
    "arrangement": true,
@@ -107433,7 +107619,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "Flute (also Piccolo), Oboe (also English horn), Clarinet, Horn, Bassoon",
      "arrangement": false
     }
@@ -108454,7 +108640,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "flute (also piccolo), oboe (also English horn), clarinet (also bass clarinet), bassoon, horn",
      "arrangement": false
     }
@@ -109158,7 +109344,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "flute, oboe (optionally doubling cor anglais), clarinet, bassoon, horn, 2 violins, viola, cello, double bass",
      "arrangement": false
     }
@@ -110378,7 +110564,7 @@
    "composer": "Ottorino Respighi",
    "composerSort": "Respighi, Ottorino",
    "composerId": "respighi-ottorino",
-   "scoring": "oboe, doubling english horn",
+   "scoring": "oboe (doubling english horn)",
    "counts": {
     "oboe": 1
    },
@@ -110466,6 +110652,24 @@
    ],
    "source": "imslp-category",
    "url": "https://imslp.org/wiki/Octet%2C_Op.37_(Reuss%2C_August)"
+  },
+  {
+   "id": "2_Little_Serious_Pieces_(Revueltas,_Silvestre)",
+   "title": "2 Little Serious Pieces",
+   "catalogue": null,
+   "composer": "Silvestre Revueltas",
+   "composerSort": "Revueltas, Silvestre",
+   "composerId": "revueltas-silvestre",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "full": "piccolo, oboe, clarinet, baritone saxophone, trumpet",
+   "arrangement": false,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/2_Little_Serious_Pieces_(Revueltas%2C_Silvestre)"
   },
   {
    "id": "2_Pequeñas_piezas_serias,_R.78_(Revueltas,_Silvestre)",
@@ -110910,6 +111114,24 @@
    ],
    "source": "imslp-category",
    "url": "https://imslp.org/wiki/Piano_Concerto%2C_Op.53_(Riegger%2C_Wallingford_Constantine)"
+  },
+  {
+   "id": "Wind_Quintet,_Op.51_(Riegger,_Wallingford_Constantine)",
+   "title": "Wind Quintet",
+   "catalogue": "Op.51",
+   "composer": "Wallingford Constantine Riegger",
+   "composerSort": "Riegger, Wallingford Constantine",
+   "composerId": "riegger-wallingford-constantine",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "full": "flute, oboe, clarinet, bassoon, horn",
+   "arrangement": false,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Wind_Quintet%2C_Op.51_(Riegger%2C_Wallingford_Constantine)"
   },
   {
    "id": "Mannheimer_Kammermusik_des_18._Jahrhunderts_(Riemann,_Hugo)",
@@ -113516,6 +113738,11 @@
     },
     {
      "scoring": "oboe",
+     "full": "flute, oboe, clarinet, bassoon and piano",
+     "arrangement": true
+    },
+    {
+     "scoring": "oboe",
      "full": "oboe, alto saxophone, piano, viola and cello",
      "arrangement": true
     }
@@ -113954,7 +114181,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "''Solo:'' oboe, violin, cello<br>''Orchestra:'' 2 oboes, 2 horns, timpani, strings",
      "arrangement": false
     }
@@ -118764,7 +118991,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "2 oboes, 2 bassoons or flex quartet: oboe (or flute, soprano saxophone, clarinet (B{{flat",
      "arrangement": false
     }
@@ -121296,7 +121523,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "flute, oboe; oboe, clarinet",
      "arrangement": false
     }
@@ -121715,7 +121942,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes, english horn",
+     "scoring": "oboe, english horn",
      "full": "oboe & clarinet; oboe & English horn",
      "arrangement": false
     }
@@ -122143,6 +122370,24 @@
    "url": "https://imslp.org/wiki/Duo_per_oboe_e_fagotto_'Ritorno_alle_origini'_(Stankovych%2C_Tatiana)"
   },
   {
+   "id": "Percipience_of_Limitless_(Stankovych,_Tatiana)",
+   "title": "Percipience of Limitless",
+   "catalogue": null,
+   "composer": "Tatiana Stankovych",
+   "composerSort": "Stankovych, Tatiana",
+   "composerId": "stankovych-tatiana",
+   "scoring": "oboe",
+   "counts": {
+    "oboe": 1
+   },
+   "full": "oboe, clarinet, bassoon",
+   "arrangement": false,
+   "estimated": false,
+   "alternates": [],
+   "source": "imslp-category",
+   "url": "https://imslp.org/wiki/Percipience_of_Limitless_(Stankovych%2C_Tatiana)"
+  },
+  {
    "id": "Polyphonic_Reverb_(Stankovych,_Tatiana)",
    "title": "Polyphonic Reverb",
    "catalogue": null,
@@ -122460,7 +122705,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "flute (also piccolo), oboe (also English horn), clarinet (also bass clarinet), bassoon, horn",
      "arrangement": false
     }
@@ -123046,7 +123291,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, doubling english horn",
+     "scoring": "oboe (doubling english horn)",
      "full": "voice, flute, oboe (also English horn), clarinet, bassoon<br>violin, viola, cello, double bass",
      "arrangement": false
     }
@@ -126016,7 +126261,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "four oboes",
+     "scoring": "two oboes",
      "full": "full version:  SATB solos and chorus, 2 oboes, strings, continuo.  Short version:  voice (alto or baritone), 2 oboes, continuo",
      "arrangement": false
     }
@@ -126134,7 +126379,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "full version:  SATB solos and chorus, 2 oboes, strings, continuo.  Short version:  tenor (or soprano), oboe, violin, continuo",
      "arrangement": false
     }
@@ -129602,7 +129847,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "full version: SATB solos and chorus, 2 oboes, strings, continuo; shorter version: voice, oboe, violin, continuo",
      "arrangement": false
     }
@@ -129650,7 +129895,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "four oboes",
+     "scoring": "two oboes",
      "full": "full version:  SATB solos and chorus, 2 oboes, strings, continuo. Short version:  voice (alto or baritone), 2 oboes, continuo",
      "arrangement": false
     }
@@ -131809,7 +132054,7 @@
      "arrangement": false
     },
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "oboe ; 2 oboes",
      "arrangement": false
     }
@@ -133160,7 +133405,7 @@
      "arrangement": false
     },
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "oboe (Op.65); oboe, piano (Op.65 bis)",
      "arrangement": false
     }
@@ -136573,7 +136818,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "oboe, 2nd doubling english horn",
+     "scoring": "oboe (2nd doubling english horn)",
      "full": "oboe (doubling English Horn ''ad lib.'' in 2nd mo.), piano",
      "arrangement": false
     }
@@ -136879,7 +137124,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "two english horns",
+     "scoring": "english horn",
      "full": "flauto d'amore, English horn, trumpet, glockenspiel, viola d'amore, cello, harpsichord<br>''Echo'' - flauto d'amore, cor anglais, trumpet, cello",
      "arrangement": false
     }
@@ -137441,7 +137686,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "2 violins or 2 clarinets or flute/oboe/clarinet and violin; works also well with 2 oboes.",
      "arrangement": false
     }
@@ -138306,8 +138551,8 @@
    "url": "https://imslp.org/wiki/Waterside_Fairies_(Yaskawa%2C_Toru)"
   },
   {
-   "id": "L'Epice_d'Asie_(Yokoyama,_Shin-Itchiro)",
-   "title": "L'Epice d'Asie",
+   "id": "L'epice_d'Asie_(Yokoyama,_Shin-Itchiro)",
+   "title": "L'epice d'Asie",
    "catalogue": null,
    "composer": "Shin-Itchiro Yokoyama",
    "composerSort": "Yokoyama, Shin-Itchiro",
@@ -138327,11 +138572,11 @@
     }
    ],
    "source": "imslp-category",
-   "url": "https://imslp.org/wiki/L'Epice_d'Asie_(Yokoyama%2C_Shin-Itchiro)"
+   "url": "https://imslp.org/wiki/L'epice_d'Asie_(Yokoyama%2C_Shin-Itchiro)"
   },
   {
-   "id": "La_Nuit_de_Colmar_(Yokoyama,_Shin-Itchiro)",
-   "title": "La Nuit de Colmar",
+   "id": "La_nuit_de_Colmar_(Yokoyama,_Shin-Itchiro)",
+   "title": "La nuit de Colmar",
    "catalogue": null,
    "composer": "Shin-Itchiro Yokoyama",
    "composerSort": "Yokoyama, Shin-Itchiro",
@@ -138343,15 +138588,9 @@
    "full": "flute, oboe, bassoon, piano",
    "arrangement": false,
    "estimated": false,
-   "alternates": [
-    {
-     "scoring": "oboe",
-     "full": "Flute, Oboe, Bassoon, Piano",
-     "arrangement": false
-    }
-   ],
+   "alternates": [],
    "source": "imslp-category",
-   "url": "https://imslp.org/wiki/La_Nuit_de_Colmar_(Yokoyama%2C_Shin-Itchiro)"
+   "url": "https://imslp.org/wiki/La_nuit_de_Colmar_(Yokoyama%2C_Shin-Itchiro)"
   },
   {
    "id": "Souvenir_de_Caen_(Yokoyama,_Shin-Itchiro)",
@@ -138367,13 +138606,7 @@
    "full": "flute, oboe, bassoon",
    "arrangement": false,
    "estimated": false,
-   "alternates": [
-    {
-     "scoring": "oboe",
-     "full": "Flute, Oboe, Bassoon",
-     "arrangement": false
-    }
-   ],
+   "alternates": [],
    "source": "imslp-category",
    "url": "https://imslp.org/wiki/Souvenir_de_Caen_(Yokoyama%2C_Shin-Itchiro)"
   },
@@ -139029,7 +139262,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "two oboes",
+     "scoring": "oboe",
      "full": "Oboe and Bassoon solo, Oboe, Strings",
      "arrangement": false
     }
@@ -139740,7 +139973,7 @@
    "estimated": false,
    "alternates": [
     {
-     "scoring": "three oboes",
+     "scoring": "two oboes",
      "full": "oboe echo, 2 oboes, 2 bassoons, trumpet",
      "arrangement": false
     }
