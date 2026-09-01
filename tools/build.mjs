@@ -255,14 +255,17 @@ for (const [id, c] of composers) if (!c.n && !c.nArr) composers.delete(id);
 // rather than left for anyone reading the JSON or the network tab.
 const shipped = works.map(({ src, url, ...rest }) => rest);
 
-// Dated from the newest data input rather than the clock: a rebuild that
-// changes nothing must produce an identical index, or every CI run would mint a
-// new build id and prompt every visitor to re-download 1.8 MB for nothing.
-const inputMtimes = await Promise.all(
-  ['data/curated.json', 'data/wikipedia.json', 'data/imslp.json']
-    .map((f) => fs.stat(p(f)).then((st) => st.mtimeMs).catch(() => 0)),
-);
-const dataDate = new Date(Math.max(...inputMtimes, 0) || Date.now()).toISOString();
+// Dated from when the data was harvested, not when the build ran: a rebuild
+// that changes nothing must produce an identical index, or every CI run would
+// mint a new build id and prompt every visitor to re-download 1.8 MB for
+// nothing. The harvesters stamp their own output, and that timestamp travels
+// in the file — file mtimes do not, since a fresh `git checkout` resets them
+// all to the moment CI cloned the repository.
+const harvestDates = [wikipedia.generated, imslp.generated]
+  .filter(Boolean)
+  .map((d) => Date.parse(d))
+  .filter(Number.isFinite);
+const dataDate = new Date(Math.max(...harvestDates, 0) || Date.now()).toISOString();
 
 const payload = {
   generated: dataDate,

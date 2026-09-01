@@ -353,8 +353,16 @@ The Wikipedia sweep saves after every composer and takes `--resume`, so an
 interrupted run picks up where it stopped instead of starting over. Composers are
 ordered most-wanted first for the same reason.
 
-`.github/workflows/refresh-data.yml` does this monthly and opens a pull request
-when the index changes, so the snapshot does not quietly rot.
+`.github/workflows/refresh-data.yml` does this monthly. It pushes the result to
+`chore/refresh-repertoire-data` and links a pull request from the run summary,
+rather than opening one itself: creating pull requests is off by default for
+GitHub Actions (*Settings → Actions → General → Workflow permissions*), and a
+refresh should not depend on a setting nobody remembers. Enabling that setting
+is optional and changes nothing here.
+
+Nothing is published straight to the live site. The run also refuses a refresh
+that loses more than a fifth of the index, since a renamed upstream category can
+gut a harvest while every step still reports success.
 
 ---
 
