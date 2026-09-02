@@ -61,6 +61,7 @@ const formKey = (composerId, title) => {
 const curated = await readJson(p('data/curated.json'), { composers: {}, works: [] });
 const wikipedia = await readJson(p('data/wikipedia.json'), { works: [] });
 const imslp = await readJson(p('data/imslp.json'), { composers: [], works: [] });
+const composerDates = await readJson(p('data/composer-dates.json'), { dates: {} });
 
 const composers = new Map();
 const byName = new Map(); // fold(display name) -> id
@@ -267,6 +268,83 @@ const harvestDates = [wikipedia.generated, imslp.generated]
   .map((d) => Date.parse(d))
   .filter(Number.isFinite);
 const dataDate = new Date(Math.max(...harvestDates, 0) || Date.now()).toISOString();
+
+// ── Composer dates ────────────────────────────────────────────────────────────
+/**
+ * Turn a harvested pair of years into the form the interface shows in
+ * parentheses after a name.
+ *
+ * The living case is the point of this, and the one that has to be right: a
+ * missing death year can mean the composer is alive, or only that nobody
+ * recorded the death. The index's own data settles it. Among composers with a
+ * birth year and no death year there is a wide empty gap — a handful born
+ * before 1900, then nobody at all until the moderns — so the boundary needs no
+ * judgement: born from 1900 onwards with no death recorded means living, and
+ * earlier than that means a death nobody wrote down.
+ *
+ * Those earlier ones are shown as "1556–?" rather than "b. 1556", because
+ * beside a list where "(b. 1948)" means a composer you could write to, a bare
+ * birth year would claim a 470-year-old is still working.
+ */
+const LIVING_FROM = 1900;
+
+function formatDates(record) {
+  // Destructuring a default only fires on undefined, never on null, so taking
+  // the years in the signature crashed the whole build the first time a lookup
+  // came back empty rather than absent.
+  const { born, died } = record ?? {};
+  if (born && died) return `${born}–${died}`;
+  if (born) return born >= LIVING_FROM ? `b. ${born}` : `${born}–?`;
+  if (died) return `d. ${died}`;
+  return null;
+}
+
+/**
+ * Find a composer's record, allowing for the name being spelled differently
+ * here than on IMSLP.
+ *
+ * A transliterated name arrives under whichever spelling its source used, and
+ * the sources disagree: IMSLP files Glazunov under "Aleksandr" while Wikipedia
+ * says "Alexander", so an exact lookup finds nothing and one of the best-known
+ * composers in the index keeps no dates at all.
+ *
+ * A match needs the surname to agree *and* the forename to be one IMSLP itself
+ * lists for that person. Both halves are required deliberately: matching on
+ * surname alone would give Johann Christian Bach his brother's dates.
+ */
+function findDates(composer) {
+  const exact = composerDates.dates?.[composer.sort];
+  if (exact) return exact;
+
+  const [surname, forename] = String(composer.sort).split(',').map((s) => fold(s));
+  if (!surname || !forename) return null;
+  const wanted = new Set(forename.split(' ').filter(Boolean));
+
+  for (const [key, record] of Object.entries(composerDates.dates ?? {})) {
+    const [theirSurname, theirForename] = String(key).split(',').map((s) => fold(s));
+    if (theirSurname !== surname) continue;
+    const known = new Set([...(theirForename ?? '').split(' '), ...(record.alt ?? [])]);
+    if ([...wanted].some((w) => known.has(w))) return record;
+  }
+  return null;
+}
+
+let dated = 0;
+let livingCount = 0;
+let viaVariant = 0;
+for (const c of composers.values()) {
+  // Curated dates are hand-checked and outrank the harvest, as everywhere else.
+  if (c.dates) continue;
+  const record = findDates(c);
+  const formatted = formatDates(record);
+  if (!formatted) continue;
+  if (!composerDates.dates?.[c.sort]) viaVariant++;
+  c.dates = formatted;
+  dated++;
+  if (formatted.startsWith('b. ')) livingCount++;
+}
+process.stderr.write(
+  `  composer dates: ${dated} added from IMSLP (${viaVariant} via a name variant), ${livingCount} living\n`);
 
 const payload = {
   generated: dataDate,

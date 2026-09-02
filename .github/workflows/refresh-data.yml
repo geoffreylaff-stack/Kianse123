@@ -35,6 +35,13 @@ jobs:
         # partial run still contributes rather than failing the whole refresh.
         run: npm run harvest:wikipedia || node tools/harvest-wikipedia.mjs --resume
 
+      - name: Refresh composer dates
+        # Cheap — thirty-three API calls against pages that change when somebody
+        # dies or a new composer is added. It must not take the refresh down if
+        # IMSLP is briefly unreachable, since the existing dates stay valid.
+        continue-on-error: true
+        run: npm run harvest:composers
+
       - name: Rebuild index
         run: npm run build
 

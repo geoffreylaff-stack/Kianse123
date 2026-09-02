@@ -13,6 +13,7 @@ Nothing is installed. The end user opens a URL in Chrome or Edge and searches.
 | **Composers** | 1,674 |
 | **Works needing an English horn** | 810 |
 | **Sources** | 133 hand-checked · 860 from Wikipedia · 5,620 from IMSLP |
+| **Composer dates** | 1,418 of 1,674 · 383 living |
 | **Family members covered** | oboe · english horn (cor anglais) · oboe d'amore · oboe da caccia · bass oboe · heckelphone · musette |
 
 ---
@@ -288,6 +289,59 @@ address is shared rather than because of our pace. The CDN-cached paths are not
 throttled at all, so the harvester reads article text from
 `index.php?action=raw` and category membership from the rendered category page.
 Measured on ten fetches: **0 throttled via `action=raw`, 8 via the REST API.**
+
+### Who is still alive
+
+A name on its own answers less than it looks like it does. Whether a composer is
+someone you could commission from or someone three centuries dead is usually the
+first thing worth knowing, and the index knew it for 41 of its 1,674 composers —
+all of them typed in by hand.
+
+IMSLP keeps a structured person record on each composer's category page, and
+`tools/harvest-composers.mjs` reads it in thirty-three API calls:
+
+```
+{{#fte:person
+|Born Year=1948|Born Month=|Born Day=
+|Died Year=|Died Month=|Died Day=
+```
+
+**The empty death year is the whole problem.** It can mean the composer is
+alive, or only that nobody recorded the death, and the difference decides
+whether the entry reads "(b. 1948)". The data settles it rather than a guess:
+among composers with a birth year and no death year there is a wide empty gap —
+a handful born before 1900, then nobody at all until the moderns. A gap that
+wide means the boundary needs no judgement.
+
+So a birth from 1900 onwards with no death recorded is treated as living, and
+anything earlier as a death nobody wrote down — shown as `1556–?` rather than
+`b. 1556`, because next to a list where `(b. 1948)` means a composer you could
+write to, a bare birth year would claim a 470-year-old is still working.
+
+| | |
+|---|---|
+| `1841–1904` | both years known — 903 composers |
+| `b. 1948` | living — 383 |
+| `d. 1904` | birth unrecorded — 92 |
+| `1556–?` | death unrecorded — 22 |
+| *(nothing)* | neither known — 256 |
+
+None of the undated is a missed living composer: not one has a work in this
+index dated after 1950. Twenty composers have no IMSLP page at all — Walton,
+Glass, Pärt and other names that reached the index through Wikipedia — and
+their dates are typed into the curated file, where a hand-checked date outranks
+the harvest.
+
+**Two faults kept several hundred composers blank, and both are worth
+recording.** IMSLP writes the person record under two different template names,
+`{{#fte:person` and `{{#imslpcomposer:`, and a guard on only the first silently
+rejected every page using the second. And a transliterated name reaches this
+index under whichever spelling its source used: IMSLP files Glazunov under
+*Aleksandr* while Wikipedia says *Alexander*, so an exact lookup found nothing
+and one of the best-known composers here kept no dates at all. IMSLP lists the
+variants itself, so a match now needs the surname to agree **and** the forename
+to be one IMSLP knows for that person — both halves required, since matching on
+surname alone would hand Johann Christian Bach his brother's dates.
 
 ### The curated layer
 
